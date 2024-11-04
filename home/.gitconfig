@@ -6,3 +6,6 @@
 	tool = nvimdiff
 [merge]
 	tool = nvimdiff
+[user]
+	name = undeadamien
+	email = damien.trala@outlook.com
