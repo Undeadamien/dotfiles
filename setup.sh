@@ -1,23 +1,37 @@
 #!/bin/bash
 
-for file in $(find "home" -type f); do
-	link="${HOME}/${file#home/}"
-	mkdir -p "$(dirname "$link")"
+dirs=$(find . -maxdepth 1 ! -name ".*" -type d -exec basename {} \;)
 
-	if [[ -e "$link" ]] && [[ $(diff "$file" "$link") ]]; then
-		diff "$file" "$link"
-		read -p "Do you want to replace the file (y/n): " res
-		if [[ "$res" =~ ^[yY]$ ]]; then
-			printf "Replacing the file %s\n" $link
+# select and validate the folder to setup
+printf "%s\n" "$dirs"
+read -p "Which folder do you want to setup: " target
+if [[ ! -d "$target" ]] || ! printf "%s\n" "$dirs" | grep -qx "$target"; then
+	printf "Invalid option\n"
+	exit 1
+fi
+
+# semi-automatic setup of the link
+for file in $(find "$target" -type f); do
+	link="${HOME}/${file#${target}/}"
+	mkdir -p "$(dirname "$link")"
+	if [[ -e "$link" ]]; then
+		if [[ $(diff "$file" "$link") ]]; then
+			diff "$file" "$link"
+			read -p "Do you want to replace the file (y/n): " res
+			if [[ "$res" =~ ^[yY]$ ]]; then
+				printf "Replaced %s\n" "$link"
+				ln -sf "$PWD/$file" "$link"
+			else
+				printf "Skipped %s\n" "$link"
+			fi
+		elif [[ ! -L "$link" ]]; then
+			printf "Replaced %s\n" "$link"
 			ln -sf "$PWD/$file" "$link"
 		else
-			printf "Skipping the file %s\n" $link
+			printf "Kept %s\n" "$link"
 		fi
-	elif [[ -e "$link" ]]; then
-		printf "Replacing the file %s\n" $link
-		ln -sf "$PWD/$file" "$link"
 	else
-		printf "Creating the file %s\n" $link
+		printf "Created %s\n" "$link"
 		ln -s "$PWD/$file" "$link"
 	fi
 done
