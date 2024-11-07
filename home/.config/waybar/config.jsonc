@@ -1,20 +1,21 @@
 {
   "position": "top",
   "height": 36,
-  "margin-top": 8,
-  "margin-left": 8,
-  "margin-right": 8,
-  "margin-bottom": 0,
-  "border-size": 4,
   "reload_style_on_change": true,
 
   "modules-left": ["hyprland/workspaces"],
-  "modules-center": ["clock"],
-  "modules-right": [],
+  "modules-center": ["clock#time"],
+  "modules-right": ["clock#date"],
 
-  "hyprland/workspaces": {
-    "format-window-separator": " | ",
+  "hyprland/workspaces": {},
+
+  "clock#time": {
+    "format": "{:%H:%M}",
+    "tooltip": false
   },
 
-  "clock": { "format": "{:%H:%M}", "tooltip": false },
+  "clock#date": {
+    "format": "{:%A, %B %d}",
+    "tooltip": false
+  }
 }
