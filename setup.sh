@@ -19,19 +19,19 @@ for file in $(find "$target" -type f); do
 			diff "$file" "$link"
 			read -p "Do you want to replace the file (y/n): " res
 			if [[ "$res" =~ ^[yY]$ ]]; then
-				printf "Replaced %s\n" "$link"
 				ln -sf "$PWD/$file" "$link"
+				printf "Replaced %s\n" "$link"
 			else
 				printf "Skipped %s\n" "$link"
 			fi
 		elif [[ ! -L "$link" ]]; then
-			printf "Replaced %s\n" "$link"
 			ln -sf "$PWD/$file" "$link"
+			printf "Replaced %s\n" "$link"
 		else
 			printf "Kept %s\n" "$link"
 		fi
 	else
-		printf "Created %s\n" "$link"
 		ln -sf "$PWD/$file" "$link" # f in case the link is broken
+		printf "Created %s\n" "$link"
 	fi
 done
