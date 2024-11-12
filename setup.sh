@@ -32,6 +32,6 @@ for file in $(find "$target" -type f); do
 		fi
 	else
 		printf "Created %s\n" "$link"
-		ln -s "$PWD/$file" "$link"
+		ln -sf "$PWD/$file" "$link" # f in case the link is broken
 	fi
 done
