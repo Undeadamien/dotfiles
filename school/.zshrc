@@ -5,6 +5,7 @@ set -o vi
 
 # Neovim Config
 alias nvim="~/nvim/bin/nvim"
+alias nvimdiff="~/nvim/bin/nvim -d"
 
 # Auto-completion
 autoload -Uz compinit promptinit
