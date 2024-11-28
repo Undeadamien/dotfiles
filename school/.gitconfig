@@ -3,9 +3,9 @@
 [core]
 	editor = "~/nvim/bin/nvim"
 [diff]
-	tool = nvimdiff
+	tool = vimdiff
 [merge]
-	tool = nvimdiff
+	tool = vimdiff
 [user]
 	name = undeadamien
 	email = damien.trala@outlook.com
