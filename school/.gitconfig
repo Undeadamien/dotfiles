@@ -1,0 +1,11 @@
+[credential]
+	helper = cache
+[core]
+	editor = "~/nvim/bin/nvim"
+[diff]
+	tool = vimdiff
+[merge]
+	tool = vimdiff
+[user]
+	name = undeadamien
+	email = damien.trala@outlook.com
