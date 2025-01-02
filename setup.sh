@@ -33,5 +33,9 @@ for file in $(find "$target" -type f); do
 	else
 		ln -sf "$PWD/$file" "$link" # f in case the link is broken
 		printf "Created %s\n" "$link"
+<<<<<<< HEAD
+=======
+		ln -sf "$PWD/$file" "$link"
+>>>>>>> e61b83571553423f3fc98aa3c53724dfaf168ee1
 	fi
 done
