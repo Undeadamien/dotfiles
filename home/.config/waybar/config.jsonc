@@ -7,15 +7,19 @@
   "modules-center": ["clock#time"],
   "modules-right": ["clock#date"],
 
-  "hyprland/workspaces": {},
+  "hyprland/workspaces": {
+    "persistent-workspaces": { "*": 5 },
+    "active-only": false,
+  },
 
   "clock#time": {
-    "format": "{:%H:%M}",
-    "tooltip": false
+    "interval": 1,
+    "format": "{:%H:%M:%S}",
+    "tooltip": false,
   },
 
   "clock#date": {
     "format": "{:%A, %B %d}",
-    "tooltip": false
-  }
+    "tooltip": false,
+  },
 }
