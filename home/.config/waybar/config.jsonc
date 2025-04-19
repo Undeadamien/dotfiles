@@ -19,7 +19,7 @@
   },
 
   "clock#date": {
-    "format": "{:%A, %B %d}",
+    "format": "{:%A, %B %d, %Y}",
     "tooltip": false,
   },
 }
