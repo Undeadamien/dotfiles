@@ -8,13 +8,14 @@
   "modules-right": ["clock#date"],
 
   "hyprland/workspaces": {
-    "persistent-workspaces": { "*": 5 },
     "active-only": false,
+    "format": "●",
+    "persistent-workspaces": { "*": 5 },
   },
 
   "clock#time": {
-    "interval": 1,
     "format": "{:%H:%M:%S}",
+    "interval": 1,
     "tooltip": false,
   },
 
