@@ -1,13 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+}
 #waybar {
   background: rgba(40, 40, 50, 0.95);
-  color: white;
+  color: #ffffff;
   font-family: "Ubuntu Nerd Font";
   font-weight: bold;
   border-radius: 4px;
 }
 #workspaces {
   background: inherit;
-  margin: 0 0;
 }
 #workspaces button,
 #workspaces button.empty {
@@ -17,13 +20,15 @@
   color: rgba(100, 100, 100, 1);
   outline: none;
   text-shadow: none;
+  min-width: 32px;
+  min-height: 32px;
+  border-radius: 0;
 }
 #workspaces button.active {
   background: rgba(255, 255, 255, 0.2);
 }
 #workspaces button {
-  border-radius: 0px;
-  color: white;
+  color: #ffffff;
 }
 #clock.date,
 #clock.time {
