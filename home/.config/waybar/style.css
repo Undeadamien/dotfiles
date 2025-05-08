@@ -1,39 +1,30 @@
 #waybar {
-  background: rgba(30, 30, 46, 0.7);
+  background: rgba(40, 40, 50, 0.95);
   color: white;
   font-family: "Ubuntu Nerd Font";
   font-weight: bold;
-  padding: 0px;
+  border-radius: 4px;
 }
-
 #workspaces {
+  background: inherit;
   margin: 0 0;
 }
-
 #workspaces button,
 #workspaces button.empty {
-  background: none;
+  background: inherit;
   border: none;
   box-shadow: none;
-  color: rgba(150, 150, 150, 1);
+  color: rgba(100, 100, 100, 1);
   outline: none;
   text-shadow: none;
 }
-
+#workspaces button.active {
+  background: rgba(255, 255, 255, 0.2);
+}
 #workspaces button {
   border-radius: 0px;
   color: white;
 }
-
-#workspaces button.active {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-#waybar .module:hover {
-  background-color: inherit;
-  color: inherit;
-}
-
 #clock.date,
 #clock.time {
   background: inherit;
