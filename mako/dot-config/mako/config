@@ -1,0 +1,13 @@
+anchor=top-right
+background-color=#1e1e1e
+border-color=#ffffff
+border-radius=4
+border-size=2
+default-timeout=5000
+font=monospace 12
+margin=8
+max-visible=-1
+padding=8
+text-alignment=center
+text-color=#dcdcdc
+width=300
