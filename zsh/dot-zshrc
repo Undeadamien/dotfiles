@@ -4,17 +4,23 @@
 export PATH="$PATH:/opt/nvim-linux64/bin"
 export EDITOR="nvim"
 
-# Plugins
-fpath+=~/.zsh/zsh-completions/src
+# Plugins with zplug
+if [ ! -f ~/.zplug/init.zsh ]; then
+	git clone https://github.com/zplug/zplug ~/.zplug
+fi;
+source ~/.zplug/init.zsh
+zplug "zsh-users/zsh-completions"
+fpath+=~/.zplug/repos/zsh-users/zsh-completions/src
 autoload -Uz compinit && compinit
-if [ -f ~/.zsh/fzf-tab/fzf-tab.zsh ]; then
-	source ~/.zsh/fzf-tab/fzf-tab.zsh
-else echo "Missing fzf-tab"; fi
-if [ -f ~/.zsh/zsh-vi-mode/zsh-vi-mode.zsh ]; then
-	source ~/.zsh/zsh-vi-mode/zsh-vi-mode.zsh
-else echo "Missing zsh-vi-mode"; fi
+zplug "Aloxaf/fzf-tab"
+zplug "jeffreytse/zsh-vi-mode"
+zplug 'zplug/zplug'
+if ! zplug check; then zplug install; fi
+zplug --self-manage
+zplug load
 
 # Terminal Prompt
+autoload -Uz promptinit && promptinit
 setopt prompt_subst
 function update_prompt {
 	PS1=$''
