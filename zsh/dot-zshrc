@@ -4,44 +4,27 @@
 export PATH="$PATH:/opt/nvim-linux64/bin"
 export EDITOR="nvim"
 
-# Plugins with zplug
-if [ ! -f ~/.zplug/init.zsh ]; then
-	git clone https://github.com/zplug/zplug ~/.zplug
-fi;
-source ~/.zplug/init.zsh
-zplug "zsh-users/zsh-completions"
-fpath+=~/.zplug/repos/zsh-users/zsh-completions/src
+# History
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+
+# Plugins with antidote
+if [ ! -f ~/.antidote/antidote.zsh ]; then
+	git clone --depth=1 https://github.com/mattmc3/antidote.git ~/.antidote
+fi
+source ~/.antidote/antidote.zsh
 autoload -Uz compinit && compinit
-zplug "Aloxaf/fzf-tab"
-zplug "jeffreytse/zsh-vi-mode"
-zplug 'zplug/zplug'
-if ! zplug check; then zplug install; fi
-zplug --self-manage
-zplug load
+antidote load
 
 # Terminal Prompt
+# Info: man zshmisc
 autoload -Uz promptinit && promptinit
 setopt prompt_subst
 function update_prompt {
-	PS1=$''
-
-	PS1+=$'%{\e[1m%}'
-	PS1+=$'%{\e[38;5;15m%}'
-	PS1+=$'%n'
-	PS1+=$'%{\e[m%}'
-
-	PS1+=$':'
-
-	PS1+=$'%{\e[2m%}'
-	PS1+=$'%{\e[38;5;15m%}'
-	PS1+=$'%~'
-	PS1+=$'%{\e[m%}'
-
-	PS1+=$'%{\e[1m%}'
-	PS1+=$'%{\e[38;5;15m%}'
-	PS1+=$'$'
-	PS1+=$'%{\e[m%}'
-
-	PS1+=$' '
+	PROMPT=$'%n:%~$ '
 }
 update_prompt
+
+# Set Binds
+bindkey -v

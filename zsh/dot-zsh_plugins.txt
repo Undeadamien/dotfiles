@@ -1,0 +1,2 @@
+Aloxaf/fzf-tab
+zsh-users/zsh-completions kind:fpath path:src
