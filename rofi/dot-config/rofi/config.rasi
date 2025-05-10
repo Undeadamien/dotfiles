@@ -5,12 +5,12 @@ configuration {
 	case-sensitive: false;
 	terminal: "kitty";
 	show-icons: true;
+	font: "Hack Nerd Font 12";
 	filebrowser {
 		directories-first: true;
 		sorting-method:    "name";
 	}
 /*	combi-modes: "";*/
-/*	font: "mono 12";*/
 /*	location: 0;*/
 /*	yoffset: 0;*/
 /*	xoffset: 0;*/
