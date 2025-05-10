@@ -1,15 +1,18 @@
 #!/usr/bin/env zsh
 
-# Enable vi control
-set -o vi
-
 # Neovim Config
 export PATH="$PATH:/opt/nvim-linux64/bin"
+export EDITOR="nvim"
 
-# Auto-completion
-autoload -Uz compinit promptinit
-compinit
-promptinit
+# Plugins
+fpath+=~/.zsh/zsh-completions/src
+autoload -Uz compinit && compinit
+if [ -f ~/.zsh/fzf-tab/fzf-tab.zsh ]; then
+	source ~/.zsh/fzf-tab/fzf-tab.zsh
+else echo "Missing fzf-tab"; fi
+if [ -f ~/.zsh/zsh-vi-mode/zsh-vi-mode.zsh ]; then
+	source ~/.zsh/zsh-vi-mode/zsh-vi-mode.zsh
+else echo "Missing zsh-vi-mode"; fi
 
 # Terminal Prompt
 setopt prompt_subst
@@ -36,18 +39,3 @@ function update_prompt {
 	PS1+=$' '
 }
 update_prompt
-
-# fzf
-function fd {
-	local target=$(find . -not -path '*/.*' -type d | fzf)
-	if [ -n "$target" ] && [ -d "$target" ]; then cd "$target"; fi
-}
-function ff {
-	local target=$(find . -not -path "*/.*" -type f | fzf)
-	if [ -n "$target" ] && [ -f "$target" ]; then nvim "$target"; fi
-}
-
-# Nvm setup
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
