@@ -22,7 +22,12 @@ antidote load
 autoload -Uz promptinit && promptinit
 setopt prompt_subst
 function update_prompt {
-	PROMPT=$'%n:%~$ '
+	PROMPT=$'%F{white}'
+	PROMPT+=$'%B%n%b'
+	PROMPT+=$':'
+	PROMPT+=$'%F{darkgrey}%{\e[8m%}%~%{\e[0m%}%f'
+	PROMPT+=$'%B$%b'
+	PROMPT+=$'%f '
 }
 update_prompt
 
