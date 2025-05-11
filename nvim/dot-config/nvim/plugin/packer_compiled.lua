@@ -74,11 +74,6 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  ["42header"] = {
-    loaded = true,
-    path = "/home/undeadamien/.local/share/nvim/site/pack/packer/start/42header",
-    url = "https://github.com/42Paris/42header"
-  },
   ["Comment.nvim"] = {
     loaded = true,
     path = "/home/undeadamien/.local/share/nvim/site/pack/packer/start/Comment.nvim",
