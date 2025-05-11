@@ -5,7 +5,7 @@
 #waybar {
   background: rgba(40, 40, 50, 0.95);
   color: #ffffff;
-  font-family: "Hack Nerd Font";
+  font-family: "Ubuntu Nerd Font";
   font-weight: bold;
   border-radius: 4px;
 }
@@ -30,9 +30,26 @@
 #workspaces button {
   color: #ffffff;
 }
+#window {
+  min-width: 0;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 4 4 4 0;
+  padding: 0 8 0 8;
+  border-radius: 4px;
+}
+window#waybar.empty #window {
+  background: none;
+  margin: 0;
+  min-width: 0;
+  padding: 0;
+}
 #clock.date,
 #clock.time {
   background: inherit;
-  padding-left: 8px;
-  padding-right: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  /* padding-left: 0px; */
+  /* padding-right: 8px; */
+  margin: 4 4 4 0;
+  padding: 0 8 0 8;
+  border-radius: 4px;
 }

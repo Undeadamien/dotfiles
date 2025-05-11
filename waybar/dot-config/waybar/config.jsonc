@@ -5,8 +5,8 @@
   "reload_style_on_change": true,
 
   "modules-left": ["hyprland/workspaces"],
-  "modules-center": ["clock#time"],
-  "modules-right": ["clock#date"],
+  "modules-center": ["hyprland/window"],
+  "modules-right": ["clock#date", "clock#time"],
 
   "hyprland/workspaces": {
     "active-only": false,
@@ -21,7 +21,10 @@
   },
 
   "clock#date": {
-    "format": "{:%A, %B %d, %Y}",
+    "format": "{:%A, %b %d, %Y}",
     "tooltip": false,
+  },
+  "hyprland/window": {
+    "icon": false,
   },
 }
