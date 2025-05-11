@@ -3,7 +3,7 @@
   padding: 0;
 }
 #waybar {
-  background: rgba(40, 40, 50, 0.95);
+  background: rgba(40, 40, 50, 0.9);
   color: #ffffff;
   font-family: "Ubuntu Nerd Font";
   font-weight: bold;
@@ -32,13 +32,15 @@
 }
 #window {
   min-width: 0;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.4);
   margin: 4 4 4 0;
   padding: 0 8 0 8;
   border-radius: 4px;
 }
 window#waybar.empty #window {
   background: none;
+  border: none;
   margin: 0;
   min-width: 0;
   padding: 0;
@@ -46,9 +48,8 @@ window#waybar.empty #window {
 #clock.date,
 #clock.time {
   background: inherit;
-  background: rgba(255, 255, 255, 0.2);
-  /* padding-left: 0px; */
-  /* padding-right: 8px; */
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.4);
   margin: 4 4 4 0;
   padding: 0 8 0 8;
   border-radius: 4px;
