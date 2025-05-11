@@ -35,7 +35,7 @@ vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
 --Undo
-vim.opt.undodir = vim.fn.expand("~/.config/nvim/.undo")
+vim.opt.undodir = vim.fn.expand("~/.cache/nvim/undo")
 vim.opt.undofile = true
 vim.opt.undolevels = 1000
 
