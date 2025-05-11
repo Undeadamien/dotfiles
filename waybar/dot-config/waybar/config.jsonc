@@ -26,5 +26,6 @@
   },
   "hyprland/window": {
     "icon": false,
+    "tooltip": false,
   },
 }
