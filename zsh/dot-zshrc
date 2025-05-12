@@ -2,6 +2,7 @@
 
 # Neovim Config
 export PATH="$PATH:/opt/nvim-linux64/bin"
+export PATH="$PATH:$HOME/nvim/bin" # for the school
 export EDITOR="nvim"
 
 # History
@@ -22,12 +23,12 @@ antidote load
 autoload -Uz promptinit && promptinit
 setopt prompt_subst
 function update_prompt {
-	PROMPT=$'%F{white}'
+	PROMPT=$''
 	PROMPT+=$'%B%n%b'
 	PROMPT+=$':'
-	PROMPT+=$'%F{darkgrey}%{\e[8m%}%~%{\e[0m%}%f'
+	PROMPT+=$'%F{white}%{\e[3m%}%~%{\e[0m%}%f'
 	PROMPT+=$'%B$%b'
-	PROMPT+=$'%f '
+	PROMPT+=$' '
 }
 update_prompt
 
