@@ -47,7 +47,7 @@ return require("packer").startup(function(use)
 	use("hrsh7th/nvim-cmp")
 	use("neovim/nvim-lspconfig")
 	use("saadparwaiz1/cmp_luasnip")
-	use({ "williamboman/mason-lspconfig.nvim", commit = "1a31f82" })
+	use({ "williamboman/mason-lspconfig.nvim" })
 
 	--Git
 	use("tpope/vim-fugitive")

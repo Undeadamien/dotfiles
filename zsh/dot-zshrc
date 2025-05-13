@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 # Neovim Config
-export PATH="$PATH:/opt/nvim-linux64/bin"
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 export PATH="$PATH:$HOME/nvim/bin" # for the school
 export EDITOR="nvim"
 
