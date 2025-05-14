@@ -1,5 +1,4 @@
 local builtin = require("telescope.builtin")
-local previewers = require("telescope.previewers")
 
 -- Fix for the the double border
 vim.api.nvim_create_autocmd("User", {

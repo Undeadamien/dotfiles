@@ -23,7 +23,20 @@ return require("packer").startup(function(use)
 	use({ "nvim-telescope/telescope.nvim", requires = { { "nvim-lua/plenary.nvim" } } })
 
 	--Comment
-	use({ "numToStr/Comment.nvim" })
+	use({
+		"numToStr/Comment.nvim",
+		config = function()
+			require("Comment").setup()
+		end,
+	})
+
+	--UndoTree
+	use({
+		"mbbill/undotree",
+		config = function()
+			vim.keymap.set("n", "<leader>u", ":UndotreeToggle<CR>")
+		end,
+	})
 
 	--Surround
 	use({
