@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
 
+setopt globdots # Allow hidden element in completion
+
 # Neovim Config
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 export PATH="$PATH:$HOME/nvim/bin" # for the school
@@ -11,15 +13,12 @@ HISTSIZE=1000
 SAVEHIST=1000
 
 # Plugins with antidote
-if [ ! -f ~/.antidote/antidote.zsh ]; then
-	git clone --depth=1 https://github.com/mattmc3/antidote.git ~/.antidote
-fi
+[ -f ~/.antidote/antidote.zsh ] || git clone --depth=1 https://github.com/mattmc3/antidote.git ~/.antidote
 source ~/.antidote/antidote.zsh
 autoload -Uz compinit && compinit
 antidote load
 
 # Terminal Prompt
-# Info: man zshmisc
 autoload -Uz promptinit && promptinit
 setopt prompt_subst
 function update_prompt {
@@ -36,5 +35,11 @@ update_prompt
 bindkey -v
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+function fzd() {
+	local dir=${1:-"."}
+	local selected="$(find "$dir" -type d 2>/dev/null | fzf)"
+	[ -n "$selected" ] && cd "$selected"
+}
