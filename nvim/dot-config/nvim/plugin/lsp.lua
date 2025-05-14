@@ -1,41 +1,72 @@
-local lsp_zero = require("lsp-zero")
+vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>")
+vim.keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>")
+vim.keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>")
+vim.api.nvim_create_autocmd("LspAttach", {
+	desc = "LSP actions",
+	callback = function(event)
+		local opts = { buffer = event.buf }
 
-local lsp_attach = function(client, bufnr)
-	lsp_zero.default_keymaps({ buffer = bufnr })
-end
-
-lsp_zero.extend_lspconfig({
-	capabilities = require("cmp_nvim_lsp").default_capabilities(),
-	lsp_attach = lsp_attach,
-	float_border = "rounded",
-	sign_text = {
-		error = "✘",
-		warn = "▲",
-		hint = "⚑",
-		info = "ℹ",
-	},
+		vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
+		vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
+		vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
+		vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
+		vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
+		vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
+		vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
+		vim.keymap.set("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
+		vim.keymap.set({ "n", "x" }, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
+		vim.keymap.set("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+	end,
 })
+
+local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+local default_setup = function(server)
+	require("lspconfig")[server].setup({
+		capabilities = lsp_capabilities,
+	})
+end
 
 require("mason").setup({})
 require("mason-lspconfig").setup({
-	ensure_installed = { "clangd", "lua_ls" },
+	ensure_installed = {},
 	handlers = {
-		function(server_name)
-			require("lspconfig")[server_name].setup({})
-		end,
-		lua_ls = function()
-			require("lspconfig").lua_ls.setup({
-				on_init = function(client)
-					lsp_zero.nvim_lua_settings(client, {})
-				end,
-			})
-		end,
+		default_setup,
 	},
+	lua_ls = function()
+		require("lspconfig").lua_ls.setup({
+			capabilities = lsp_capabilities,
+			settings = {
+				Lua = {
+					runtime = {
+						version = "LuaJIT",
+					},
+					diagnostics = {
+						globals = { "vim" },
+					},
+					workspace = {
+						library = {
+							vim.env.VIMRUNTIME,
+						},
+					},
+				},
+			},
+		})
+	end,
 })
 
-vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>")
-
 vim.diagnostic.config({
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = "✘",
+			[vim.diagnostic.severity.WARN] = "▲",
+			[vim.diagnostic.severity.HINT] = "⚑",
+			[vim.diagnostic.severity.INFO] = "ℹ",
+		},
+		linehl = {},
+		numhl = {},
+	},
+
 	virtual_text = { prefix = "", suffix = "" },
 	severity_sort = true,
 	float = {
@@ -48,15 +79,23 @@ vim.diagnostic.config({
 })
 
 local cmp = require("cmp")
-local cmp_action = lsp_zero.cmp_action()
-local cmp_format = lsp_zero.cmp_format()
 
 require("luasnip.loaders.from_vscode").lazy_load()
 
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
 cmp.setup({
-	formatting = cmp_format,
+	formatting = {
+		format = function(entry, vim_item)
+			vim_item.menu = ({
+				buffer = "[Buffer]",
+				nvim_lsp = "[LSP]",
+				luasnip = "[Snip]",
+				nvim_lua = "[Lua]",
+			})[entry.source.name]
+			return vim_item
+		end,
+	},
 	preselect = "item",
 	completion = {
 		completeopt = "menu,menuone,noinsert",

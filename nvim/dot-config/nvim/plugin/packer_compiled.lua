@@ -124,11 +124,6 @@ _G.packer_plugins = {
     path = "/home/undeadamien/.local/share/nvim/site/pack/packer/start/lackluster.nvim",
     url = "https://github.com/slugbyte/lackluster.nvim"
   },
-  ["lsp-zero.nvim"] = {
-    loaded = true,
-    path = "/home/undeadamien/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",
-    url = "https://github.com/VonHeikemen/lsp-zero.nvim"
-  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/home/undeadamien/.local/share/nvim/site/pack/packer/start/lualine.nvim",
@@ -210,11 +205,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/undeadamien/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
-  },
-  ["zen-mode.nvim"] = {
-    loaded = true,
-    path = "/home/undeadamien/.local/share/nvim/site/pack/packer/start/zen-mode.nvim",
-    url = "https://github.com/folke/zen-mode.nvim"
   }
 }
 

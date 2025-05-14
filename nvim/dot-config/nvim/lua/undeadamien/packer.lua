@@ -16,9 +16,6 @@ return require("packer").startup(function(use)
 	use("nvim-treesitter/nvim-treesitter")
 	use("nvim-treesitter/nvim-treesitter-context")
 
-	--ZenMode
-	use("folke/zen-mode.nvim")
-
 	--LuaLine
 	use({ "nvim-lualine/lualine.nvim", requires = { "nvim-tree/nvim-web-devicons", opt = true } })
 
@@ -38,7 +35,6 @@ return require("packer").startup(function(use)
 	})
 
 	--Lsp
-	use({ "VonHeikemen/lsp-zero.nvim", branch = "v4.x" })
 	use("L3MON4D3/LuaSnip")
 	use("hrsh7th/cmp-buffer")
 	use("hrsh7th/cmp-nvim-lsp")
