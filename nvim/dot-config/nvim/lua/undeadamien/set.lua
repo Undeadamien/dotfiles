@@ -44,3 +44,6 @@ vim.opt.scrolloff = 8
 
 --Cmd alias/abbrev
 vim.cmd("cabbrev E Ex")
+
+--Windows
+vim.o.winborder = "rounded"

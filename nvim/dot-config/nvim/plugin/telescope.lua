@@ -1,6 +1,20 @@
 local builtin = require("telescope.builtin")
 local previewers = require("telescope.previewers")
 
+-- Fix for the the double border
+vim.api.nvim_create_autocmd("User", {
+	pattern = "TelescopeFindPre",
+	callback = function()
+		vim.opt_local.winborder = "none"
+		vim.api.nvim_create_autocmd("WinLeave", {
+			once = true,
+			callback = function()
+				vim.opt_local.winborder = "rounded"
+			end,
+		})
+	end,
+})
+
 vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
 vim.keymap.set("n", "<leader>fc", builtin.current_buffer_fuzzy_find, {})
 vim.keymap.set("n", "<leader>fd", builtin.diagnostics, {})
