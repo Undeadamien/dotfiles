@@ -25,7 +25,7 @@ function update_prompt {
 	PROMPT=$''
 	PROMPT+=$'%B%n%b'
 	PROMPT+=$':'
-	PROMPT+=$'%F{white}%{\e[3m%}%~%{\e[0m%}%f'
+	PROMPT+=$'%~'
 	PROMPT+=$'%B$%b'
 	PROMPT+=$' '
 }
