@@ -7,11 +7,13 @@
   color: #ffffff;
   font-family: "Ubuntu Nerd Font";
   font-weight: bold;
-  font-size: 12px;
+  font-size: 10px;
   border-radius: 4px;
 }
 #workspaces {
   background: inherit;
+  font-size: 12px;
+  font-weight: bold;
 }
 #workspaces button,
 #workspaces button.empty {
@@ -40,7 +42,7 @@
   background: rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.4);
   margin: 4 4 4 0;
-  padding: 0 8 0 8;
+  padding: 0 4 0 4;
   border-radius: 4px;
 }
 window#waybar.empty #window {
@@ -56,6 +58,14 @@ window#waybar.empty #window {
   background: rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.4);
   margin: 4 4 4 0;
-  padding: 0 8 0 8;
+  padding: 0 4 0 4;
+  border-radius: 4px;
+}
+#battery{
+  background: inherit;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  margin: 4 4 4 0;
+  padding: 0 4 0 4;
   border-radius: 4px;
 }
