@@ -7,6 +7,7 @@
   color: #ffffff;
   font-family: "Ubuntu Nerd Font";
   font-weight: bold;
+  font-size: 12px;
   border-radius: 4px;
 }
 #workspaces {
@@ -20,12 +21,16 @@
   color: rgba(100, 100, 100, 1);
   outline: none;
   text-shadow: none;
-  min-width: 32px;
-  min-height: 32px;
+  min-width: 24px;
+  min-height: 24px;
   border-radius: 0;
 }
 #workspaces button.active {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(175, 175, 175, 0.2);
+}
+#workspaces button.active:first-child {
+  background: rgba(175, 175, 175, 0.2);
+  border-radius: 4 0 0 4;
 }
 #workspaces button {
   color: #ffffff;
@@ -33,7 +38,7 @@
 #window {
   min-width: 0;
   background: rgba(0, 0, 0, 0.3);
-  border: 2px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   margin: 4 4 4 0;
   padding: 0 8 0 8;
   border-radius: 4px;
@@ -49,7 +54,7 @@ window#waybar.empty #window {
 #clock.time {
   background: inherit;
   background: rgba(0, 0, 0, 0.3);
-  border: 2px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   margin: 4 4 4 0;
   padding: 0 8 0 8;
   border-radius: 4px;
