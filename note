@@ -1,0 +1,25 @@
+note:
+    -sudo pacman -S $(pacman -Ssq "ttf.*nerd")
+    -systemctl --user enable --now pipewire pipewire-pulse wireplumber
+
+to-change:
+    -switch from rofi to wofi
+    -modify waybar based on pc
+
+to-do:
+    -nvim and packer
+
+packages:
+    -firefox
+    -fzf
+    -hypridle
+    -hyprlock
+    -hyprpaper
+    -jq
+    -pipewire
+    -pipewire-pulse
+    -rofi
+    -waybar
+    -wireplumber
+    -wl-clipboard
+    -zsh
