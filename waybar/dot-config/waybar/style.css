@@ -11,7 +11,8 @@
   border-radius: 4px;
 }
 
-.modules-left {}
+.modules-left {
+}
 .modules-left > * > * {
   margin: 4 0 4 4;
   padding: 0 4 0 4;
@@ -19,12 +20,12 @@
   background: rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 4px;
-
 }
-#battery{
+#battery {
 }
 
-.modules-middle {}
+.modules-middle {
+}
 .modules-middle {
 }
 #workspaces {
@@ -51,8 +52,8 @@
   color: #ffffff;
 }
 
-
-.modules-right {}
+.modules-right {
+}
 .modules-right > * > * {
   margin: 4 4 4 0;
   padding: 0 4 0 4;
