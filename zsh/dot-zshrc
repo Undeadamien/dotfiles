@@ -33,6 +33,7 @@ update_prompt
 
 # Set Binds
 bindkey -v
+autoload -U edit-command-line && zle -N edit-command-line
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"

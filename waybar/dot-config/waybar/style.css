@@ -10,6 +10,23 @@
   font-size: 10px;
   border-radius: 4px;
 }
+
+.modules-left {}
+.modules-left > * > * {
+  margin: 4 0 4 4;
+  padding: 0 4 0 4;
+  background: inherit;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 4px;
+
+}
+#battery{
+}
+
+.modules-middle {}
+.modules-middle {
+}
 #workspaces {
   background: inherit;
   font-size: 12px;
@@ -30,42 +47,20 @@
 #workspaces button.active {
   background: rgba(175, 175, 175, 0.2);
 }
-#workspaces button.active:first-child {
-  background: rgba(175, 175, 175, 0.2);
-  border-radius: 4 0 0 4;
-}
 #workspaces button {
   color: #ffffff;
 }
-#window {
-  min-width: 0;
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.4);
+
+
+.modules-right {}
+.modules-right > * > * {
   margin: 4 4 4 0;
   padding: 0 4 0 4;
+  background: inherit;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 4px;
-}
-window#waybar.empty #window {
-  background: none;
-  border: none;
-  margin: 0;
-  min-width: 0;
-  padding: 0;
 }
 #clock.date,
 #clock.time {
-  background: inherit;
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  margin: 4 4 4 0;
-  padding: 0 4 0 4;
-  border-radius: 4px;
-}
-#battery{
-  background: inherit;
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  margin: 4 4 4 0;
-  padding: 0 4 0 4;
-  border-radius: 4px;
 }
