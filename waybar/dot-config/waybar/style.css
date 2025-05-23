@@ -30,8 +30,7 @@
 }
 #workspaces {
   background: inherit;
-  font-size: 12px;
-  font-weight: bold;
+  font-size: 14px;
 }
 #workspaces button,
 #workspaces button.empty {
