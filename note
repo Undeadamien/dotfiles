@@ -1,5 +1,0 @@
--systemctl --user enable --now pipewire pipewire-pulse wireplumber
-cat packages | xargs sudo pacman -S --noconfirm
-
-to-do:
-    -nvim packer

@@ -1,4 +1,5 @@
 bat
+brighptnessctl
 discord
 firefox
 fzf
@@ -6,6 +7,7 @@ hypridle
 hyprlock
 hyprpaper
 jq
+krita
 less
 mako
 man
@@ -13,12 +15,14 @@ nvim
 pipewire
 pipewire-alsa
 pipewire-pulse
+thunar
 tmux
 ttf-ubuntu-font-family
 ttf-ubuntu-mono-nerd
 ttf-ubuntu-nerd
 unzip
 waybar
+wev
 wireplumber
 wl-clipboard
 wofi
