@@ -1,13 +1,14 @@
 anchor=top-right
 background-color=#1e1e1e
-border-color=#ffffff
+border-color=#666666
 border-radius=4
 border-size=2
 default-timeout=5000
 font=Ubuntu Nerd Font 12
-margin=8
+margin=4
 max-visible=-1
 padding=8
-text-alignment=center
+text-alignment=left
 text-color=#dcdcdc
 width=300
+height=500
