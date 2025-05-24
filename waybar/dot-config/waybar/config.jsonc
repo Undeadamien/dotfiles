@@ -26,7 +26,7 @@
 
   "battery": {
     "icon": false,
-    "tooltip": false,
+    "tooltip": true,
     "full-at": 99,
     "format": "{icon}  {capacity}%",
     "interval": 60,
