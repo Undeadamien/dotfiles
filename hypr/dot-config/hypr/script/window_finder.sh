@@ -1,7 +1,15 @@
 #!/usr/bin/env bash
 
 windows="$(hyprctl clients -j | jq -c '.[]')"
-entries="$(echo "${windows}" | jq -c -r '"\(.class) | \(.title) | \(.pid)"')"
+classes="$(echo "${windows}" | jq -cr '.class')"
+titles="$(echo "${windows}" | jq -cr '.title')"
+addresses="$(echo "${windows}" | jq -cr '.address')"
+
+echo "$classes"
+echo "$titles"
+echo "$addresses"
+
+exit
 
 selected="$(echo "${entries}" | rofi -dmenu -i -p "Select window")"
 
