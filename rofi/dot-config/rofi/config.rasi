@@ -4,7 +4,7 @@ configuration {
 	cycle: true;
 	case-sensitive: false;
 	terminal: "kitty";
-	show-icons: true;
+	show-icons: false;
 	font: "Ubuntu Nerd Font 12";
 	filebrowser {
 		directories-first: true;
