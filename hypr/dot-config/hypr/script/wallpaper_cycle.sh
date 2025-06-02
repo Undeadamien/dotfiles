@@ -18,5 +18,5 @@ while true; do
 		swww img -t fade "$(realpath "${selected}")"
 	fi
 	current="${selected}"
-	sleep 600
+	sleep 1800
 done
