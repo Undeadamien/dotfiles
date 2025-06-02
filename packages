@@ -19,6 +19,7 @@ rofi
 swww
 thunar
 tmux
+tree
 ttf-ubuntu-font-family
 ttf-ubuntu-mono-nerd
 ttf-ubuntu-nerd
@@ -28,4 +29,5 @@ waybar
 wev
 wireplumber
 wl-clipboard
+wlsunset
 zsh
