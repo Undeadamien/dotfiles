@@ -4,11 +4,9 @@ entries="$(
 	hyprctl clients -j |
 		jq -c '. | sort_by(.workspace.name) | .[] | [.class,.title,.address,.workspace.name]'
 )"
-echo "$entries"
 formatted="$(
 	echo "$entries" |
-		jq -cr '"\(.[3])\t\(.[0])\t\"\(.[1])\""' |
-		column -t -o $'\t| ' -s ','
+		jq -cr '"\(.[3])\t\(.[0])\t\"\(.[1])\""'
 )"
 echo "$formatted"
 selected="$(

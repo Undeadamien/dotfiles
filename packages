@@ -1,11 +1,11 @@
 bat
 brighptnessctl
 discord
+ffmpegthumbnailer
 firefox
 fzf
 hypridle
 hyprlock
-hyprpaper
 jq
 krita
 less
@@ -16,11 +16,13 @@ pipewire
 pipewire-alsa
 pipewire-pulse
 rofi
+swww
 thunar
 tmux
 ttf-ubuntu-font-family
 ttf-ubuntu-mono-nerd
 ttf-ubuntu-nerd
+tumbler
 unzip
 waybar
 wev
