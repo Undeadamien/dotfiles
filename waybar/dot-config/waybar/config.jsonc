@@ -6,7 +6,7 @@
 
   "modules-left": ["clock#date", "clock#time"],
   "modules-center": ["hyprland/workspaces"],
-  "modules-right": ["cpu", "memory", "battery"],
+  "modules-right": ["cpu", "memory", "temperature", "battery"],
 
   "clock#date": {
     "format": "{:%A, %b %d, %Y}",
@@ -34,6 +34,12 @@
     "tooltip": false,
     "interval": 5,
     "format": " {used:0.1f}G/{total:0.1f}G",
+  },
+  "temperature": {
+    "icon": false,
+    "tooltip": false,
+    "interval": 5,
+    "format": "{temperatureC}°C",
   },
   "battery": {
     "icon": false,
