@@ -6,7 +6,7 @@
 
   "modules-left": ["clock#date", "clock#time"],
   "modules-center": ["hyprland/workspaces"],
-  "modules-right": ["battery"],
+  "modules-right": ["cpu", "memory", "battery"],
 
   "clock#date": {
     "format": "{:%A, %b %d, %Y}",
@@ -24,11 +24,22 @@
     "persistent-workspaces": { "*": 5 },
   },
 
+  "cpu": {
+    "interval": 5,
+    "tooltip": false,
+    "format": " {usage}%",
+  },
+  "memory": {
+    "icon": false,
+    "tooltip": false,
+    "interval": 5,
+    "format": " {used:0.1f}G/{total:0.1f}G",
+  },
   "battery": {
     "icon": false,
     "tooltip": true,
-    "full-at": 99,
-    "format": "{icon}  {capacity}%",
+    "full-at": 100,
+    "format": "{icon} {capacity}%",
     "interval": 60,
     "format-icons": ["", "", "", "", ""],
   },
