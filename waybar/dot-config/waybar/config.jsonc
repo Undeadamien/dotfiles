@@ -46,6 +46,7 @@
     "tooltip": true,
     "full-at": 100,
     "format": "{icon} {capacity}%",
+    "format-charging": "{icon}⬆{capacity}%",
     "interval": 60,
     "format-icons": ["", "", "", "", ""],
   },
