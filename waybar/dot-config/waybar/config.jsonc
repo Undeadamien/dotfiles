@@ -39,6 +39,7 @@
     "icon": false,
     "tooltip": false,
     "interval": 5,
+    "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
     "format": "{temperatureC}°C",
   },
   "battery": {
