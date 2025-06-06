@@ -11,6 +11,8 @@ hyprlock
 jq
 krita
 less
+libinput
+libwacom
 mako
 man
 noto-fonts
@@ -35,4 +37,5 @@ wev
 wireplumber
 wl-clipboard
 wlsunset
+xf86-input-wacom
 zsh
