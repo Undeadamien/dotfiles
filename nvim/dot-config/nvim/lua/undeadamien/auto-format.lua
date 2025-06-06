@@ -1,9 +1,9 @@
 local formatters = {
 	{ pattern = { "*.hpp", "*.cpp" }, command = "clang-format --style=file --fallback-style=google -i %" },
-	{ pattern = { "*.js", "*.ts", "*.html", "*.css", "*.json", "*.jsonc" }, command = "prettier --write %" },
 	{ pattern = { "*.lua" }, command = "stylua %" },
 	{ pattern = { "*.sh", "*.bashrc", "*.zshrc" }, command = "shfmt --write %" },
 	{ pattern = { "*.py" }, command = "isort % && black %" },
+	{ pattern = { "*.md", "*.js", "*.ts", "*.html", "*.css", "*.json", "*.jsonc" }, command = "prettier --write %" },
 }
 
 for _, formatter in ipairs(formatters) do
