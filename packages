@@ -6,6 +6,8 @@ ffmpegthumbnailer
 firefox
 fzf
 gnupg
+gvfs
+gvfs-mtp
 hypridle
 hyprlock
 jq
@@ -26,6 +28,7 @@ qbittorrent
 rofi
 swww
 thunar
+thunar-volman
 tmux
 tree
 ttf-ubuntu-font-family
