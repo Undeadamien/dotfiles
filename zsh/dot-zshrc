@@ -1,8 +1,6 @@
 #!/usr/bin/env zsh
 
-setopt globdots # Allow hidden element in completion
-
-# Neovim Config
+# Neovim config
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 export PATH="$PATH:$HOME/nvim/bin" # for the school
 export EDITOR="nvim"
@@ -11,14 +9,19 @@ export EDITOR="nvim"
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
+setopt hist_ignore_dups
+setopt hist_reduce_blanks
 
-# Plugins with antidote
+# Antidote
 [ -f ~/.antidote/antidote.zsh ] || git clone --depth=1 https://github.com/mattmc3/antidote.git ~/.antidote
 source ~/.antidote/antidote.zsh
-autoload -Uz compinit && compinit
 antidote load
 
-# Terminal Prompt
+# Completion
+autoload -Uz compinit && compinit
+setopt globdots
+
+# Prompt
 autoload -Uz promptinit && promptinit
 setopt prompt_subst
 function update_prompt {
@@ -31,7 +34,7 @@ function update_prompt {
 }
 update_prompt
 
-# Set Binds
+# Cli
 bindkey -v
 autoload -U edit-command-line && zle -N edit-command-line
 
