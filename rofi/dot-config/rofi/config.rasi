@@ -6,6 +6,7 @@ configuration {
 	terminal: "kitty";
 	show-icons: false;
 	font: "Ubuntu Nerd Font 12";
+	drun-match-fields: "name";
 	filebrowser {
 		directories-first: true;
 		sorting-method:    "name";
