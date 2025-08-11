@@ -1,7 +1,4 @@
---Leader
-vim.g.mapleader = " "
-
---Copy
+--gggCopy
 vim.keymap.set("n", "<leader>y", '"+y')
 vim.keymap.set("n", "<leader>Y", '"+yg_')
 vim.keymap.set("v", "<leader>y", '"+y')
