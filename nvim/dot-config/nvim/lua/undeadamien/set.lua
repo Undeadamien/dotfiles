@@ -1,6 +1,3 @@
---Leader
-vim.g.mapleader = " "
-
 --Visual Help
 vim.opt.number = true
 vim.opt.relativenumber = true
