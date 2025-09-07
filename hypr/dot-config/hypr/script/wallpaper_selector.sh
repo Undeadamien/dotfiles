@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-pgrep -fx "$(realpath "$0")" | grep -vw "$$" | xargs -r kill
+pgrep -f "$0" | grep -vw "$$" | xargs -r kill
 
 current="$HOME/.config/hypr/wallpaper/wallpaper.jpg"
 wallpaper_dir="$HOME/.config/hypr/wallpaper/"
