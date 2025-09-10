@@ -17,7 +17,10 @@ while true; do
 		wallpapers="$(find "${wallpaper_dir}" -not -name 'wallpaper.jpg' -type f,l)"
 		selected="$(echo "$wallpapers" | shuf -n1)"
 		cp "$selected" "$current"
-		swww img "$current"
+		swww img \
+			--transition-duration 8 \
+			--transition-fps 60 \
+			"$current"
 	fi
 	sleep "$interval"
 done
