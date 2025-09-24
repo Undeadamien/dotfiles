@@ -1,5 +1,19 @@
 local cmp = require("cmp")
 
+local mapping_main = {
+	["<C-n>"] = cmp.mapping.select_next_item(),
+	["<C-p>"] = cmp.mapping.select_prev_item(),
+	["<C-d>"] = cmp.mapping.scroll_docs(4),
+	["<C-u>"] = cmp.mapping.scroll_docs(-4),
+	["<C-y>"] = cmp.mapping.confirm({ select = true }),
+	["<CR>"] = cmp.mapping.confirm({ select = false }),
+	["<C-e>"] = cmp.mapping.abort(),
+}
+local mapping_cmdline = {
+	["<Tab>"] = { c = cmp.mapping.select_next_item() },
+	["<S-Tab>"] = { c = cmp.mapping.select_prev_item() },
+}
+
 cmp.setup({
 	formatting = {
 		format = function(entry, vim_item)
@@ -7,9 +21,11 @@ cmp.setup({
 			return vim_item
 		end,
 	},
-	preselect = "item",
+	preselect = cmp.PreselectMode.None,
 	completion = { completeopt = "menu,menuone,noinsert" },
 	window = { documentation = cmp.config.window.bordered() },
+	experimental = { ghost_text = true },
+	performance = { max_view_entries = 15 },
 	sources = {
 		{ name = "path" },
 		{ name = "nvim_lsp" },
@@ -26,17 +42,9 @@ cmp.setup({
 					return vim.tbl_keys(bufs)
 				end,
 			},
-			keyword_length = 3,
 		},
 	},
-	mapping = {
-		["<C-n>"] = cmp.mapping.select_next_item(),
-		["<C-p>"] = cmp.mapping.select_prev_item(),
-		["<C-d>"] = cmp.mapping.scroll_docs(4),
-		["<C-u>"] = cmp.mapping.scroll_docs(-4),
-		["<C-y>"] = cmp.mapping.confirm({ select = true }),
-		["<CR>"] = cmp.mapping.confirm({ select = false }),
-	},
+	mapping = mapping_main,
 	snippet = {
 		expand = function(args)
 			require("luasnip").lsp_expand(args.body)
@@ -44,9 +52,9 @@ cmp.setup({
 	},
 })
 
-cmp.setup.cmdline("?", { mapping = cmp.mapping.preset.cmdline(), sources = { { name = "buffer" } } })
-cmp.setup.cmdline("/", { mapping = cmp.mapping.preset.cmdline(), sources = { { name = "buffer" } } })
+cmp.setup.cmdline("?", { mapping = mapping_cmdline, sources = { { name = "buffer" } } })
+cmp.setup.cmdline("/", { mapping = mapping_cmdline, sources = { { name = "buffer" } } })
 cmp.setup.cmdline(":", {
-	mapping = cmp.mapping.preset.cmdline(),
+	mapping = mapping_cmdline,
 	sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline", option = { ignore_cmds = { "!" } } } }),
 })
