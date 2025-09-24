@@ -19,10 +19,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
-local lspconfig = require("lspconfig")
-lspconfig.lua_ls.setup({ settings = { Lua = { diagnostics = { globals = { "vim" }, disable = {} } } } })
+vim.lsp.config["lua_ls"] = { settings = { Lua = { diagnostics = { globals = { "vim" }, disable = {} } } } }
+vim.lsp.enable("lua_ls")
 local default_setup = function(server)
-	lspconfig[server].setup({ capabilities = lsp_capabilities })
+	vim.lsp.config[server] = { capabilities = lsp_capabilities }
+	vim.lsp.enable(server)
 end
 require("mason").setup({})
 require("mason-lspconfig").setup({ ensure_installed = {}, handlers = { default_setup } })
