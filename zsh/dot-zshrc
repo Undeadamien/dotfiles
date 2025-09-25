@@ -53,8 +53,8 @@ function fzd() {
 	cd "$selected"
 }
 
-if command -v tmux &>/dev/null; then
-	if [ -z "$TMUX" ] && [ -n "$PS1" ]; then
-		tmux attach -t default || tmux new -s default
-	fi
-fi
+# if command -v tmux &>/dev/null; then
+# 	if [ -z "$TMUX" ] && [ -n "$PS1" ]; then
+# 		tmux attach -t default || tmux new -s default
+# 	fi
+# fi
