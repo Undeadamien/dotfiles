@@ -14,15 +14,14 @@
     "temperature",
     "battery",
   ],
-
   "clock#date": {
-    "format": "{:%A, %b %d, %Y}",
     "tooltip": false,
+    "format": "{:%A, %b %d, %Y}",
   },
   "clock#time": {
-    "format": "{:%H:%M:%S}",
-    "interval": 1,
     "tooltip": false,
+    "interval": 1,
+    "format": "{:%H:%M:%S}",
   },
 
   "hyprland/workspaces": {
@@ -33,39 +32,43 @@
 
   "pulseaudio": {
     "tooltip": false,
-    "format": " {volume:>3}%",
-    "format-muted": "   0%",
+    "format": " {volume:02}%",
+    "format-muted": " {volume:02}%",
     "scroll-step": 5,
+    "on-click": "pavucontrol",
   },
   "network": {
     "tooltip": true,
-    "format-wifi": " {signalStrength:>3}%",
+    "interval": 5,
+    "format-wifi": " {signalStrength:02}%",
     "format-ethernet": "󰈀 LAN",
     "format-disconnected": "󰖪 Offline",
-    "interval": 5,
+    "on-click": "kitty -e iwctl",
   },
   "cpu": {
-    "interval": 5,
     "tooltip": false,
-    "format": " {usage:>3}%",
+    "interval": 5,
+    "format": " {usage:02}%",
+    "on-click": "kitty -e htop",
   },
   "memory": {
     "tooltip": false,
     "interval": 5,
-    "format": " {percentage:>3}%",
+    "format": " {percentage:02}%",
+    "on-click": "kitty -e htop",
   },
   "temperature": {
     "tooltip": false,
     "interval": 5,
+    "format": "{temperatureC:02}°C",
     "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
-    "format": "{temperatureC:>3}°C",
   },
   "battery": {
     "tooltip": true,
-    "full-at": 100,
+    "interval": 5,
+    "full-at": 95,
     "format": "{icon} {capacity}%",
     "format-charging": "{icon}⬆{capacity}%",
-    "interval": 5,
     "format-icons": ["", "", "", "", ""],
   },
 }
