@@ -12,7 +12,7 @@ local mapping_main = {
 local mapping_cmdline = {
 	["<Tab>"] = { c = cmp.mapping.select_next_item() },
 	["<S-Tab>"] = { c = cmp.mapping.select_prev_item() },
-	["<C-y>"] = cmp.mapping.confirm({ select = true }),
+	["<C-y>"] = { c = cmp.mapping.confirm({ select = true }) },
 	["<C-e>"] = { c = cmp.mapping.abort() },
 }
 
