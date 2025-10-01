@@ -45,6 +45,11 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - bash)"
+eval "$(pyenv virtualenv-init -)"
+
 function fzd() {
 	local dir=${1:-"."}
 	local selected="$(find "${dir}" -type f,d 2>/dev/null | fzf)"
@@ -52,9 +57,3 @@ function fzd() {
 	if [ -f "${selected}" ]; then selected="$(dirname "${selected}")"; fi
 	cd "$selected"
 }
-
-# if command -v tmux &>/dev/null; then
-# 	if [ -z "$TMUX" ] && [ -n "$PS1" ]; then
-# 		tmux attach -t default || tmux new -s default
-# 	fi
-# fi
