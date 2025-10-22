@@ -140,6 +140,7 @@ xf86-video-ati
 xf86-video-nouveau
 xf86-video-vmware
 xorg-server
+xorg-xev
 xorg-xinit
 yay
 yay-debug
