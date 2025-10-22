@@ -11,8 +11,6 @@
   border-radius: 4px;
 }
 
-.modules-left {
-}
 .modules-left > * > * {
   margin: 4 0 4 4;
   padding: 0 4 0 4;
@@ -22,10 +20,6 @@
   border-radius: 4px;
 }
 
-.modules-middle {
-}
-.modules-middle {
-}
 #workspaces {
   background: inherit;
   font-size: 14px;
@@ -49,8 +43,6 @@
   color: #ffffff;
 }
 
-.modules-right {
-}
 .modules-right > * > * {
   margin: 4 4 4 0;
   padding: 0 4 0 4;
