@@ -38,21 +38,6 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-	--Refactor
-	use({
-		"ThePrimeagen/refactoring.nvim",
-		config = function()
-			require("refactoring").setup()
-			vim.keymap.set({ "n", "x" }, "<leader>r", function()
-				require("refactoring").select_refactor()
-			end)
-		end,
-		requires = {
-			{ "nvim-lua/plenary.nvim" },
-			{ "nvim-treesitter/nvim-treesitter" },
-		},
-	})
-
 	--Surround
 	use({
 		"kylechui/nvim-surround",

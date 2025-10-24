@@ -4,6 +4,7 @@ local formatters = {
 		command = "clang-format --style=file --fallback-style=google -i %",
 	},
 	{ pattern = { "*.lua" }, command = "stylua %" },
+	{ pattern = { "*.s" }, command = "asmfmt -w %" },
 	{ pattern = { "*.sh", "*.bashrc", "*.zshrc" }, command = "shfmt --write %" },
 	{ pattern = { "*.py" }, command = "isort % && black %" },
 	{ pattern = { "*.md", "*.js", "*.ts", "*.html", "*.css", "*.json", "*.jsonc" }, command = "prettier --write %" },
