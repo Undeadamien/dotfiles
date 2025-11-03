@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-pgrep -f "$0" | grep -vw "$$" | xargs -r kill
+set -euo pipefail
 
 current="$HOME/.config/hypr/wallpaper/wallpaper.jpg"
 wallpaper_dir="$HOME/.config/hypr/wallpaper/"
