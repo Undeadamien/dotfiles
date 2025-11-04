@@ -2,11 +2,10 @@
 
 set -euo pipefail
 
-current="$HOME/.config/hypr/wallpaper/wallpaper.jpg"
-wallpaper_dir="$HOME/.config/hypr/wallpaper/"
-
-wallpapers="$(find "${wallpaper_dir}" -not -name 'wallpaper.jpg' -type f,l)"
+current="wallpaper.jpg"
 interval=600
+wallpaper_dir="$HOME/.config/hypr/wallpaper/"
+wallpapers="$(find "${wallpaper_dir}" -not -name "${current}" -type f,l)"
 
 if ! pgrep -x swww-daemon >/dev/null; then
 	hyprctl dispatch exec swww-daemon
@@ -14,13 +13,13 @@ fi
 
 while true; do
 	if ! pgrep -x hyprlock >/dev/null; then
-		wallpapers="$(find "${wallpaper_dir}" -not -name 'wallpaper.jpg' -type f,l)"
+		wallpapers="$(find "${wallpaper_dir}" -not -name "${current}" -type f)"
 		selected="$(echo "$wallpapers" | shuf -n1)"
-		cp "$selected" "$current"
+		cp "$selected" "${wallpaper_dir}/${current}"
 		swww img \
 			--transition-duration 8 \
 			--transition-fps 60 \
-			"$current"
+			"${wallpaper_dir}/${current}"
 	fi
 	sleep "$interval"
 done

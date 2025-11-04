@@ -8,6 +8,7 @@
   font-family: "Ubuntu Nerd Font";
   font-weight: bold;
   font-size: 12px;
+  border: 1px double rgba(255, 255, 255, 0.8);
   border-radius: 4px;
 }
 
@@ -16,7 +17,7 @@
   padding: 0 4 0 4;
   background: inherit;
   background: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1px double rgba(255, 255, 255, 0.4);
   border-radius: 4px;
 }
 
@@ -48,6 +49,6 @@
   padding: 0 4 0 4;
   background: inherit;
   background: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1px double rgba(255, 255, 255, 0.4);
   border-radius: 4px;
 }
