@@ -1,7 +1,9 @@
 [Shortcuts]
+KisToolCrop=none
 KisToolSelectOutline=Q
 KritaShape/KisToolMultiBrush=none
 KritaShape/KisToolRectangle=none
 ToolReferenceImages=Shift+R
+clear=Del; C
 deselect=Shift+Q
 reload_preset_action=R
