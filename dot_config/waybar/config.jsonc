@@ -26,7 +26,12 @@
 
   "hyprland/workspaces": {
     "active-only": false,
-    "format": "●",
+    "format": "{icon}",
+    "format-icons": {
+      "default": "◆",
+      "empty": "◇",
+      "active": "●",
+    },
     "persistent-workspaces": { "*": 5 },
   },
 
