@@ -41,6 +41,7 @@ hypridle
 hyprland
 hyprlock
 hyprpaper
+hyprshot
 inetutils
 intel-media-driver
 intel-ucode
@@ -90,6 +91,7 @@ noto-fonts-emoji
 noto-fonts-extra
 nvidia
 nvidia-utils
+obsidian
 openal
 openssh
 openssl-1.0
