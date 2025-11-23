@@ -6,7 +6,7 @@
 
   "modules-left": ["clock#date", "clock#time"],
   "modules-center": ["hyprland/workspaces"],
-  "modules-right": ["pulseaudio", "battery", "network"],
+  "modules-right": ["pulseaudio", "battery", "custom/language", "network"],
   "clock#date": {
     "tooltip": false,
     "format": "{:%A, %b %d, %Y}",
@@ -50,5 +50,10 @@
     "format": "{icon} {capacity}",
     "format-charging": "{icon} {capacity}⬆",
     "format-icons": ["", "", "", "", ""],
+  },
+  "custom/language": {
+    "tooltip": false,
+    "exec": "~/.config/waybar/script/layout.sh",
+    "signal": 1,
   },
 }
