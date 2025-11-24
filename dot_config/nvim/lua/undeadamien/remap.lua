@@ -1,6 +1,9 @@
 --Leader
 vim.g.mapleader = " "
 
+--No help
+vim.keymap.set({ "n", "i", "v" }, "<F1>", "<Nop>")
+
 --Copy
 vim.keymap.set("n", "<leader>y", '"+y')
 vim.keymap.set("n", "<leader>Y", '"+yg_')
