@@ -10,8 +10,6 @@
   "control-center-margin-left": 10,
   "control-center-margin-right": 10,
 
-  "notification-edges": ["top"],
-
   "layer-shell": true,
   "cssPriority": "application",
 
@@ -22,7 +20,7 @@
   "notification-icons": true,
   "notification-icon-size": 32,
 
-  "timeout": 6000,
+  "timeout": 5,
   "ignoreTimeout": false,
 
   "keyboard-shortcuts": true,
