@@ -3,11 +3,13 @@
   padding: 0;
 }
 #waybar {
-  background: rgba(20, 20, 30, 0.8);
+  background: rgba(10, 10, 15, 0.8);
   color: #ffffff;
   font-family: "Ubuntu Nerd Font";
   font-weight: bold;
   font-size: 12px;
+  border: 1px double rgba(200, 200, 200, 0.6);
+  border-radius: 4px;
 }
 
 .modules-left > * > *,
