@@ -1,1 +1,59 @@
-{}
+{
+  "$schema": "/etc/xdg/swaync/configSchema.json",
+
+  "positionX": "right",
+  "positionY": "top",
+  "layer": "overlay",
+
+  "control-center-margin-top": 40,
+  "control-center-margin-bottom": 10,
+  "control-center-margin-left": 10,
+  "control-center-margin-right": 10,
+
+  "notification-edges": ["top"],
+
+  "layer-shell": true,
+  "cssPriority": "application",
+
+  "control-center-width": 380,
+  "control-center-height": 600,
+  "notification-window-width": 380,
+
+  "notification-icons": true,
+  "notification-icon-size": 32,
+
+  "timeout": 6000,
+  "ignoreTimeout": false,
+
+  "keyboard-shortcuts": true,
+
+  "actions": {
+    "open": "xdg-open",
+    "default": "xdg-open"
+  },
+
+  "blacklist": {
+    "applications": []
+  },
+
+  "widgets": ["notifications", "title", "dnd", "mpris", "buttons"],
+
+  "widget-config": {
+    "title": {
+      "text": "Notifications"
+    },
+    "dnd": {
+      "text-on": "Do Not Disturb On",
+      "text-off": "Do Not Disturb Off"
+    },
+    "mpris": {
+      "order": ["title", "artist"],
+      "truncate": "end"
+    },
+    "buttons": {
+      "clear": true,
+      "clear-all": true,
+      "dnd-toggle": true
+    }
+  }
+}
