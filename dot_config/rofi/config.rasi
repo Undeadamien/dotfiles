@@ -53,7 +53,7 @@ configuration {
 window {
     background-color: @background;
     border:           2;
-    border-radius:    0;
+    border-radius:    4;
     padding:          2;
 }
 mainbox {

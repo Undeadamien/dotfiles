@@ -8,8 +8,7 @@
   "modules-center": ["hyprland/workspaces"],
   "modules-right": ["pulseaudio", "battery", "custom/language", "network"],
   "clock#date": {
-    "tooltip": true,
-    "tooltip-format": "{calendar}",
+    "tooltip": false,
     "format": "{:%A, %b %d, %Y}",
     "on-click": "kitty -e calcurse",
   },
@@ -45,8 +44,8 @@
     "tooltip-format-disconnected": "Disconnected",
     "interval": 5,
     "format-wifi": "  {signalStrength:02}",
-    "format-ethernet": "󰈀  LAN",
-    "format-disconnected": "󰖪  Offline",
+    "format-ethernet": "󰈀  ON",
+    "format-disconnected": "󰖪  00",
     "on-click": "kitty -e iwctl",
   },
   "battery": {
