@@ -7,7 +7,7 @@ configuration {
 	sorting-method:"fzf";
 	cycle: true;
 	terminal: "kitty";
-	show-icons: false;
+	show-icons: true;
 	font: "Ubuntu Nerd Font 12";
 	drun-match-fields: "name";
 	filebrowser {
