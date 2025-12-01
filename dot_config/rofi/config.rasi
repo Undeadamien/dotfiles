@@ -1,8 +1,11 @@
 configuration {
+	auto-select: true;
 	matching: "fuzzy";
-	modes: "drun";
+	modes: "drun,window";
+	case-smart : true;
+	sort:true;
+	sorting-method:"fzf";
 	cycle: true;
-	case-sensitive: false;
 	terminal: "kitty";
 	show-icons: false;
 	font: "Ubuntu Nerd Font 12";
