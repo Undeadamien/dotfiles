@@ -6,7 +6,13 @@
 
   "modules-left": ["clock#date", "clock#time"],
   "modules-center": ["hyprland/workspaces"],
-  "modules-right": ["pulseaudio", "battery", "custom/language", "network"],
+  "modules-right": [
+    "hyprland/submap",
+    "pulseaudio",
+    "battery",
+    "custom/language",
+    "network",
+  ],
   "clock#date": {
     "tooltip": false,
     "format": "{:%A, %b %d, %Y}",
@@ -29,6 +35,10 @@
     "persistent-workspaces": { "*": 5 },
   },
 
+  "hyprland/submap": {
+    "tooltip": false,
+    "format": "󱂬 {}",
+  },
   "pulseaudio": {
     "tooltip": false,
     "format": "  {volume:02}",
