@@ -4,6 +4,7 @@ local asmfmt_cmd = "asmfmt -w"
 local shfmt_cmd = "shfmt --write"
 local python_cmd = "isort && black"
 local prettier_cmd = "prettier --write"
+local qml_cmd = "qmlformat -i"
 local formatters = {
 	c = clang_format_cmd,
 	cpp = clang_format_cmd,
@@ -26,6 +27,7 @@ local formatters = {
 	json = prettier_cmd,
 	jsonc = prettier_cmd,
 	markdown = prettier_cmd,
+	qml = qml_cmd,
 }
 vim.api.nvim_create_autocmd("BufWritePost", {
 	callback = function()
