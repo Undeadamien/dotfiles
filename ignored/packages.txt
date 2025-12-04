@@ -15,6 +15,7 @@ discord
 docker
 docker-compose
 dunst
+fd
 firefox
 fzf
 go
@@ -39,6 +40,7 @@ linux-lts
 linux-lts-headers
 logmein-hamachi
 lostfiles
+lutris
 ly
 man-pages
 mono
@@ -51,6 +53,7 @@ python-virtualenv
 qbittorrent
 qt6-wayland
 reflector
+ripgrep
 rofi
 screenfetch
 sof-firmware
@@ -66,12 +69,10 @@ ttf-ubuntu-font-family
 ttf-ubuntu-mono-nerd
 ttf-ubuntu-nerd
 unrar
-unzip
 valgrind
 vlc
 waybar
 wev
-wine
 wireless_tools
 wlsunset
 woeusb
