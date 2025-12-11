@@ -47,8 +47,11 @@ export NVM_DIR="$HOME/.nvm"
 
 function fd() {
 	local dir=${1:-"."}
-	local selected="$(find "${dir}" -type f,d 2>/dev/null | fzf)"
+	local selected="$(find "$dir" -type f,d 2>/dev/null | fzf)"
 	if [ -z "${selected}" ]; then return; fi
-	if [ -f "${selected}" ]; then selected="$(dirname "${selected}")"; fi
-	cd "$selected"
+	selected="$(realpath "$selected")"
+	target_dir="$selected"
+	if [ -f "${selected}" ]; then target_dir="$(dirname "$selected")"; fi
+	cd "$target_dir"
+	if [ -f "${selected}" ]; "$EDITOR" "$selected"
 }
