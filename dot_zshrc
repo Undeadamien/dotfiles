@@ -8,6 +8,18 @@ export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 export PATH="$PATH:$HOME/.local/share/nvim/bin" # for the school
 export EDITOR="nvim"
 
+# Fzf config
+export FZF_DEFAULT_OPTS="\
+	--reverse \
+	--cycle \
+	--tmux=40%,60% \
+	--height=40% \
+	--smart-case \
+	--scheme=path \
+	--border \
+	--preview 'bat --color=always --style=plain {} 2>/dev/null || ls -l {}' \
+	--preview-window=right:40% "
+
 # History
 HISTFILE=~/.histfile
 HISTSIZE=1000
@@ -46,12 +58,11 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 function fd() {
-	local dir=${1:-"."}
-	local selected="$(find "$dir" -type f,d 2>/dev/null | fzf)"
+	local selected="$(fzf --walker=file,dir,hidden --walker-skip=.cache,.local,node_modules,.git)"
 	if [ -z "${selected}" ]; then return; fi
 	selected="$(realpath "$selected")"
 	target_dir="$selected"
 	if [ -f "${selected}" ]; then target_dir="$(dirname "$selected")"; fi
 	cd "$target_dir"
-	if [ -f "${selected}" ]; "$EDITOR" "$selected"
+	if [ -f "${selected}" ]; then "$EDITOR" "$selected"; fi
 }
