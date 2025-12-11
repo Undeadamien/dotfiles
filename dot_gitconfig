@@ -9,3 +9,5 @@
 [user]
 	name = Undeadamien
 	email = damien.trala@outlook.com
+[init]
+	defaultBranch = main
