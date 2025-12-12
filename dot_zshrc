@@ -12,12 +12,10 @@ export EDITOR="nvim"
 export FZF_DEFAULT_OPTS="\
 	--reverse \
 	--cycle \
-	--tmux=40%,60% \
-	--height=40% \
 	--smart-case \
 	--scheme=path \
 	--border \
-	--preview 'bat --color=always --style=plain {} 2>/dev/null || ls -l {}' \
+	--preview 'sh -c \"jp2a --fill --colors --width=\$FZF_PREVIEW_COLUMNS {} 2>/dev/null || bat --color=always --style=plain {} 2>/dev/null || ls -l {}\"' \
 	--preview-window=right:40% "
 
 # History
