@@ -31,6 +31,7 @@ inetutils
 intel-ucode
 isoimagewriter
 iwd
+jp2a
 kitty
 krita
 libao
@@ -52,6 +53,7 @@ pavucontrol
 python-virtualenv
 qbittorrent
 qt6-wayland
+quickshell
 reflector
 ripgrep
 rofi
