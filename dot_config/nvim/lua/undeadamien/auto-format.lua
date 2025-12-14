@@ -1,10 +1,10 @@
-local clang_format_cmd = "clang-format --style=file --fallback-style=google -i"
-local stylua_cmd = "stylua"
-local asmfmt_cmd = "asmfmt -w"
-local shfmt_cmd = "shfmt --write"
-local python_cmd = "isort && black"
-local prettier_cmd = "prettier --write"
-local qml_cmd = "qmlformat -i"
+local clang_format_cmd = "clang-format --style=file --fallback-style=google -i {}"
+local stylua_cmd = "stylua {}"
+local asmfmt_cmd = "asmfmt -w {}"
+local shfmt_cmd = "shfmt --write {}"
+local python_cmd = "isort {} && black {}"
+local prettier_cmd = "prettier --write {}"
+local qml_cmd = "qmlformat -i {}"
 local formatters = {
 	c = clang_format_cmd,
 	cpp = clang_format_cmd,
@@ -33,9 +33,11 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 	callback = function()
 		local ft = vim.bo.filetype
 		local cmd = formatters[ft]
-		if cmd then
-			local filepath = vim.fn.shellescape(vim.api.nvim_buf_get_name(0))
-			vim.api.nvim_command("silent !" .. cmd .. " " .. filepath)
+		if not cmd then
+			return
 		end
+		local filepath = vim.fn.shellescape(vim.api.nvim_buf_get_name(0))
+		cmd = cmd:gsub("{}", filepath)
+		vim.api.nvim_command("silent !" .. cmd)
 	end,
 })
