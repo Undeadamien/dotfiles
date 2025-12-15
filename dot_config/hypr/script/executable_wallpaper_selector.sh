@@ -2,7 +2,7 @@
 set -euo pipefail
 
 current="wallpaper.jpg"
-interval=600
+interval=300
 wallpaper_dir="$HOME/.config/hypr/wallpaper/"
 
 if ! pgrep -x swww-daemon >/dev/null; then
@@ -29,6 +29,7 @@ while true; do
 	fi
 	if pgrep -x hyprlock >/dev/null; then
 		sleep 1
+		last_change=$((last_change + 1))
 		continue
 	fi
 

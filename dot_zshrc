@@ -62,5 +62,4 @@ function fd() {
 	target_dir="$selected"
 	if [ -f "${selected}" ]; then target_dir="$(dirname "$selected")"; fi
 	cd "$target_dir"
-	if [ -f "${selected}" ]; then "$EDITOR" "$selected"; fi
 }
