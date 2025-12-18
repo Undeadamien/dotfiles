@@ -36,7 +36,6 @@ iwd
 jp2a
 kitty
 krita
-libao
 libpng12
 linux-headers
 linux-lts
@@ -56,7 +55,6 @@ opera
 pavucontrol
 python-virtualenv
 qbittorrent
-qt6-wayland
 quickshell
 reflector
 ripgrep
@@ -95,7 +93,6 @@ xf86-video-vmware
 xorg-xbacklight
 xorg-xev
 xorg-xinit
-xp-pen-tablet
 yay
 zram-generator
 zsh-autocomplete
