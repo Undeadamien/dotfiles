@@ -8,6 +8,7 @@
   "modules-center": ["hyprland/workspaces"],
   "modules-right": [
     "hyprland/submap",
+    "tray",
     "pulseaudio",
     "battery",
     "custom/language",
@@ -38,6 +39,9 @@
   "hyprland/submap": {
     "tooltip": false,
     "format": "󱂬 {}",
+  },
+  "tray": {
+    "spacing": 4,
   },
   "pulseaudio": {
     "tooltip": false,
