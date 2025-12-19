@@ -30,7 +30,7 @@ These are my personal dotfiles, managed with [chezmoi](https://www.chezmoi.io/),
 ### System & Utilities
 
 - **btop** – system monitor
-- **mpd / ncmpcpp** – music player
+- **mpd/rmpc** – music player
 - **Thunar** – file manager
 - **GTK** – theme preferences
 
