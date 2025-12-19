@@ -20,18 +20,18 @@ configuration {
     scrollbar: false;
     color-box-dark-bg0:          #1f222a;
     color-box-dark-bg0-soft:     #262a34;
-    color-box-dark-bg3:          #525a6e;
+    color-box-dark-bg3:          #424a5e;
     color-box-dark-fg0:          #b0b7c3;
     color-box-dark-fg1:          #b0b7c3;
+    color-box-dark-gray:         #4f5462;
     // color-box-dark-red-dark:     #ff5c57;
     // color-box-dark-red-light:    #ff6e67;
     // color-box-dark-yellow-dark:  #6b6f96;
     // color-box-dark-yellow-light: #3fd7ff;
 
-    color-box-dark-gray:         #3f4452;
     background:                  @color-box-dark-bg0;
     background-color:            @background;
-    foreground:                  @color-box-dark-fg1;
+    foreground:                  #eeeeee;
     border-color:                @color-box-dark-gray;
     separatorcolor:              @border-color;
     scrollbar-handle:            @border-color;
@@ -40,32 +40,35 @@ configuration {
     alternate-normal-background: @color-box-dark-bg0-soft;
     alternate-normal-foreground: @foreground;
     selected-normal-background:  @color-box-dark-bg3;
-    selected-normal-foreground:  @color-box-dark-fg0;
+    selected-normal-foreground:  @foreground;
     // active-background:           @color-box-dark-yellow-dark;
-    active-foreground:           @background;
+    active-foreground:           @foreground;
     alternate-active-background: @active-background;
-    alternate-active-foreground: @active-foreground;
+    alternate-active-foreground: @foreground;
     // selected-active-background:  @color-box-dark-yellow-light;
-    selected-active-foreground:  @active-foreground;
+    selected-active-foreground:  @foreground;
     // urgent-background:           @color-box-dark-red-dark;
-    urgent-foreground:           @background;
+    urgent-foreground:           @foreground;
     alternate-urgent-background: @urgent-background;
-    alternate-urgent-foreground: @urgent-foreground;
+    alternate-urgent-foreground: @foreground;
     // selected-urgent-background:  @color-box-dark-red-light;
-    selected-urgent-foreground:  @urgent-foreground;
+    selected-urgent-foreground:  @foreground;
 }
 window {
-    background-color: @background;
-    border:           2;
+    background-color: transparent;
+    border:           0;
     border-radius:    4;
-    padding:          0;
+    padding:          8;
 }
 mainbox {
+    background-color: transparent;
     border:  0;
     padding: 0;
+    spacing: 4;
+
 }
 message {
-    border:       2px 0 0;
+    border:       1;
     border-color: @separatorcolor;
     padding:      1px;
 }
@@ -74,15 +77,17 @@ textbox {
     text-color: @foreground;
 }
 listview {
-    border:       2px solid 0 0;
+    border:       1;
     padding:      0px 0 0;
     border-color: @separatorcolor;
-    spacing:      2px;
+    border-radius: 4;
+    spacing:      0px;
     scrollbar:    @scrollbar;
 }
 element {
     border:  0;
     padding: 2 4 2 4;
+    margin: 0;
 }
 element.normal.normal {
     background-color: @normal-background;
@@ -109,16 +114,16 @@ element.selected.active {
     text-color:       @selected-normal-foreground;
 }
 element.alternate.normal {
-    background-color: @alternate-normal-background;
-    text-color:       @alternate-normal-foreground;
+    background-color: @normal-background;
+    text-color:       @normal-foreground;
 }
 element.alternate.urgent {
-    background-color: @alternate-normal-background;
-    text-color:       @alternate-normal-foreground;
+    background-color: @normal-background;
+    text-color:       @normal-foreground;
 }
 element.alternate.active {
-    background-color: @alternate-normal-background;
-    text-color:       @alternate-normal-foreground;
+    background-color: @normal-background;
+    text-color:       @normal-foreground;
 }
 scrollbar {
     width:        4px;
@@ -128,10 +133,13 @@ scrollbar {
     padding:      0;
 }
 mode-switcher {
-    border:       2px 0 0;
+    border:       1;
     border-color: @separatorcolor;
 }
 inputbar {
+    border-color: @separatorcolor;
+    border-radius: 4;
+    border:       1px;
     spacing:    0;
     text-color: @normal-foreground;
     padding:    2 4 2 4;
@@ -150,7 +158,7 @@ button.selected {
 }
 textbox-prompt-sep {
     expand:     false;
-    str:        ":";
+    str:        "";
     text-color: @normal-foreground;
     margin:     0 0.3em 0 0;
 }
