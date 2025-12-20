@@ -31,6 +31,9 @@ local formatters = {
 }
 vim.api.nvim_create_autocmd("BufWritePost", {
 	callback = function()
+		if vim.b.autoformat == false then
+			return
+		end
 		local ft = vim.bo.filetype
 		local cmd = formatters[ft]
 		if not cmd then
