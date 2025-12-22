@@ -5,26 +5,31 @@ local mapping_main = {
 	["<C-p>"] = cmp.mapping.select_prev_item(),
 	["<C-d>"] = cmp.mapping.scroll_docs(4),
 	["<C-u>"] = cmp.mapping.scroll_docs(-4),
-	["<C-y>"] = cmp.mapping.confirm({ select = true }),
-	["<CR>"] = cmp.mapping.confirm({ select = false }),
+	["<C-y>"] = cmp.mapping.confirm(),
+	["<CR>"] = cmp.mapping.confirm(),
 	["<C-e>"] = cmp.mapping.abort(),
 }
 local mapping_cmdline = {
-	["<Tab>"] = { c = cmp.mapping.select_next_item() },
-	["<S-Tab>"] = { c = cmp.mapping.select_prev_item() },
-	["<C-y>"] = { c = cmp.mapping.confirm({ select = true }) },
+	["<C-n>"] = { c = cmp.mapping.select_next_item() },
+	["<C-p>"] = { c = cmp.mapping.select_prev_item() },
+	["<C-y>"] = { c = cmp.mapping.confirm() },
 	["<C-e>"] = { c = cmp.mapping.abort() },
 }
 
 cmp.setup({
 	formatting = {
 		format = function(entry, vim_item)
-			vim_item.menu = ({ buffer = "[Buffer]", nvim_lsp = "[LSP]", luasnip = "[Snip]", nvim_lua = "[Lua]" })[entry.source.name]
+			vim_item.menu = ({
+				buffer = "[Buffer]",
+				nvim_lsp = "[LSP]",
+				luasnip = "[Snip]",
+				nvim_lua = "[Lua]",
+			})[entry.source.name]
 			return vim_item
 		end,
 	},
-	preselect = cmp.PreselectMode.None,
-	completion = { completeopt = "menu,menuone,noinsert" },
+	preselect = cmp.PreselectMode.Item,
+	completion = { completeopt = "fuzzy,menu,menuone,noinsert" },
 	window = { documentation = cmp.config.window.bordered() },
 	experimental = { ghost_text = true },
 	performance = { max_view_entries = 15 },
@@ -54,9 +59,18 @@ cmp.setup({
 	},
 })
 
-cmp.setup.cmdline("?", { mapping = mapping_cmdline, sources = { { name = "buffer" } } })
-cmp.setup.cmdline("/", { mapping = mapping_cmdline, sources = { { name = "buffer" } } })
-cmp.setup.cmdline(":", {
+cmp.setup.cmdline("?", {
+	completion = { completeopt = "fuzzy,menu,menuone,noinsert" },
 	mapping = mapping_cmdline,
+	sources = { { name = "buffer" } },
+})
+cmp.setup.cmdline("/", {
+	completion = { completeopt = "fuzzy,menu,menuone,noinsert" },
+	mapping = mapping_cmdline,
+	sources = { { name = "buffer" } },
+})
+cmp.setup.cmdline(":", {
+	completion = { completeopt = "fuzzy,menu,menuone,noinsert" },
 	sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline", option = { ignore_cmds = { "!" } } } }),
+	mapping = mapping_cmdline,
 })
