@@ -1,6 +1,5 @@
-require("undeadamien.auto-format")
+require("undeadamien.set")
+require("undeadamien.remap")
 require("undeadamien.colors")
 require("undeadamien.packer")
-require("undeadamien.remap")
-require("undeadamien.set")
 require("undeadamien.wsl-clipboard")

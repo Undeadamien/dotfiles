@@ -64,6 +64,9 @@ return require("packer").startup(function(use)
 	use("saadparwaiz1/cmp_luasnip")
 	use({ "williamboman/mason-lspconfig.nvim" })
 
+	--Auto-format
+	use({ "stevearc/conform.nvim" })
+
 	--Git
 	use("tpope/vim-fugitive")
 	use("lewis6991/gitsigns.nvim")
