@@ -6,7 +6,7 @@ return require("packer").startup(function(use)
 	use({ "williamboman/mason.nvim", run = ":MasonUpdate" })
 
 	--ColorScheme
-	use("Mofiqul/adwaita.nvim")
+	use("Mofiqul/vscode.nvim")
 
 	--TreeSitter
 	use("nvim-treesitter/nvim-treesitter")

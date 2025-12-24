@@ -20,11 +20,10 @@ configuration {
     highlight: bold italic;
     scrollbar: false;
     color-box-dark-bg0:          #1d1d1d;
-    color-box-dark-bg0-soft:     #242424;
     color-box-dark-bg3:          #4f4f4f;
     color-box-dark-fg0:          #deddda;
     color-box-dark-fg1:          #deddda;
-    color-box-dark-gray:         #9a9996;
+    color-box-dark-gray:         #454545;
 
     background:                  @color-box-dark-bg0;
     background-color:            @background;
@@ -34,17 +33,11 @@ configuration {
     scrollbar-handle:            @border-color;
     normal-background:           @background;
     normal-foreground:           @foreground;
-    alternate-normal-background: @color-box-dark-bg0-soft;
-    alternate-normal-foreground: @foreground;
-    selected-normal-background:  @color-box-dark-bg3;
+    selected-normal-background:  @color-box-dark-gray;
     selected-normal-foreground:  @foreground;
     active-foreground:           @foreground;
-    alternate-active-background: @active-background;
-    alternate-active-foreground: @foreground;
     selected-active-foreground:  @foreground;
     urgent-foreground:           @foreground;
-    alternate-urgent-background: @urgent-background;
-    alternate-urgent-foreground: @foreground;
     selected-urgent-foreground:  @foreground;
 }
 

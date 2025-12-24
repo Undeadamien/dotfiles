@@ -4,7 +4,7 @@
 }
 
 #waybar {
-  background: rgba(36, 36, 36, 1);
+  background: rgba(29, 29, 29, 1);
   color: #deddda;
   font-family: "Ubuntu Nerd Font";
   font-weight: bold;
@@ -16,7 +16,7 @@
 .modules-left > * > *,
 .modules-right > * > * {
   padding: 0 4 0 4;
-  background: rgba(36, 36, 36, 0.95);
+  background: rgba(29, 29, 29, 0.95);
   border: 1px double rgba(154, 153, 150, 1);
   border-radius: 4px;
 }
