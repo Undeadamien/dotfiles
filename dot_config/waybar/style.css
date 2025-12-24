@@ -2,24 +2,25 @@
   margin: 0;
   padding: 0;
 }
+
 #waybar {
-  background: rgba(26, 29, 44, 0.9);
-  color: #ffffff;
+  background: rgba(36, 36, 36, 1);
+  color: #deddda;
   font-family: "Ubuntu Nerd Font";
   font-weight: bold;
   font-size: 12px;
-  border: 1px double rgba(200, 200, 200, 0.6);
+  border: 1px double rgba(154, 153, 150, 0.6);
   border-radius: 4px;
 }
 
 .modules-left > * > *,
 .modules-right > * > * {
   padding: 0 4 0 4;
-  background: inherit;
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px double rgba(200, 200, 200, 1);
+  background: rgba(36, 36, 36, 0.95);
+  border: 1px double rgba(154, 153, 150, 1);
   border-radius: 4px;
 }
+
 .modules-left > * > * {
   margin: 4 0 4 4;
 }
@@ -36,7 +37,7 @@
   background: inherit;
   border: none;
   box-shadow: none;
-  color: rgba(150, 150, 150, 1);
+  color: rgba(176, 175, 172, 1);
   outline: none;
   text-shadow: none;
   min-width: 24px;
@@ -44,5 +45,5 @@
   border-radius: 0;
 }
 #workspaces button.active {
-  color: #ffffff;
+  color: #fcfcfc;
 }
