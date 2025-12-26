@@ -16,6 +16,7 @@ fi
 change_wallpaper() {
 	wallpapers="$(find "${wallpaper_dir}" -not -name "${current}" -type f)"
 	selected="$(echo "$wallpapers" | shuf -n1)"
+	if [ -z "$selected" ]; then return; fi
 	cp "$selected" "${wallpaper_dir}/${current}"
 	swww img --transition-duration 8 --transition-fps 60 "${wallpaper_dir}/${current}"
 }
