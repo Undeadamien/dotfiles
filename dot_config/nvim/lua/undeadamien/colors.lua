@@ -1,7 +1,7 @@
 vim.cmd("colorscheme vscode")
 
 local function make_transparent(group)
-	local hl = vim.api.nvim_get_hl_by_name(group, true)
+	local hl = vim.api.nvim_get_hl(0, { name = group })
 	hl.bg = "NONE"
 	vim.api.nvim_set_hl(0, group, hl)
 end

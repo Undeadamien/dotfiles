@@ -1,6 +1,16 @@
 #!/usr/bin/env bash
 
-chezmoi cd || exit 0
+cd "${HOME}/.local/share/chezmoi" || exit 0
+
+if command -v wl-copy >/dev/null; then
+	clipboard=(wl-copy)
+elif command -v xclip >/dev/null; then
+	clipboard=(xclip -selection clipboard)
+else
+	echo "No clipboard provided"
+	exit 0
+fi
+
 content="$(
 	find . -type f \
 		-not -path '*/.git*' \
@@ -8,6 +18,7 @@ content="$(
 		-not -name '*.jpg' \
 		-not -name '*.png' \
 		-not -name '*.webp' \
+		-exec echo {} \; \
 		-exec cat {} \;
 )"
-echo "$content" | wl-copy
+echo "$content" | "${clipboard[@]}"
