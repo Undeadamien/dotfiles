@@ -3,8 +3,9 @@
   "margin": "4 4 0 4",
   "height": 24,
   "reload_style_on_change": true,
+  "spacing": 4,
 
-  "modules-left": ["clock#date", "clock#time"],
+  "modules-left": ["clock#date", "clock#time", "hyprland/window"],
   "modules-center": ["hyprland/workspaces"],
   "modules-right": [
     "hyprland/submap",
@@ -14,11 +15,13 @@
     "custom/language",
     "network",
   ],
+
   "clock#date": {
     "tooltip": false,
     "format": "{:%A, %b %d, %Y}",
     "on-click": "kitty -e calcurse",
   },
+
   "clock#time": {
     "tooltip": false,
     "interval": 1,
@@ -40,10 +43,12 @@
     "tooltip": false,
     "format": "󱂬 {}",
   },
+
   "tray": {
     "icon-size": 14,
     "spacing": 4,
   },
+
   "pulseaudio": {
     "tooltip": false,
     "format": "  {volume:02}",
@@ -51,6 +56,7 @@
     "scroll-step": 5,
     "on-click": "pavucontrol",
   },
+
   "network": {
     "tooltip": true,
     "tooltip-format": "{ifname}",
@@ -63,6 +69,7 @@
     "format-disconnected": "󰖪  00",
     "on-click": "kitty -e iwctl",
   },
+
   "battery": {
     "tooltip": true,
     "interval": 5,
@@ -71,6 +78,7 @@
     "format-charging": "{icon} {capacity}⬆",
     "format-icons": ["", "", "", "", ""],
   },
+
   "custom/language": {
     "tooltip": false,
     "exec": "~/.config/waybar/script/layout.sh",
