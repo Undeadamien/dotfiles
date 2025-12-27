@@ -26,6 +26,14 @@ return require("packer").startup(function(use)
 		end,
 	})
 
+	--ColorHighlighter
+	use({
+		"norcalli/nvim-colorizer.lua",
+		config = function()
+			require("colorizer").setup()
+		end,
+	})
+
 	--UndoTree
 	use("mbbill/undotree")
 
