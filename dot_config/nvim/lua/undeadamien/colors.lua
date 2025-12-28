@@ -18,6 +18,7 @@ local major_groups = {
 	"EndOfBuffer",
 	"FloatBorder",
 	"WinSeparator",
+	"SignColumn",
 	"VertSplit",
 }
 

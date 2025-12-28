@@ -47,3 +47,6 @@ vim.cmd("cabbrev E Ex")
 
 --Windows
 vim.o.winborder = "rounded"
+
+--Chars
+vim.opt.fillchars = { eob = " " }
