@@ -19,21 +19,20 @@ configuration {
 * {
     highlight: bold italic;
     scrollbar: false;
-    color-box-dark-bg0:          #1d1d1d;
-    color-box-dark-bg3:          #4f4f4f;
-    color-box-dark-fg0:          #deddda;
-    color-box-dark-fg1:          #deddda;
-    color-box-dark-gray:         #454545;
+    color-bg:                   {{ .colors.bg }};
+    color-fg:                   {{ .colors.fg }};
+    color-border:               {{ .colors.border }};
+    color-selected:             {{ .colors.bg_alt }};
 
-    background:                  @color-box-dark-bg0;
-    background-color:            @background;
-    foreground:                  #deddda;
-    border-color:                @color-box-dark-gray;
+    background:                  @color-bg;
+    foreground:                  @color-fg;
+    border-color:                @color-border;
+    selected-normal-background:  @color-selected;
     separatorcolor:              @border-color;
     scrollbar-handle:            @border-color;
+    background-color:            @background;
     normal-background:           @background;
     normal-foreground:           @foreground;
-    selected-normal-background:  @color-box-dark-gray;
     selected-normal-foreground:  @foreground;
     active-foreground:           @foreground;
     selected-active-foreground:  @foreground;
@@ -44,7 +43,7 @@ configuration {
 window {
     background-color: transparent;
     border: 0;
-    border-radius: 4;
+    border-radius: {{ .rounding | trimSuffix "px" }};
     padding: 8;
 }
 
@@ -70,7 +69,7 @@ listview {
     border: 1;
     padding: 0px 0 0;
     border-color: @separatorcolor;
-    border-radius: 4;
+    border-radius: {{ .rounding | trimSuffix "px" }};
     spacing: 0px;
     scrollbar: @scrollbar;
 }
@@ -141,7 +140,7 @@ mode-switcher {
 
 inputbar {
     border-color: @separatorcolor;
-    border-radius: 4;
+    border-radius: {{ .rounding | trimSuffix "px" }};
     border: 1px;
     spacing: 0;
     text-color: @normal-foreground;

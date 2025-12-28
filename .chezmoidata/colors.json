@@ -1,8 +1,10 @@
 {
   "colors": {
-    "bg0": "#2e2e2e",
-    "bg1": "#3a3a3a",
-    "fg0": "#e6e6e6",
-    "fg1": "#dcdcdc"
-  }
+    "bg": "#101010",
+    "bg_alt": "#303030",
+    "fg": "#e0e0e0",
+    "border": "#606060"
+  },
+  "rounding": "4px",
+  "rounding_waybar": "0px"
 }

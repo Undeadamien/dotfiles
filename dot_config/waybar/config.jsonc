@@ -1,6 +1,6 @@
 {
   "position": "top",
-  "margin": "4 4 0 4",
+  "margin": "0 0 0 0",
   "height": 24,
   "reload_style_on_change": true,
 
@@ -17,7 +17,6 @@
   "clock#date": {
     "tooltip": false,
     "format": "{:%A, %b %d, %Y}",
-    "on-click": "kitty -e calcurse",
   },
   "clock#time": {
     "tooltip": false,

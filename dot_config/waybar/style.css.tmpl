@@ -4,28 +4,33 @@
 }
 
 #waybar {
-  background: rgba(29, 29, 29, 1);
-  color: #deddda;
+  background: {{ .colors.bg }};
+  color: {{ .colors.fg }};
   font-family: "Ubuntu Nerd Font";
   font-weight: bold;
   font-size: 12px;
-  border: 1px double rgba(154, 153, 150, 0.6);
-  border-radius: 4px;
+  border: none;
+  border-radius: {{ .rounding_waybar }};
 }
 
 .modules-left > * > *,
 .modules-right > * > * {
-  padding: 0 4 0 4;
-  background: rgba(29, 29, 29, 0.95);
-  border: 1px double rgba(154, 153, 150, 1);
-  border-radius: 4px;
+  padding: 0px 4px 0px 4px;
+  background: {{ .colors.bg }};
+  border: 1px solid {{ .colors.border }};
+  border-radius: {{ .rounding }};
 }
 
 .modules-left > * > * {
-  margin: 4 0 4 4;
+  margin: 4px 0px 4px 4px;
 }
 .modules-right > * > * {
-  margin: 4 4 4 0;
+  margin: 4px 4px 4px 0px;
+}
+
+.modules-left > * > *:hover,
+.modules-right > * > *:hover {
+  background: {{ .colors.bg_alt }};
 }
 
 #workspaces {
@@ -37,13 +42,13 @@
   background: inherit;
   border: none;
   box-shadow: none;
-  color: rgba(176, 175, 172, 1);
+  color: {{ .colors.border }};
   outline: none;
   text-shadow: none;
   min-width: 24px;
   min-height: 24px;
-  border-radius: 0;
+  border-radius: 0px;
 }
 #workspaces button.active {
-  color: #fcfcfc;
+  color: {{ .colors.fg }};
 }

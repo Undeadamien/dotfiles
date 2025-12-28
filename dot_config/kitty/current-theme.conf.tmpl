@@ -6,8 +6,8 @@
 ## upstream: https://github.com/ewal/kitty-adwaita/blob/main/adwaita_dark.conf
 ## blurb: Adwaita dark - based on https://github.com/Mofiqul/adwaita.nvim
 
-background                #1d1d1d
-foreground                #deddda
+background                {{ .colors.bg }}
+foreground                {{ .colors.fg }}
 
 selection_background      #303030
 selection_foreground      #c0bfbc
@@ -17,8 +17,8 @@ url_color                 #1a5fb4
 wayland_titlebar_color    system
 macos_titlebar_color      system
 
-cursor                    #deddda
-cursor_text_color         #1d1d1d
+cursor                    {{ .colors.fg }}
+cursor_text_color         {{ .colors.bg }}
 
 active_border_color       #4f4f4f
 inactive_border_color     #282828
@@ -32,14 +32,14 @@ inactive_tab_foreground   #b0afac
 tab_bar_background        none
 tab_bar_margin_color      none
 
-color0                    #1d1d1d
+color0                    {{ .colors.bg }}
 color1                    #ed333b
 color2                    #57e389
 color3                    #ff7800
 color4                    #62a0ea
 color5                    #9141ac
 color6                    #5bc8af
-color7                    #deddda
+color7                    {{ .colors.fg }}
 
 color8                    #9a9996
 color9                    #f66151
