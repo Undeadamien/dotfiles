@@ -2,6 +2,8 @@ local cmp = require("cmp")
 
 local completion_options = "fuzzy,menu,menuone,noinsert"
 local mapping_main = {
+	["<Tab>"] = nil,
+	["<S-Tab>"] = nil,
 	["<C-n>"] = cmp.mapping.select_next_item(),
 	["<C-p>"] = cmp.mapping.select_prev_item(),
 	["<C-d>"] = cmp.mapping.scroll_docs(4),
@@ -11,6 +13,8 @@ local mapping_main = {
 	["<C-e>"] = cmp.mapping.abort(),
 }
 local mapping_cmdline = {
+	["<Tab>"] = { c = nil },
+	["<S-Tab>"] = { c = nil },
 	["<C-n>"] = { c = cmp.mapping.select_next_item() },
 	["<C-p>"] = { c = cmp.mapping.select_prev_item() },
 	["<C-y>"] = { c = cmp.mapping.confirm() },
