@@ -1,54 +1,79 @@
 * {
+  font-family: "Ubuntu Nerd Font";
+  font-size: 12px;
+  font-weight: bold;
   margin: 0;
   padding: 0;
+  transition: all 120ms ease-in-out;
+  box-shadow: none;
 }
 
-#waybar {
+tooltip {
   background: {{ .colors.bg }};
   color: {{ .colors.fg }};
-  font-family: "Ubuntu Nerd Font";
-  font-weight: bold;
-  font-size: 12px;
-  border: none;
-  border-radius: {{ .rounding_waybar }};
-}
-
-.modules-left > * > *,
-.modules-right > * > * {
-  padding: 0px 4px 0px 4px;
-  background: {{ .colors.bg }};
   border: 1px solid {{ .colors.border }};
   border-radius: {{ .rounding }};
 }
 
+.modules-left > * > *,
+.modules-right > * > * {
+  background: {{ .colors.bg }};
+  border: 1px solid {{ .colors.border }};
+}
+#waybar {
+  background-color: rgba({{ .colors.bg_RGB }}, 1);
+  color: {{ .colors.fg }};
+  border-radius: 0;
+}
+
+.modules-left > * > *,
+.modules-right > * > * {
+  padding: 0 4px;
+  border-radius: {{ .rounding }};
+}
 .modules-left > * > * {
   margin: 4px 0px 4px 4px;
 }
 .modules-right > * > * {
-  margin: 4px 4px 4px 0px;
-}
-
-.modules-left > * > *:hover,
-.modules-right > * > *:hover {
-  background: {{ .colors.bg_alt }};
+  margin: 4px 4px 4px 0;
 }
 
 #workspaces {
   background: inherit;
-  font-size: 14px;
 }
-#workspaces button,
-#workspaces button.empty {
-  background: inherit;
-  border: none;
+#workspaces button {
+  background: {{ .colors.bg_alt }};
+  color: {{ .colors.fg }};
+  border: 1px solid {{ .colors.border }};
   box-shadow: none;
-  color: {{ .colors.border }};
   outline: none;
   text-shadow: none;
+  margin: 4px 2px;
+  min-height: 0px;
   min-width: 24px;
-  min-height: 24px;
-  border-radius: 0px;
+  border-radius: {{ .rounding }};
+}
+#workspaces button.empty {
+  background: transparent;
+}
+#workspaces button.visible {
+  background: {{ .colors.bg_alt }};
 }
 #workspaces button.active {
-  color: {{ .colors.fg }};
+  background: {{ .colors.border }};
+  min-width: 36px;
+}
+
+#tray menu {
+  border: 1px solid {{ .colors.border }};
+  border-radius: {{ .rounding }};
+  box-shadow: none;
+  padding: 2px;
+}
+#tray menuitem {
+  background: {{ .colors.bg }};
+  padding: 2px 0px;
+}
+#tray menuitem:hover {
+  background: {{ .colors.bg_alt }};
 }

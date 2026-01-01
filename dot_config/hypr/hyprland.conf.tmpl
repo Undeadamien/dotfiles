@@ -10,7 +10,7 @@ exec-once = wlsunset -l 48.9 -L 2.5
 exec-once = hypridle
 exec-once = swaync
 exec-once = discord --start-minimized
-exec-once = sleep 1 && waybar
+exec-once = waybar
 
 exec-once = [ workspace 1 silent ] firefox
 exec-once = [ workspace 2 silent ] $terminal
@@ -41,8 +41,8 @@ decoration {
     inactive_opacity = 0.925
     blur {
         enabled = false
-        size = 4
-        passes = 1
+        size = 2
+        passes = 2
         vibrancy = 0.1696
     }
 }
@@ -167,7 +167,6 @@ bind = $mainMod SHIFT, TAB, exec, ~/.config/hypr/script/workspace_cycle.sh prev 
 bindm = $mainMod, mouse:272, movewindow
 bindm = $mainMod, mouse:273, resizewindow
 
-windowrulev2 = suppressevent maximize, class:.*
-windowrulev2 = nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0
-windowrulev2 = opaque, class:krita
-
+windowrule = no_blur on, match:class .*
+windowrule = opacity 1 override, match:class krita
+windowrule = opacity 1 override, match:title .*YouTube.*

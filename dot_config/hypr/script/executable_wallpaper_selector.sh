@@ -2,7 +2,7 @@
 set -euo pipefail
 
 current="wallpaper.jpg"
-interval=300
+interval=1800
 wallpaper_dir="$HOME/.config/hypr/wallpaper/"
 
 if ! pgrep -x swww-daemon >/dev/null; then

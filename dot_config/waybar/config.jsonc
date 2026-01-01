@@ -1,7 +1,6 @@
 {
   "position": "top",
   "margin": "0 0 0 0",
-  "height": 24,
   "reload_style_on_change": true,
 
   "modules-left": ["clock#date", "clock#time"],
@@ -16,22 +15,17 @@
   ],
   "clock#date": {
     "tooltip": false,
-    "format": "{:%A, %b %d, %Y}",
+    "format": "{:%Y-%m-%d}",
   },
   "clock#time": {
     "tooltip": false,
     "interval": 1,
-    "format": "{:%H:%M:%S}",
+    "format": "{:%H:%M}",
   },
 
   "hyprland/workspaces": {
     "active-only": false,
-    "format": "{icon}",
-    "format-icons": {
-      "default": "◆",
-      "empty": "◇",
-      "active": "◆",
-    },
+    "format": "",
     "persistent-workspaces": { "*": 5 },
   },
 

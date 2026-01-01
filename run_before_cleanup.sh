@@ -15,5 +15,5 @@ read -r -p "Delete the above files? [y/n]" answer
 [[ ! $answer =~ [Yy]$ ]] && exit 0
 
 while IFS= read -r file; do
-	rm "$file"
+	rm -rf "$file"
 done <<<"$unmanaged"
