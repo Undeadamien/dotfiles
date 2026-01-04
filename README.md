@@ -83,7 +83,3 @@ done < ignored/packages.txt
 ## Todo / Future Improvements
 
 - [ ] Automate installation of packages
-- [ ] Implement chezmoi templates to:
-  - [ ] Sync configuration values across files
-  - [ ] Manage host-specific settings
-- [ ] Consider replacing Waybar with [Quickshell](https://quickshell.org/)
