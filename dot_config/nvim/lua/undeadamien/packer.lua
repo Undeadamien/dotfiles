@@ -4,6 +4,7 @@ return require("packer").startup(function(use)
 
 	--Mason
 	use({ "williamboman/mason.nvim", run = ":MasonUpdate" })
+	use("WhoIsSethDaniel/mason-tool-installer.nvim")
 
 	--ColorScheme
 	use("Mofiqul/vscode.nvim")
@@ -67,6 +68,9 @@ return require("packer").startup(function(use)
 	use("neovim/nvim-lspconfig")
 	use("saadparwaiz1/cmp_luasnip")
 	use({ "williamboman/mason-lspconfig.nvim" })
+
+	--Lint
+	use("mfussenegger/nvim-lint")
 
 	--Auto-format
 	use({ "stevearc/conform.nvim" })

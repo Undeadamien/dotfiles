@@ -1,3 +1,23 @@
+--Auto-installation
+require("mason-tool-installer").setup({
+	ensure_installed = {
+		"asmfmt",
+		"bash-language-server",
+		"black",
+		"clang-format",
+		"clangd",
+		"isort",
+		"lua-language-server",
+		"prettier",
+		"pyright",
+		"shellcheck",
+		"shfmt",
+		"stylua",
+		"typescript-language-server",
+		"vim-language-server",
+	},
+})
+
 --Keymaps
 vim.keymap.set("n", "gl", vim.diagnostic.open_float)
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
@@ -26,7 +46,7 @@ local default_setup = function(server)
 	vim.lsp.enable(server)
 end
 require("mason").setup({})
-require("mason-lspconfig").setup({ ensure_installed = {}, handlers = { default_setup } })
+require("mason-lspconfig").setup({ handlers = { default_setup } })
 
 vim.diagnostic.config({
 	signs = {
@@ -44,7 +64,6 @@ vim.diagnostic.config({
 	float = { style = "minimal", border = "rounded", source = "always", header = "", prefix = "" },
 })
 
--- local cmp = require("cmp")
 require("luasnip.loaders.from_vscode").lazy_load()
 
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
