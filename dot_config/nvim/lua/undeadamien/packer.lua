@@ -57,6 +57,14 @@ return require("packer").startup(function(use)
 		ft = { "markdown" },
 	})
 
+	--CSV
+	use({
+		"hat0uma/csvview.nvim",
+		config = function()
+			require("csvview").setup()
+		end,
+	})
+
 	--Lsp
 	use("L3MON4D3/LuaSnip")
 	use("hrsh7th/cmp-buffer")
