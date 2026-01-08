@@ -28,7 +28,7 @@
     "format-stopped": "MPD ",
     "format-disconnected": "",
     "on-click": "rmpc togglepause",
-    "on-click-right": "kitty -e rmpc",
+    "on-click-right": "hyprctl clients | grep -q 'title: rmpc' && hyprctl dispatch focuswindow title:^rmpc$ || kitty -e rmpc",
     "on-scroll-up": "rmpc volume -5",
     "on-scroll-down": "rmpc volume +5",
   },
@@ -52,7 +52,7 @@
     "format": "  {volume:02}",
     "format-muted": "  {volume:02}",
     "scroll-step": 5,
-    "on-click": "pavucontrol",
+    "on-click": "hyprctl clients | grep -q 'class: .*pavucontrol' && hyprctl dispatch focuswindow class:.*pavucontrol$ || pavucontrol",
   },
   "network": {
     "tooltip": true,
@@ -64,7 +64,7 @@
     "format-wifi": "  {signalStrength:02}",
     "format-ethernet": "󰈀  ON",
     "format-disconnected": "󰖪  00",
-    "on-click": "kitty -e iwctl",
+    "on-click": "hyprctl clients | grep -q 'title: iwctl' && hyprctl dispatch focuswindow title:^iwctl$ || kitty -e iwctl",
   },
   "battery": {
     "tooltip": true,
