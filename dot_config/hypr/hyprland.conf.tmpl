@@ -24,8 +24,8 @@ general {
     gaps_out = 4
     float_gaps = 4
     border_size = 1
-    col.active_border = rgba({{ .colors.fg | trimPrefix "#" }}ff)
-    col.inactive_border = rgba({{ .colors.border | trimPrefix "#" }}ff)
+    col.active_border = rgba({{ .colors.border | trimPrefix "#" }}ff)
+    col.inactive_border = rgba({{ .colors.bg | trimPrefix "#" }}ff)
     resize_on_border = true
     allow_tearing = false
     layout = dwindle
