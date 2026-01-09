@@ -1,46 +1,46 @@
 --Visual Help
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.cursorline = true
-vim.opt.cursorcolumn = true
-vim.opt.list = true
-vim.opt.signcolumn = "yes"
+vim.o.number = true
+vim.o.relativenumber = true
+vim.o.cursorline = true
+vim.o.cursorcolumn = true
+vim.o.list = true
+vim.o.signcolumn = "yes"
 
 --Tabulation
-vim.opt.autoindent = true
-vim.opt.smartindent = true
-vim.opt.expandtab = false
-vim.opt.shiftwidth = 4
-vim.opt.softtabstop = 4
-vim.opt.tabstop = 4
+vim.o.autoindent = true
+vim.o.smartindent = true
+vim.o.expandtab = false
+vim.o.shiftwidth = 4
+vim.o.softtabstop = 4
+vim.o.tabstop = 4
 
 --Split
-vim.opt.splitbelow = false
-vim.opt.splitright = false
+vim.o.splitbelow = false
+vim.o.splitright = false
 
 --Directory
-vim.opt.autochdir = false
+vim.o.autochdir = false
 
 --Text
-vim.opt.wrap = false
+vim.o.wrap = false
 
 --File
-vim.opt.swapfile = false
-vim.opt.endofline = true
+vim.o.swapfile = false
+vim.o.endofline = true
 
 --Search
-vim.opt.ic = true
-vim.opt.smartcase = true
-vim.opt.hlsearch = true
-vim.opt.incsearch = true
+vim.o.ic = true
+vim.o.smartcase = true
+vim.o.hlsearch = true
+vim.o.incsearch = true
 
 --Undo
-vim.opt.undodir = vim.fn.expand("~/.cache/nvim/undo")
-vim.opt.undofile = true
-vim.opt.undolevels = 1000
+vim.o.undodir = vim.fn.expand("~/.cache/nvim/undo")
+vim.o.undofile = true
+vim.o.undolevels = 1000
 
 --Other
-vim.opt.scrolloff = 8
+vim.o.scrolloff = 8
 
 --Cmd alias/abbrev
 vim.cmd("cabbrev E Ex")
