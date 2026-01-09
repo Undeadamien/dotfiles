@@ -83,3 +83,4 @@ done < ignored/packages.txt
 ## Todo / Future Improvements
 
 - [ ] Automate installation of packages
+- [ ] Configure rmpc/cava
