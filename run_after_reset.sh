@@ -2,8 +2,11 @@
 
 set -euo pipefail
 
-pkill -x waybar 2>/dev/null
+programs=(waybar swaync)
 
-if command -v hyprctl >/dev/null; then
-	hyprctl dispatch exec waybar
-fi
+if ! command -v hyprctl >/dev/null; then exit 1; fi
+
+for program in "${programs[@]}"; do
+	pkill -x "$program" 2>/dev/null || true
+	hyprctl dispatch exec "$program"
+done

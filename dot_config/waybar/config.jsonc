@@ -1,6 +1,6 @@
 {
   "position": "top",
-  "margin": "0 0 0 0",
+  "margin": "4 4 0 4",
   "reload_style_on_change": true,
 
   "modules-left": ["clock#date", "clock#time", "mpd"],

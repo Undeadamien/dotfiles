@@ -18,24 +18,23 @@ tooltip {
 .modules-left > * > *,
 .modules-right > * > * {
   background: {{ .hex.bg }};
-  border: 1px solid {{ .hex.border }};
 }
 #waybar {
-  background-color: rgba({{ .rgb.bg }}, 0.95);
+  background-color: rgba({{ .rgb.bg }}, 1.00);
   color: {{ .hex.fg }};
+  border: 1px solid {{ .hex.border }};
   border-radius: 0;
 }
 
 .modules-left > * > *,
 .modules-right > * > * {
-  padding: 0 4px;
   border-radius: {{ .rounding }};
 }
 .modules-left > * > * {
-  margin: 4px 0px 4px 4px;
+  margin: 2px 0px 2px 8px;
 }
 .modules-right > * > * {
-  margin: 4px 4px 4px 0;
+  margin: 2px 8px 2px 0px;
 }
 
 #workspaces {
