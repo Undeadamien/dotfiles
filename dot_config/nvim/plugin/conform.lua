@@ -20,6 +20,7 @@ local formatters_by_ft = {
 	qml = { "qmlformat" },
 	s = { "asmfmt" },
 	sh = { "shfmt" },
+	toml = { "tombi" },
 	tsx = { "prettier" },
 	typescript = { "prettier" },
 	typescriptreact = { "prettier" },

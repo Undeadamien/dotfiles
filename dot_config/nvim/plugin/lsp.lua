@@ -13,6 +13,7 @@ require("mason-tool-installer").setup({
 		"shellcheck",
 		"shfmt",
 		"stylua",
+		"tombi",
 		"typescript-language-server",
 		"vim-language-server",
 	},

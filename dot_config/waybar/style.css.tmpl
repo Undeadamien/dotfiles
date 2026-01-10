@@ -9,20 +9,20 @@
 }
 
 tooltip {
-  background: {{ .colors.bg }};
-  color: {{ .colors.fg }};
-  border: 1px solid {{ .colors.border }};
+  background: {{ .hex.bg }};
+  color: {{ .hex.fg }};
+  border: 1px solid {{ .hex.border }};
   border-radius: {{ .rounding }};
 }
 
 .modules-left > * > *,
 .modules-right > * > * {
-  background: {{ .colors.bg }};
-  border: 1px solid {{ .colors.border }};
+  background: {{ .hex.bg }};
+  border: 1px solid {{ .hex.border }};
 }
 #waybar {
-  background-color: rgba({{ .colors.bg_RGB }}, 1);
-  color: {{ .colors.fg }};
+  background-color: rgba({{ .rgb.bg }}, 0.95);
+  color: {{ .hex.fg }};
   border-radius: 0;
 }
 
@@ -42,9 +42,9 @@ tooltip {
   background: inherit;
 }
 #workspaces button {
-  background: {{ .colors.bg_alt }};
-  color: {{ .colors.fg }};
-  border: 1px solid {{ .colors.border }};
+  background: {{ .hex.bg_alt }};
+  color: {{ .hex.fg }};
+  border: 1px solid {{ .hex.border }};
   box-shadow: none;
   outline: none;
   text-shadow: none;
@@ -57,22 +57,22 @@ tooltip {
   background: transparent;
 }
 #workspaces button.visible {
-  background: {{ .colors.bg_alt }};
+  background: {{ .hex.bg_alt }};
 }
 #workspaces button.active {
-  background: {{ .colors.border }};
+  background: {{ .hex.border }};
 }
 
 #tray menu {
-  border: 1px solid {{ .colors.border }};
+  border: 1px solid {{ .hex.border }};
   border-radius: {{ .rounding }};
   box-shadow: none;
   padding: 2px;
 }
 #tray menuitem {
-  background: {{ .colors.bg }};
+  background: {{ .hex.bg }};
   padding: 2px 0px;
 }
 #tray menuitem:hover {
-  background: {{ .colors.bg_alt }};
+  background: {{ .hex.bg_alt }};
 }

@@ -1,51 +1,45 @@
 # vim:ft=kitty
 
-## name: Adwaita dark
-## license: MIT
-## author: Emil Löfquist (https://github.com/ewal)
-## upstream: https://github.com/ewal/kitty-adwaita/blob/main/adwaita_dark.conf
-## blurb: Adwaita dark - based on https://github.com/Mofiqul/adwaita.nvim
+background                {{ .hex.bg }}
+foreground                {{ .hex.fg }}
 
-background                {{ .colors.bg }}
-foreground                {{ .colors.fg }}
+selection_background      {{ .hex.bg_alt }}
+selection_foreground      {{ .hex.color7 }}
 
-selection_background      #303030
-selection_foreground      #c0bfbc
-
-url_color                 #1a5fb4
+url_color                 {{ .hex.color4 }}
 
 wayland_titlebar_color    system
 macos_titlebar_color      system
 
-cursor                    {{ .colors.fg }}
-cursor_text_color         {{ .colors.bg }}
+cursor                    {{ .hex.fg }}
+cursor_text_color         {{ .hex.bg }}
 
-active_border_color       #4f4f4f
-inactive_border_color     #282828
-bell_border_color         #ed333b
+active_border_color       {{ .hex.color8 }}
+inactive_border_color     {{ .hex.color0 }}
+bell_border_color         {{ .hex.color1 }}
 visual_bell_color         none
 
-active_tab_background     #242424 
-active_tab_foreground     #fcfcfc
-inactive_tab_background   #303030
-inactive_tab_foreground   #b0afac
+active_tab_background     {{ .hex.bg_alt }} 
+active_tab_foreground     {{ .hex.color7 }}
+inactive_tab_background   {{ .hex.bg_alt }}
+inactive_tab_foreground   {{ .hex.color8 }}
 tab_bar_background        none
 tab_bar_margin_color      none
 
-color0                    {{ .colors.bg }}
-color1                    #ed333b
-color2                    #57e389
-color3                    #ff7800
-color4                    #62a0ea
-color5                    #9141ac
-color6                    #5bc8af
-color7                    {{ .colors.fg }}
+color0                    {{ .hex.color0 }}
+color1                    {{ .hex.color1 }}
+color2                    {{ .hex.color2 }}
+color3                    {{ .hex.color3 }}
+color4                    {{ .hex.color4 }}
+color5                    {{ .hex.color5 }}
+color6                    {{ .hex.color6 }}
+color7                    {{ .hex.color7 }}
 
-color8                    #9a9996
-color9                    #f66151
-color10                   #8ff0a4
-color11                   #ffa348
-color12                   #99c1f1
-color13                   #dc8add
-color14                   #93ddc2
-color15                   #f6f5f4
+color8                    {{ .hex.color8 }}
+color9                    {{ .hex.color9 }}
+color10                   {{ .hex.color10 }}
+color11                   {{ .hex.color11 }}
+color12                   {{ .hex.color12 }}
+color13                   {{ .hex.color13 }}
+color14                   {{ .hex.color14 }}
+color15                   {{ .hex.color15 }}
