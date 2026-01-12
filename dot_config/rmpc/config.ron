@@ -152,26 +152,17 @@
                     (size: "30%", pane: Split(
                             direction: Vertical,
                             panes: [
-                                (size: "50%", pane: Split(direction: Vertical, borders: "ALL", panes: [(size:"100%", pane: Pane(AlbumArt))])),
-                                (size: "50%", pane: Split(direction: Vertical, borders: "ALL", panes: [(size:"100%", pane: Pane(Cava))])),
+                                (size: "50%", pane: Pane(AlbumArt), borders: "RIGHT | TOP | LEFT"),
+                                (size: "50%", pane: Pane(Cava), borders: "ALL"),
                             ]
                         )
                     ),
-                    (size: "70%", pane: Split(direction: Vertical, borders: "ALL", panes: [(size:"100%", pane: Pane(Queue))])),
+                    (size: "70%", pane: Pane(Queue), borders: "TOP | BOTTOM | RIGHT"),
                 ],
             ),
         ),
-        (
-            name: "Directories",
-            pane: Split( direction: Vertical, borders: "ALL", panes: [(size:"100%", pane: Pane(Directories))])
-        ),
-        (
-            name: "Search",
-            pane: Split( direction: Vertical, borders: "ALL", panes: [(size:"100%", pane: Pane(Search))])
-        ),
-        (
-            name: "Playlists",
-            pane: Split( direction: Vertical, borders: "ALL", panes: [(size:"100%", pane: Pane(Playlists))])
-        ),
+        (name: "Directories", pane: Pane(Directories), borders:"ALL", size: "100%"),
+        (name: "Search", pane: Pane(Search), borders:"ALL", size: "100%"),
+        (name: "Playlists", pane: Pane(Playlists), borders:"ALL", size: "100%"),
     ],
 )

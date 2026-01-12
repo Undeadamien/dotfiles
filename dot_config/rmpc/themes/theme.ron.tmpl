@@ -21,12 +21,12 @@
     highlighted_item_style: (fg: "{{ .hex.accent }}", modifiers: "Bold"),
     current_item_style: (fg: "black", bg: "{{ .hex.accent }}", modifiers: "Bold"),
     borders_style: (fg: "{{ .hex.border }}"),
-    highlight_border_style: (fg: "{{ .hex.accent }}"),
+    highlight_border_style: (fg: "{{ .hex.border }}"),
     symbols: (
         song: "S",
         dir: "D",
         playlist: "P",
-        marker: "-> ",
+        marker: ">",
         ellipsis: "...",
         song_style: None,
         dir_style: None,
@@ -53,31 +53,10 @@
         thumb_style: (fg: "{{ .hex.accent }}"),
     ),
     song_table_format: [
-        (
-            prop: (kind: Property(Artist),
-                default: (kind: Text("Unknown"))
-            ),
-            width: "20%",
-        ),
-        (
-            prop: (kind: Property(Title),
-                default: (kind: Text("Unknown"))
-            ),
-            width: "35%",
-        ),
-        (
-            prop: (kind: Property(Album), style: (fg: "white"),
-                default: (kind: Text("Unknown Album"), style: (fg: "white"))
-            ),
-            width: "30%",
-        ),
-        (
-            prop: (kind: Property(Duration),
-                default: (kind: Text("-"))
-            ),
-            width: "15%",
-            alignment: Right,
-        ),
+        (prop: (kind: Property(Title), default: (kind: Property(Filename))), width: "100%", label: "Title / Filename"),
+        (prop: (kind: Property(Artist), default: (kind: Text("Unknown"))), width: "20%"),
+        (prop: (kind: Property(Album), style: (fg: "white"), default: (kind: Text("Unknown"), style: (fg: "white"))), width: "20%"),
+        (prop: (kind: Property(Duration), default: (kind: Text("-"))), width: "10%", alignment: Right),
     ],
     components: {},
     layout: Split(
