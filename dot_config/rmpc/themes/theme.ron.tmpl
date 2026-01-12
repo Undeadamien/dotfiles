@@ -23,14 +23,14 @@
     borders_style: (fg: "{{ .hex.border }}"),
     highlight_border_style: (fg: "{{ .hex.border }}"),
     symbols: (
-        song: "S",
-        dir: "D",
-        playlist: "P",
-        marker: ">",
+        song: "♪",
+        dir: "🖿 ",
+        playlist: "🗒",
+        marker: "◆  ",
         ellipsis: "...",
-        song_style: None,
-        dir_style: None,
-        playlist_style: None,
+        song_style: (fg: "{{ .hex.accent }}"),
+        dir_style: (fg: "{{ .hex.accent }}"),
+        playlist_style: (fd: "{{ .hex.accent }}"),
     ),
     level_styles: (
         info: (fg: "{{ .hex.accent }}", bg: "black"),
@@ -40,7 +40,7 @@
         trace: (fg: "{{ .hex.accent }}", bg: "black"),
     ),
     progress_bar: (
-        symbols: ["◖", "█", "◗", "█", "◗"],
+        symbols: ["▐", "█", "█", "█", "▌"],
         track_style: (fg: "#1e2030"),
         elapsed_style: (fg: "{{ .hex.accent }}"),
         thumb_style: (fg: "{{ .hex.accent }}", bg: "#1e2030"),
@@ -54,8 +54,8 @@
     ),
     song_table_format: [
         (prop: (kind: Property(Title), default: (kind: Property(Filename))), width: "100%", label: "Title / Filename"),
-        (prop: (kind: Property(Artist), default: (kind: Text("Unknown"))), width: "20%"),
-        (prop: (kind: Property(Album), style: (fg: "white"), default: (kind: Text("Unknown"), style: (fg: "white"))), width: "20%"),
+        (prop: (kind: Property(Artist), default: (kind: Text("Unknown"), style: (fg: "dark_gray"))), width: "20%"),
+        (prop: (kind: Property(Album), style: (fg: "white"), default: (kind: Text("Unknown"), style: (fg: "dark_gray"))), width: "20%"),
         (prop: (kind: Property(Duration), default: (kind: Text("-"))), width: "10%", alignment: Right),
     ],
     components: {},
@@ -89,20 +89,16 @@
             (
                 left: [
                     (kind: Property(Status(Elapsed))),
-                    (kind: Text(" / ")),
+                    (kind: Text("/")),
                     (kind: Property(Status(Duration))),
                     (kind: Text(" (")),
                     (kind: Property(Status(Bitrate))),
                     (kind: Text(" kbps)"))
                 ],
                 center: [
-                    (kind: Property(Song(Artist)), style: (fg: "{{ .hex.accent }}", modifiers: "Bold"),
-                        default: (kind: Text("Unknown"), style: (fg: "{{ .hex.accent }}", modifiers: "Bold"))
-                    ),
+                    (kind: Property(Song(Artist)), style: (fg: "white"), default: (kind: Text("Unknown"), style: (fg: "dark_gray"))),
                     (kind: Text(" - ")),
-                    (kind: Property(Song(Album)),
-                        default: (kind: Text("Unknown Album"))
-                    )
+                    (kind: Property(Song(Album)), default: (kind: Text("Unknown"), style: (fg: "dark_gray")))
                 ],
                 right: [
                     (
