@@ -9,7 +9,7 @@ vim.o.signcolumn = "yes"
 --Tabulation
 vim.o.autoindent = true
 vim.o.smartindent = true
-vim.o.expandtab = false
+vim.o.expandtab = true
 vim.o.shiftwidth = 4
 vim.o.softtabstop = 4
 vim.o.tabstop = 4
