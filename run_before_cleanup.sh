@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 wallpaper_dir="$HOME/.config/hypr/wallpaper"
-current="wallpaper.jpg"
+current="wallpaper"
 
 if [[ ! -d "$wallpaper_dir" ]]; then exit 0; fi
 
@@ -15,5 +15,5 @@ read -r -p "Delete the above files? [y/n]" answer
 [[ ! $answer =~ [Yy]$ ]] && exit 0
 
 while IFS= read -r file; do
-	rm -rf "$file"
+    rm -rf "$file"
 done <<<"$unmanaged"

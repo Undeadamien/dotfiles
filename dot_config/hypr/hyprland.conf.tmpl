@@ -106,6 +106,7 @@ ecosystem {
 $mainMod = SUPER
 
 bind = $mainMod, e, exec, rofi -show drun
+bind = $mainMod, r, exec, pkill -USR1 -f ~/.config/hypr/script/wallpaper_selector.sh
 bind = $mainMod, w, exec, rofi -show window
 bind = $mainMod, q, exec, $terminal
 bind = $mainMod, o, exec, hyprctl dispatch setprop "address:$(hyprctl activewindow -j | jq -r .address)" opaque toggle
