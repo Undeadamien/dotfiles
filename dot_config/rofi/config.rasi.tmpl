@@ -42,7 +42,7 @@ configuration {
 window {
     background-color: transparent;
     border: 0;
-    border-radius: {{ .rounding | trimSuffix "px" }};
+    border-radius: {{ .rounding }};
     padding: 8;
 }
 
@@ -68,7 +68,7 @@ listview {
     border: 1;
     padding: 0px 0 0;
     border-color: @separatorcolor;
-    border-radius: {{ .rounding | trimSuffix "px" }};
+    border-radius: {{ .rounding }};
     spacing: 0px;
     scrollbar: true;
 }
@@ -139,7 +139,7 @@ mode-switcher {
 
 inputbar {
     border-color: @separatorcolor;
-    border-radius: {{ .rounding | trimSuffix "px" }};
+    border-radius: {{ .rounding }};
     border: 1px;
     spacing: 0;
     text-color: @normal-foreground;

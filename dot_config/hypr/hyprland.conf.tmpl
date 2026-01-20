@@ -20,9 +20,9 @@ env = HYPRCURSOR_SIZE,24
 env = XDG_CURRENT_DESKTOP,Hyprland
 
 general {
-    gaps_in = 2
-    gaps_out = 4
-    float_gaps = 4
+    gaps_in = {{ div .gaps 2 }}px
+    gaps_out = {{ .gaps }}px
+    float_gaps = {{ .gaps }}px
     border_size = 1
     col.active_border = rgba({{ .hex.border | trimPrefix "#" }}ff)
     col.inactive_border = rgba({{ .hex.bg | trimPrefix "#" }}ff)
@@ -36,7 +36,7 @@ cursor {
 }
 
 decoration {
-    rounding = {{ .rounding | trimSuffix "px" }}
+    rounding = {{ .rounding }}
     active_opacity = 0.95
     inactive_opacity = 0.925
     blur {

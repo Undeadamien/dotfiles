@@ -12,7 +12,7 @@ tooltip {
   background: {{ .hex.bg }};
   color: {{ .hex.fg }};
   border: 1px solid {{ .hex.border }};
-  border-radius: {{ .rounding }};
+  border-radius: {{ .rounding }}px;
 }
 
 .modules-left > * > *,
@@ -28,7 +28,7 @@ tooltip {
 
 .modules-left > * > *,
 .modules-right > * > * {
-  border-radius: {{ .rounding }};
+  border-radius: {{ .rounding }}px;
 }
 .modules-left > * > * {
   margin: 2px 0px 2px 8px;
@@ -50,7 +50,7 @@ tooltip {
   margin: 4px 2px;
   min-height: 0px;
   min-width: 24px;
-  border-radius: {{ .rounding }};
+  border-radius: {{ .rounding }}px;
 }
 #workspaces button.empty {
   background: transparent;
@@ -64,7 +64,7 @@ tooltip {
 
 #tray menu {
   border: 1px solid {{ .hex.border }};
-  border-radius: {{ .rounding }};
+  border-radius: {{ .rounding }}px;
   box-shadow: none;
   padding: 2px;
 }
