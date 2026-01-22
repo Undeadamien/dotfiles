@@ -1,11 +1,9 @@
 #!/usr/bin/env zsh
 
-# Stow
-export PATH="$HOME/.local/bin:$PATH"
+# General
+setopt rmstarsilent
 
 # Neovim config
-export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
-export PATH="$PATH:$HOME/.local/share/nvim/bin" # for the school
 export EDITOR="nvim"
 
 # Fzf config
