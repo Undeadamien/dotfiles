@@ -10,6 +10,7 @@ PACKAGES_PACMAN=(
     chezmoi
     cronie
     discord
+    dust
     firefox
     fzf
     hypridle
@@ -43,8 +44,8 @@ PACKAGES_PACMAN=(
     wev
     wget
     wlsunset
-    zsh-autocomplete
     yt-dlp
+    zsh-autocomplete
 )
 PACKAGES_YAY=(
     opera
