@@ -10,14 +10,20 @@ setopt rmstarsilent
 export EDITOR="nvim"
 
 # Fzf config
-export FZF_DEFAULT_OPTS="\
-	--reverse \
-	--cycle \
-	--smart-case \
-	--scheme=path \
-	--border \
-	--preview 'sh -c \"jp2a --fill --colors --width=\$FZF_PREVIEW_COLUMNS {} 2>/dev/null || bat --color=always --style=plain {} 2>/dev/null || ls -l {}\"' \
-	--preview-window=right:40% "
+source <(fzf --zsh)
+export FZF_DEFAULT_OPTS="
+    --style full \
+    --reverse \
+    --cycle \
+    --ansi \
+    --smart-case \
+    --scheme=path \
+    --border \
+    --height 40% --min-height 20 \
+    --preview 'sh -c \"jp2a --fill --colors --width=\$FZF_PREVIEW_COLUMNS {} 2>/dev/null || bat --color=always --style=plain {} 2>/dev/null || ls -l {}\"' \
+    --preview-window=right:50%
+"
+#todo: configure fzf-tab: https://github.com/Aloxaf/fzf-tab?tab=readme-ov-file#configure
 
 # History
 HISTFILE=~/.histfile
