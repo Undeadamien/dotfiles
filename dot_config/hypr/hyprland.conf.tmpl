@@ -121,12 +121,13 @@ binde = , code:233, exec, brightnessctl s 10%+
 bind = , code:107, exec, ~/.config/hypr/script/screenshot.sh
 
 bind = $mainMod, f, fullscreen, 1
+bind = $mainMod SHIFT, f, fullscreen, 0
 bind = $mainMod, c, killactive
 bind = $mainMod, s, togglesplit
 bind = $mainMod SHIFT, m, exec, hyprctl dispatch exit
 bind = $mainMod SHIFT, p, pin
 bind = $mainMod SHIFT, c, centerwindow
-bind = $mainMod SHIFT, f, togglefloating
+bind = $mainMod CTRL, f, togglefloating
 
 binde = $mainMod, code:20, resizeactive, -1% 0
 binde = $mainMod, code:21, resizeactive, 1% 0
