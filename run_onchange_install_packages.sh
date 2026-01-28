@@ -13,6 +13,7 @@ PACKAGES_PACMAN=(
     dust
     firefox
     fzf
+    glow
     hypridle
     hyprland
     hyprlock
