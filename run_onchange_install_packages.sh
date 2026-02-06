@@ -45,6 +45,7 @@ PACKAGES_PACMAN=(
     wev
     wget
     wlsunset
+    yazi
     yt-dlp
     zsh-autocomplete
 )
