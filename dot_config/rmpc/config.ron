@@ -153,8 +153,9 @@
                     (size: "30%", pane: Split(
                             direction: Vertical,
                             panes: [
-                                (size: "50%", pane: Pane(AlbumArt), borders: "RIGHT | TOP | LEFT"),
-                                (size: "50%", pane: Pane(Cava), borders: "ALL"),
+                            (size: "50%", pane: Pane(AlbumArt), borders: "RIGHT | TOP | LEFT", border_symbols: Inherited(parent: Plain, top_right: "┬")),
+                            (size: "50%", pane: Pane(Cava), borders: "ALL", border_symbols: Inherited(parent: Plain, bottom_right: "┴", top_left: "├", top_right: "┤")
+                            ),
                             ]
                         )
                     ),
@@ -162,8 +163,8 @@
                 ],
             ),
         ),
-        (name: "Directories", pane: Pane(Directories), borders:"ALL", size: "100%"),
-        (name: "Search", pane: Pane(Search), borders:"ALL", size: "100%"),
-        (name: "Playlists", pane: Pane(Playlists), borders:"ALL", size: "100%"),
+        (name: "Directories", pane: Split( size: "100%", direction: Vertical, panes: [(pane: Pane(Directories), size: "100%", borders: "ALL")])),
+        (name: "Search", pane: Split( size: "100%", direction: Vertical, panes: [(pane: Pane(Search), size: "100%", borders: "ALL")])),
+        (name: "Playlists", pane: Split( size: "100%", direction: Vertical, panes: [(pane: Pane(Playlists), size: "100%", borders: "ALL")])),
     ],
 )

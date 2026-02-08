@@ -63,9 +63,9 @@
         direction: Vertical,
         panes: [
             (borders: "ALL", pane: Pane(Tabs), size: "3"),
-            (borders: "ALL", pane: Pane(Header), size: "4"),
             (borders: "NONE", pane: Pane(TabContent), size: "100%"),
-            (borders: "ALL", pane: Pane(ProgressBar), size: "3"),
+            (borders: "TOP|LEFT|RIGHT", pane: Pane(ProgressBar), size: "2"),
+            (borders: "ALL", pane: Pane(Header), size: "4", border_symbols: Inherited(parent: Plain, top_left: "├", top_right: "┤")),
         ],
     ),
     header: (
@@ -133,11 +133,7 @@
         bar_spacing: 0,
         bar_color: Gradient({
             0: "rgb(18, 18, 18)",
-            20: "rgb(54, 54, 54)",
-            40: "rgb(102, 102, 102)",
-            60: "rgb(153, 153, 153)",
-            80: "rgb(214, 214, 214)",
-            100: "rgb(224, 224, 224)"
+            100: "rgb({{ .rgb.accent }})"
     })
     )
 )
