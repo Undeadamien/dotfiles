@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 # Path
-export PATH="$PATH:/home/undeadamien/.local/bin"
+export PATH="${HOME}/.local/bin:${PATH}"
 
 # General
 setopt rmstarsilent
