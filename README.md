@@ -1,63 +1,76 @@
 # Dotfiles
 
-These are my personal dotfiles, managed with [chezmoi](https://www.chezmoi.io/), for a **Wayland + Hyprland** setup.
-
-> Note: This installation guide assumes an Arch-based Linux system.
+Personal dotfiles, managed with [chezmoi](https://www.chezmoi.io/), for a **Hyprland** setup, designed for an Arch-based system
 
 ## Features
 
-### Window Manager & Wayland
+### Desktop environment
 
-- **Hyprland** - dynamic tiling window manager
-- **Hypridle** - idle manager
-- **Hyprlock** - screen locker
-- **Waybar** - status bar
-- **Rofi** - application launcher
-- **SwayNC** - notification center
-- **wlsunset** - night light
-- **swww** - wallpaper handler
+- `hypridle` - idle manager
+- `hyprland` - window manager
+- `hyprlock` - screen locker
+- `rofi` - app launcher
+- `swaync` - notification center
+- `swww` - wallpaper daemon
+- `thunar` - file manager
+- `waybar` - status bar
+- `wlsunset` - night light
 
-### Terminal & Shell
+### Terminal
 
-- **Kitty** - terminal emulator
-- **Zsh** - shell configuration
-- **tmux** - terminal multiplexer
+- `btop` - system monitor
+- `kitty` - terminal emulator
+- `mpd/rmpc` - daemon/TUI music player
+- `neovim` - text editor
+- `tmux` - terminal multiplexer
+- `yazi` - TUI file manager
+- `zsh` - shell
 
-### Text Editor
+### Other
 
-- **Neovim** - terminal-based text editor
-
-### System & Utilities
-
-- **btop** - system monitor
-- **mpd/rmpc** - music player
-- **Thunar** - file manager
+- `yay` - AUR helper
 
 ## Installation
 
-1. Install chezmoi: https://www.chezmoi.io/install/
+**1. Install chezmoi**
 
-   ```
-   sudo pacman -S chezmoi
-   ```
+```bash
+# https://www.chezmoi.io/install/
+sudo pacman -S chezmoi
+```
 
-2. Initialize from this repo: https://www.chezmoi.io/reference/commands/init/
+**2. Clone and apply the repo with the preferred method:**
 
-   ```
-   chezmoi init https://github.com/Undeadamien/dotfiles.git
-   ```
+```bash
+# https://www.chezmoi.io/reference/commands/init/
+chezmoi init git@github.com:Undeadamien/dotfiles.git -a
+```
 
-   or
+```bash
+# https://www.chezmoi.io/reference/commands/init/
+chezmoi init https://github.com/Undeadamien/dotfiles.git -a
+```
 
-   ```
-   chezmoi init git@github.com:Undeadamien/dotfiles.git
-   ```
+During `chezmoi apply`, multiple [scripts](https://www.chezmoi.io/user-guide/use-scripts-to-perform-actions/) will run, helping with different tasks:
 
-3. Apply the dotfiles: https://www.chezmoi.io/reference/commands/apply/
-   ```
-   chezmoi apply
-   ```
+- Install packages (pacman & yay)
+- Restart applications
+- Cleanup files
 
 ## Todo / Future Improvements
 
-- [ ] Find a better way to handle the conversion of colors inside `.chezmoidata`
+**Dotfiles**
+
+- [ ] Add a notification module to `waybar` [example](https://github.com/ErikReider/SwayNotificationCenter?tab=readme-ov-file#waybar-example)
+- [ ] Configure `yazi`
+
+**Chezmoi**
+
+- [ ] Configure nvim using [run_once](https://www.chezmoi.io/user-guide/use-scripts-to-perform-actions/)
+- [ ] Configure systemd services using [run_onchange](https://www.chezmoi.io/user-guide/use-scripts-to-perform-actions/)
+- [ ] Sync `hex.toml` and `rgb.toml` while following chezmoi's [application-order](https://www.chezmoi.io/reference/application-order/)
+
+**Readme**
+
+- [ ] Add screenshots/gifs
+- [ ] Add some decorations/badges
