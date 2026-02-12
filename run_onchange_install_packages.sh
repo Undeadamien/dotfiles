@@ -24,6 +24,7 @@ PACKAGES_PACMAN=(
     ly
     mpc
     mpd
+    mpv
     neovim
     obsidian
     pavucontrol
