@@ -112,8 +112,8 @@ bind = $mainMod, r, exec, pkill -USR1 -f ~/.config/hypr/script/wallpaper_selecto
 bind = $mainMod, w, exec, rofi -show window
 bind = $mainMod, q, exec, $terminal
 bind = $mainMod, o, exec, hyprctl dispatch setprop "address:$(hyprctl activewindow -j | jq -r .address)" opaque toggle
-bind = $mainMod CTRL, o, exec, hyprctl keyword 'windowrule[all-opaque]:enable 0' & notify-send "opaque: enable"
-bind = $mainMod SHIFT, o, exec, hyprctl keyword 'windowrule[all-opaque]:enable 1' & notify-send "opaque: disable"
+bind = $mainMod CTRL, o, exec, hyprctl keyword 'windowrule[all-opaque]:enable 0' & notify-send "opaque: disabled"
+bind = $mainMod SHIFT, o, exec, hyprctl keyword 'windowrule[all-opaque]:enable 1' & notify-send "opaque: enabled"
 bind = $mainMod, m, exec, ~/.config/hypr/script/hyprlock_helper.sh
 
 bind =  ALT, Shift_L, exec, hyprctl switchxkblayout all next & pkill -RTMIN+1 waybar & notify-send
