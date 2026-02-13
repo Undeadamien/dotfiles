@@ -18,4 +18,4 @@ fi
 if [[ -f "$wallpaper_script" ]]; then
     hyprctl dispatch exec "$wallpaper_script" >/dev/null || true
 fi
-hyprctl reload
+hyprctl reload --quiet
