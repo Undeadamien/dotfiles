@@ -25,13 +25,13 @@ manual_select() {
 
     if [[ -z "$selection" ]] || [[ ! -e "$wallpaper_dir/$selection" ]]; then
         manual=false
-        notify-send "Default to auto wallpapers"
+        notify-send "wallpaper: auto"
         return
     fi
 
     ln -sf "$wallpaper_dir/$selection" "$wallpaper_dir/$current"
     swww img "$wallpaper_dir/$current" --transition-duration 4 --transition-type center --transition-fps 60
-    notify-send "Forced wallpaper"
+    notify-send "wallpaper: manual"
     manual=true
 }
 

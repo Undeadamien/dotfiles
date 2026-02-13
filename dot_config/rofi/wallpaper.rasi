@@ -3,6 +3,10 @@
 configuration {
     show-icons: true;
     auto-select: false;
+    kb-row-left: "Alt+h";
+    kb-row-right: "Alt+l";
+    kb-row-up: "Alt+k";
+    kb-row-down: "Alt+j";
 }
 
 window {
@@ -12,25 +16,30 @@ window {
 
 listview {
     flow: horizontal;
+    dynamic: true;
     columns: 5;
-    lines: 2;
-    cycle: false;
-    spacing: 12px;
+    lines: 3;
+    cycle: true;
+    spacing: 0px;
 }
 
 element {
     orientation: vertical;
     padding: 0px;
+    margin: 0px;
     border-radius: 0px;
 }
 
 element-icon {
-    size: 160px;
+    size: 200px;
     horizontal-align: 0.5;
 }
 element-text {
     horizontal-align: 0.5;
     vertical-align: 0.5;
+}
+element-index {
+    enabled: false;
 }
 
 prompt, inputbar, entry, mode-switcher, case-indicator {
