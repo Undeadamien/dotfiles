@@ -28,7 +28,7 @@
     "format-stopped": "MPD ",
     "format-disconnected": "",
     "on-click": "rmpc togglepause",
-    "on-click-right": "hyprctl clients | grep -q 'title: rmpc' && hyprctl dispatch focuswindow title:^rmpc$ || kitty -e rmpc",
+    "on-click-right": "hyprctl clients | grep -q 'title: rmpc$' && hyprctl dispatch focuswindow title:^rmpc$ || kitty -e rmpc",
     "on-scroll-up": "rmpc volume -5",
     "on-scroll-down": "rmpc volume +5",
   },
@@ -52,7 +52,7 @@
     "format": "  {volume:02}",
     "format-muted": "  {volume:02}",
     "scroll-step": 5,
-    "on-click": "hyprctl clients | grep -q 'class: .*pavucontrol' && hyprctl dispatch focuswindow class:.*pavucontrol$ || pavucontrol",
+    "on-click": "hyprctl clients | grep -q 'title: pulsemixer$' && hyprctl dispatch focuswindow title:^pulsemixer$ || kitty -e pulsemixer",
   },
   "network": {
     "tooltip": true,

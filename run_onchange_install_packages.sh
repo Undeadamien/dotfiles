@@ -28,6 +28,7 @@ PACKAGES_PACMAN=(
     neovim
     obsidian
     pavucontrol
+    puslemixer
     qbittorrent
     ripgrep
     rmpc
