@@ -27,7 +27,7 @@ general {
     float_gaps = {{ .gaps }}px
     border_size = 1
     col.active_border = rgba({{ .hex.border | trimPrefix "#" }}ff)
-    col.inactive_border = rgba({{ .hex.bg | trimPrefix "#" }}ff)
+    col.inactive_border = rgba({{ .hex.bg_alt | trimPrefix "#" }}ff)
     resize_on_border = true
     allow_tearing = false
     layout = dwindle
@@ -112,6 +112,8 @@ bind = $mainMod, r, exec, pkill -USR1 -f ~/.config/hypr/script/wallpaper_selecto
 bind = $mainMod, w, exec, rofi -show window
 bind = $mainMod, q, exec, $terminal
 bind = $mainMod, o, exec, hyprctl dispatch setprop "address:$(hyprctl activewindow -j | jq -r .address)" opaque toggle
+bind = $mainMod CTRL, o, exec, hyprctl keyword 'windowrule[all-opaque]:enable 0' & notify-send "opaque: enable"
+bind = $mainMod SHIFT, o, exec, hyprctl keyword 'windowrule[all-opaque]:enable 1' & notify-send "opaque: disable"
 bind = $mainMod, m, exec, ~/.config/hypr/script/hyprlock_helper.sh
 
 bind =  ALT, Shift_L, exec, hyprctl switchxkblayout all next & pkill -RTMIN+1 waybar & notify-send
@@ -175,6 +177,14 @@ bindm = $mainMod, mouse:273, resizewindow
 windowrule = no_blur on, match:class .*
 windowrule = opacity 1 override, match:class krita
 windowrule = opacity 1 override, match:title .*YouTube.*
+windowrule = opacity 1 override, match:title mpv.*
+
+windowrule {
+  name = all-opaque
+  enable = 0
+  match:class = .*
+  opacity = 1 override
+}
 
 layerrule = dim_around on, match:namespace rofi
 layerrule = animation slide slow, match:namespace waybar
