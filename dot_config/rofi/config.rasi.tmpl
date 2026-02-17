@@ -40,21 +40,21 @@ configuration {
 }
 
 window {
-    background-color: transparent;
-    border: 0;
+    background-color: @separatorcolor;
+    border: 1;
     border-radius: {{ .rounding }};
-    padding: 8;
+    padding: 0;
 }
 
 mainbox {
     background-color: transparent;
     border: 0;
     padding: 0;
-    spacing: 4;
+    spacing: 1;
 }
 
 message {
-    border: 1;
+    border: 0;
     border-color: @separatorcolor;
     padding: 1px;
 }
@@ -65,7 +65,7 @@ textbox {
 }
 
 listview {
-    border: 1;
+    border: 0;
     padding: 0px 0 0;
     border-color: @separatorcolor;
     border-radius: {{ .rounding }};
@@ -140,7 +140,7 @@ mode-switcher {
 inputbar {
     border-color: @separatorcolor;
     border-radius: {{ .rounding }};
-    border: 1px;
+    border: 0;
     spacing: 0;
     text-color: @normal-foreground;
     padding: 2 4 2 4;
