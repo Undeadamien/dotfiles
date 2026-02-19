@@ -10,8 +10,6 @@ local major_groups = {
 	"Normal",
 	"NormalNC",
 	"NormalFloat",
-	"CursorLine",
-	"CursorColumn",
 	"LineNr",
 	"CursorLineNr",
 	"Pmenu",
