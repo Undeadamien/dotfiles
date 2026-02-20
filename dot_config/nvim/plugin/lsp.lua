@@ -10,6 +10,8 @@ require("mason-tool-installer").setup({
 		"lua-language-server",
 		"prettier",
 		"pyright",
+		"rust-analyzer",
+		"rustfmt",
 		"shellcheck",
 		"shfmt",
 		"stylua",

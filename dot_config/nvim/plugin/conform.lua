@@ -18,6 +18,7 @@ local formatters_by_ft = {
 	markdown = { "prettier" },
 	python = { "isort", "black" },
 	qml = { "qmlformat" },
+	rust = { "rustfmt" },
 	s = { "asmfmt" },
 	sh = { "shfmt" },
 	toml = { "tombi" },
