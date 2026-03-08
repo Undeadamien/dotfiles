@@ -75,3 +75,16 @@ tooltip {
 #tray menuitem:hover {
   background: {{ .hex.bg_alt }};
 }
+
+#custom-notification {
+  color: {{ .hex.fg }};
+}
+
+#custom-notification.notification {
+  color: {{ .hex.fg }};
+}
+
+#custom-notification.dnd-notification,
+#custom-notification.dnd-none {
+  color: {{ .hex.color8 }};
+}

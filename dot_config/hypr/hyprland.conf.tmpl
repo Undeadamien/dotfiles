@@ -34,7 +34,7 @@ general {
 }
 
 cursor {
-	inactive_timeout = 3
+        inactive_timeout = 3
 }
 
 decoration {
@@ -87,9 +87,9 @@ input {
         natural_scroll = true
         disable_while_typing = true
     }
-	touchdevice {
-		enabled = true
-	}
+        touchdevice {
+                enabled = true
+        }
 }
 
 xwayland {
@@ -102,7 +102,7 @@ device {
 }
 
 ecosystem {
-	no_update_news = true
+        no_update_news = true
 }
 
 $mainMod = SUPER
@@ -115,6 +115,7 @@ bind = $mainMod, o, exec, hyprctl dispatch setprop "address:$(hyprctl activewind
 bind = $mainMod CTRL, o, exec, hyprctl keyword 'windowrule[all-opaque]:enable 0' & notify-send "opaque: disabled"
 bind = $mainMod SHIFT, o, exec, hyprctl keyword 'windowrule[all-opaque]:enable 1' & notify-send "opaque: enabled"
 bind = $mainMod, m, exec, ~/.config/hypr/script/hyprlock_helper.sh
+bind = $mainMod SHIFT, n, exec, swaync-client -t -sw
 
 bind =  ALT, Shift_L, exec, hyprctl switchxkblayout all next & pkill -RTMIN+1 waybar & notify-send
 bind = , code:121, exec, wpctl set-mute @DEFAULT_SINK@ toggle
@@ -187,4 +188,7 @@ windowrule {
 }
 
 layerrule = dim_around on, match:namespace rofi
+layerrule = dim_around on, match:namespace swaync-control-center
 layerrule = animation slide slow, match:namespace waybar
+# todo: check for a way to set the speed
+layerrule = animation slide right, match:namespace swaync-control-center
