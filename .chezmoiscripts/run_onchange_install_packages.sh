@@ -29,7 +29,9 @@ PACKAGES_PACMAN=(
     obsidian
     pavucontrol
     pulsemixer
+    python-adblock
     qbittorrent
+    qutebrowser
     ripgrep
     rmpc
     rofi
