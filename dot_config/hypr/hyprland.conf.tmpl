@@ -112,12 +112,12 @@ bind = $mainMod, r, exec, ~/.config/hypr/script/wallpaper_selector.sh select
 bind = $mainMod, w, exec, rofi -show window
 bind = $mainMod, q, exec, $terminal
 bind = $mainMod, o, exec, hyprctl dispatch setprop "address:$(hyprctl activewindow -j | jq -r .address)" opaque toggle
-bind = $mainMod CTRL, o, exec, hyprctl keyword 'windowrule[all-opaque]:enable 0' & notify-send "opaque: disabled"
-bind = $mainMod SHIFT, o, exec, hyprctl keyword 'windowrule[all-opaque]:enable 1' & notify-send "opaque: enabled"
+bind = $mainMod CTRL, o, exec, hyprctl keyword 'windowrule[all-opaque]:enable 0'
+bind = $mainMod SHIFT, o, exec, hyprctl keyword 'windowrule[all-opaque]:enable 1'
 bind = $mainMod, m, exec, ~/.config/hypr/script/hyprlock_helper.sh
 bind = $mainMod SHIFT, n, exec, swaync-client -t -sw
 
-bind =  ALT, Shift_L, exec, hyprctl switchxkblayout all next & pkill -RTMIN+1 waybar & notify-send
+bind =  ALT, Shift_L, exec, hyprctl switchxkblayout all next & pkill -RTMIN+1 waybar
 bind = , code:121, exec, wpctl set-mute @DEFAULT_SINK@ toggle
 binde = , code:122, exec, wpctl set-volume @DEFAULT_SINK@ 5%-
 binde = , code:123, exec, wpctl set-volume @DEFAULT_SINK@ 5%+
