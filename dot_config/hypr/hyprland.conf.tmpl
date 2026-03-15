@@ -17,6 +17,8 @@ exec-once = mpc repeat on
 exec-once = [ workspace 1 silent ] firefox
 exec-once = [ workspace 1 silent ] $terminal
 
+exec = rm "/tmp/hypr_all_opaque"
+
 env = XCURSOR_SIZE,24
 env = HYPRCURSOR_SIZE,24
 env = XDG_CURRENT_DESKTOP,Hyprland
@@ -112,8 +114,7 @@ bind = $mainMod, r, exec, ~/.config/hypr/script/wallpaper_selector.sh select
 bind = $mainMod, w, exec, rofi -show window
 bind = $mainMod, q, exec, $terminal
 bind = $mainMod, o, exec, hyprctl dispatch setprop "address:$(hyprctl activewindow -j | jq -r .address)" opaque toggle
-bind = $mainMod CTRL, o, exec, hyprctl keyword 'windowrule[all-opaque]:enable 0'
-bind = $mainMod SHIFT, o, exec, hyprctl keyword 'windowrule[all-opaque]:enable 1'
+bind = $mainMod SHIFT, o, exec, ~/.config/hypr/script/toggle_opaque.sh
 bind = $mainMod, m, exec, ~/.config/hypr/script/hyprlock_helper.sh
 bind = $mainMod SHIFT, n, exec, swaync-client -t -sw
 
