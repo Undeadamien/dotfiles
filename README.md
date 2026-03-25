@@ -11,7 +11,7 @@ Personal dotfiles, managed with [chezmoi](https://www.chezmoi.io/), for a **Hypr
 - `hyprlock` - screen locker
 - `rofi` - app launcher
 - `swaync` - notification center
-- `swww` - wallpaper daemon
+- `awww` - wallpaper daemon
 - `thunar` - file manager
 - `waybar` - status bar
 - `wlsunset` - night light

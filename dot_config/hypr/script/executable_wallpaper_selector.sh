@@ -16,10 +16,10 @@ manual_select() {
         return
     fi
     ln -sf "$wallpaper_dir/$selection" "$wallpaper_dir/$current"
-    swww img "$wallpaper_dir/$current" --transition-duration 4 --transition-type center --transition-fps 60
+    awww img "$wallpaper_dir/$current" --transition-duration 4 --transition-type center --transition-fps 60
 }
 
-if ! pgrep -x swww-daemon >/dev/null; then hyprctl dispatch exec swww-daemon; fi
+if ! pgrep -x awww-daemon >/dev/null; then hyprctl dispatch exec awww-daemon; fi
 if ! pgrep -x Hyprland >/dev/null; then exit 1; fi
 
 if [[ "${1:-}" == "select" ]]; then
@@ -31,4 +31,4 @@ wallpapers="$(find "${wallpaper_dir}" -not -name "${current}" -type f)"
 selected="$(echo "$wallpapers" | shuf -n1)"
 if [ -z "$selected" ]; then exit 0; fi
 ln -sf "$selected" "${wallpaper_dir}/${current}"
-swww img --transition-duration 8 --transition-fps 60 "${wallpaper_dir}/${current}"
+awww img --transition-duration 8 --transition-fps 60 "${wallpaper_dir}/${current}"

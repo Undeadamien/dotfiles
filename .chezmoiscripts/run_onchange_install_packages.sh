@@ -37,7 +37,7 @@ PACKAGES_PACMAN=(
     rofi
     steam
     swaync
-    swww
+    awww
     syncthing
     thunar
     tree
