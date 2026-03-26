@@ -4,6 +4,7 @@ set -euo pipefail
 
 PACKAGES_PACMAN=(
     android-file-transfer
+    awww
     bat
     brightnessctl
     btop
@@ -37,7 +38,6 @@ PACKAGES_PACMAN=(
     rofi
     steam
     swaync
-    awww
     syncthing
     thunar
     tree
@@ -55,6 +55,7 @@ PACKAGES_PACMAN=(
 )
 PACKAGES_YAY=(
     opera
+    uni
     xp-pen-tablet
 )
 

@@ -27,7 +27,7 @@ syntect_theme = ""
 active = { fg = "{{ .hex.bg }}", bg = "{{ .hex.accent }}", bold = true }
 inactive = { fg = "{{ .hex.fg }}", bg = "{{ .hex.bg_alt }}" }
 sep_inner = { open = " ", close = " " }
-sep_outer = { open = "█", close = "█" }
+sep_outer = { open = "◥", close = "◣" }
 
 [mode]
 normal_main = { fg = "{{ .hex.bg }}", bg = "{{ .hex.accent }}", bold = true }
@@ -41,12 +41,12 @@ unset_alt = { fg = "{{ .hex.color1 }}", bg = "{{ .hex.color1 }}" }
 parent = { reversed = true }
 current = { reversed = true }
 preview = { underline = true }
-padding = { open = "█", close = "█" }
+padding = { open = "◥█", close = "█◣" }
 
 [status]
 overall = { fg = "{{ .hex.fg }}", bg = "{{ .hex.bg }}" }
-sep_left = { open = "█", close = "█" }
-sep_right = { open = "█", close = "█" }
+sep_left = { open = "█", close = "◣" }
+sep_right = { open = "", close = "█" }
 perm_sep = { fg = "{{ .hex.color8 }}" }
 perm_type = { fg = "{{ .hex.accent }}" }
 perm_read = { fg = "{{ .hex.color3 }}" }
