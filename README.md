@@ -61,14 +61,15 @@ During `chezmoi apply`, multiple [scripts](https://www.chezmoi.io/user-guide/use
 
 **Dotfiles**
 
-- [ ] Add a notification module to `waybar` [example](https://github.com/ErikReider/SwayNotificationCenter?tab=readme-ov-file#waybar-example)
-- [ ] Configure `yazi`
+- [x] Add a notification module to `waybar` [example](https://github.com/ErikReider/SwayNotificationCenter?tab=readme-ov-file#waybar-example)
+- [x] Configure `yazi`
 
 **Chezmoi**
 
 - [ ] Configure nvim using [run_once](https://www.chezmoi.io/user-guide/use-scripts-to-perform-actions/)
 - [ ] Configure systemd services using [run_onchange](https://www.chezmoi.io/user-guide/use-scripts-to-perform-actions/)
-- [ ] Sync `hex.toml` and `rgb.toml` while following chezmoi's [application-order](https://www.chezmoi.io/reference/application-order/)
+  - [ ] xp-pentablet
+  - [ ] mpd
 
 **Readme**
 
