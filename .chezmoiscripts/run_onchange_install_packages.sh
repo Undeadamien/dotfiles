@@ -15,6 +15,7 @@ PACKAGES_PACMAN=(
     firefox
     fzf
     glow
+    go
     hypridle
     hyprland
     hyprlock
@@ -69,8 +70,9 @@ sudo pacman -S --needed --noconfirm "${PACKAGES_PACMAN[@]}"
 if ! command -v yay &>/dev/null; then
     echo "Installing yay..."
     sudo pacman -S --needed --noconfirm base-devel git
+    rm -rf /tmp/yay
     git clone https://aur.archlinux.org/yay.git /tmp/yay
-    (cd /tmp/yay && makepkg --si --noconfirm)
+    (cd /tmp/yay && makepkg --si --noconfirm --nosign)
     rm -rf /tmp/yay
 fi
 
