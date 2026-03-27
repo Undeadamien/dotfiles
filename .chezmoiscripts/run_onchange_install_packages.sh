@@ -19,7 +19,6 @@ PACKAGES_PACMAN=(
     hypridle
     hyprland
     hyprlock
-    hyprpaper
     hyprshot
     iwd
     krita
@@ -79,4 +78,5 @@ fi
 echo "Installing AUR packages..."
 yay -S --needed --noconfirm "${PACKAGES_YAY[@]}"
 
-echo "Installation done."
+systemctl --user enable --now mpd.service
+systemctl --user enable --now xppentablet.service
