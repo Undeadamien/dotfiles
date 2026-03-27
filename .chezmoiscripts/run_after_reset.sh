@@ -5,7 +5,7 @@ set -euo pipefail
 programs=(waybar swaync)
 wallpaper_script="$HOME/.config/hypr/script/wallpaper_selector.sh"
 
-if ! command -v hyprctl >/dev/null; then exit 1; fi
+if [[ -z "${HYPRLAND_INSTANCE_SIGNATURE:-}" ]]; then exit 0; fi
 
 for program in "${programs[@]}"; do
     pkill -x "$program" 2>/dev/null || true
