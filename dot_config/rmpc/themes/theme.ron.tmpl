@@ -72,9 +72,9 @@
         rows: [
             (
                 left: [
-                    (kind: Text("◥█"), style: (fg: "{{ .hex.accent }}", modifiers: "Bold")),
+                    (kind: Text(""), style: (fg: "{{ .hex.accent }}", modifiers: "Bold")),
                     (kind: Property(Status(StateV2(playing_label: " Playing ", paused_label: " Paused ", stopped_label: "Stopped"))), style: (fg: "black", bg: "{{ .hex.accent }}", modifiers: "Bold")),
-                    (kind: Text("█◣"), style: (fg: "{{ .hex.accent }}", modifiers: "Bold"))
+                    (kind: Text("◣"), style: (fg: "{{ .hex.accent }}", modifiers: "Bold"))
                 ],
                 center: [
                     (kind: Property(Song(Title)), style: (modifiers: "Bold"),
