@@ -22,6 +22,7 @@ PACKAGES_PACMAN=(
     hyprshot
     iwd
     krita
+    lazygit
     ly
     mpc
     mpd
