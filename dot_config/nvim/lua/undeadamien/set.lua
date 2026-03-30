@@ -5,6 +5,7 @@ vim.o.cursorline = true
 vim.o.cursorcolumn = true
 vim.o.list = true
 vim.o.signcolumn = "yes"
+vim.o.termguicolors = true
 
 --Tabulation
 vim.o.autoindent = true

@@ -1,5 +1,5 @@
 require("undeadamien.set")
 require("undeadamien.remap")
+require("undeadamien.lazy")
 require("undeadamien.colors")
-require("undeadamien.packer")
 require("undeadamien.wsl-clipboard")
