@@ -8,6 +8,7 @@ PACKAGES_PACMAN=(
     bat
     brightnessctl
     btop
+    cava
     chezmoi
     cronie
     discord
