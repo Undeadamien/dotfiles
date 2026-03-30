@@ -11,7 +11,17 @@ return require("packer").startup(function(use)
 
 	--TreeSitter
 	use("nvim-treesitter/nvim-treesitter")
-	use("nvim-treesitter/nvim-treesitter-context")
+	use({
+		"nvim-treesitter/nvim-treesitter-context",
+		config = function()
+			require("treesitter-context").setup({
+				multiwindow = true,
+				separator = "─",
+			})
+			vim.api.nvim_set_hl(0, "TreesitterContextSeparator", { link = "LineNr" })
+			vim.api.nvim_set_hl(0, "TreesitterContextLineNumberBottom", { link = "LineNr" })
+		end,
+	})
 
 	--LuaLine
 	use({ "nvim-lualine/lualine.nvim", requires = { "nvim-tree/nvim-web-devicons", opt = true } })
@@ -91,15 +101,7 @@ return require("packer").startup(function(use)
 	use({
 		"laytan/cloak.nvim",
 		config = function()
-			require("cloak").setup({
-				enabled = true,
-				cloak_character = "*",
-				cloak_length = nil,
-				try_all_patterns = true,
-				cloak_telescope = true,
-				cloak_on_leave = false,
-				patterns = { { file_pattern = ".env*", cloak_pattern = "=.+", replace = nil } },
-			})
+			require("cloak").setup()
 		end,
 	})
 end)
