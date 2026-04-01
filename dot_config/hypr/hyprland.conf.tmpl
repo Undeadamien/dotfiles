@@ -115,7 +115,7 @@ bind = $mainMod, w, exec, rofi -show window
 bind = $mainMod, q, exec, $terminal
 bind = $mainMod, o, exec, hyprctl dispatch setprop "address:$(hyprctl activewindow -j | jq -r .address)" opaque toggle
 bind = $mainMod SHIFT, o, exec, ~/.config/hypr/script/toggle_opaque.sh
-bind = $mainMod, m, exec, ~/.config/hypr/script/hyprlock_helper.sh
+bind = $mainMod, m, exec, loginctl lock-session
 bind = $mainMod SHIFT, n, exec, swaync-client -t -sw
 
 bind =  ALT, Shift_L, exec, hyprctl switchxkblayout all next & pkill -RTMIN+1 waybar
