@@ -1,0 +1,66 @@
+format = """
+$username$directory$git_branch$git_metrics$git_status$git_state
+$character"""
+
+add_newline = false
+
+[username]
+show_always = true
+style_user = "fg:{{ .hex.fg }} bold"
+format = "[$user]($style)"
+
+[directory]
+format = "( [$path](fg:{{ .hex.border }}))"
+truncate_to_repo = true
+truncation_length = 0
+home_symbol = "{{ .chezmoi.homeDir }}"
+
+[git_branch]
+symbol = "git:"
+format = "( [$symbol$branch](fg:{{ .hex.accent }} bold))"
+
+[git_metrics]
+added_style = "fg:{{ .hex.color2 }}"
+deleted_style = "fg:{{ .hex.color1 }}"
+format = "( [+$added](fg:{{ .hex.color2 }})[-$deleted](fg:{{ .hex.color1 }}))"
+disabled = false
+
+[git_status]
+style = "fg:{{ .hex.accent }}"
+stashed = "$"
+modified = "M$count"
+staged = "A$count"
+untracked = "?$count"
+deleted = "D$count"
+renamed = "R$count"
+typechanged = "T$count"
+ahead = "^$count"
+behind = "v$count"
+diverged = "<>$count"
+format = "( [$all_status](fg:{{ .hex.accent }}))( [$ahead_behind](fg:{{ .hex.accent }}))"
+
+[git_state]
+style = "fg:{{ .hex.color3 }}"
+format = "( [$state($progress_current/$progress_total)](fg:{{ .hex.color3 }}))"
+
+[status]
+disabled = true
+
+[character]
+success_symbol = "[>](fg:{{ .hex.accent }} bold)"
+error_symbol = "[>](fg:{{ .hex.accent }} bold)"
+vimcmd_symbol = "[<](fg:{{ .hex.accent }} bold)"
+
+# Disable language modules
+[rust]
+disabled = true
+[golang]
+disabled = true
+[nodejs]
+disabled = true
+[python]
+disabled = true
+[lua]
+disabled = true
+[package]
+disabled = true

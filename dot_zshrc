@@ -42,17 +42,7 @@ autoload -Uz compinit && compinit
 setopt globdots
 
 # Prompt
-autoload -Uz promptinit && promptinit
-setopt prompt_subst
-function update_prompt {
-    PROMPT=$''
-    PROMPT+=$'%B%n%b'
-    PROMPT+=$':'
-    PROMPT+=$'%~'
-    PROMPT+=$'%B$%b'
-    PROMPT+=$' '
-}
-update_prompt
+eval "$(starship init zsh)"
 
 # Cli
 bindkey -v

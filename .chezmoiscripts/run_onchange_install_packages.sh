@@ -39,6 +39,7 @@ PACKAGES_PACMAN=(
     rmpc
     rofi
     steam
+    starship
     swaync
     syncthing
     thunar
