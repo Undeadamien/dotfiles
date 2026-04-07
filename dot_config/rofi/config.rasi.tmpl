@@ -8,7 +8,7 @@ configuration {
 	cycle: true;
 	terminal: "kitty";
 	show-icons: true;
-	font: "Ubuntu Nerd Font 12";
+	font: "JetBrainsMono Nerd Font 12";
 	drun-match-fields: "name";
 	filebrowser {
 		directories-first: true;
@@ -101,12 +101,12 @@ element.selected.normal {
 
 element.selected.urgent {
     background-color: @selected-normal-background;
-    text-color: @selected-normal-foreground;
+    text-color: @selected-urgent-foreground;
 }
 
 element.selected.active {
     background-color: @selected-normal-background;
-    text-color: @selected-normal-foreground;
+    text-color: @selected-active-foreground;
 }
 
 element.alternate.normal {
