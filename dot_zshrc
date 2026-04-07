@@ -63,12 +63,6 @@ function fd() {
     cd "$target_dir"
 }
 
-# Hooks
-autoload -Uz add-zsh-hook
-function auto_ls() {
-}
-add-zsh-hook chpwd auto_ls
-
 #https://yazi-rs.github.io/docs/quick-start
 function y() {
     local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
