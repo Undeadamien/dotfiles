@@ -1,4 +1,34 @@
 local builtin = require("telescope.builtin")
+local actions = require("telescope.actions")
+
+require("telescope").setup({
+	defaults = {
+		layout_strategy = "horizontal",
+		layout_config = {
+			horizontal = {
+				prompt_position = "top",
+				preview_width = 0.55,
+				results_width = 0.8,
+			},
+			vertical = {
+				mirror = false,
+			},
+			width = 0.87,
+			height = 0.80,
+			preview_cutoff = 120,
+		},
+		sorting_strategy = "ascending",
+		winblend = 0,
+		border = {},
+		borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+		mappings = {
+			i = {
+				["<C-j>"] = actions.move_selection_next,
+				["<C-k>"] = actions.move_selection_previous,
+			},
+		},
+	},
+})
 
 vim.keymap.set("n", "<leader>fa", function()
 	builtin.find_files({ hidden = true, no_ignore = true, follow = true })
