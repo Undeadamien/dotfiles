@@ -1,5 +1,5 @@
 format = """
-$username$directory$git_branch$git_metrics$git_status$git_state
+$username $directory( [\\[](bold)$git_branch$git_status$git_metrics$git_state[\\]](bold))
 $character"""
 
 add_newline = false
@@ -10,57 +10,42 @@ style_user = "fg:{{ .hex.fg }} bold"
 format = "[$user]($style)"
 
 [directory]
-format = "( [$path](fg:{{ .hex.border }}))"
+format = "[$path](fg:{{ .hex.color8 }})"
 truncate_to_repo = true
 truncation_length = 0
-home_symbol = "{{ .chezmoi.homeDir }}"
+home_symbol = "~"
 
 [git_branch]
 symbol = "git:"
-format = "( [$symbol$branch](fg:{{ .hex.accent }} bold))"
+format = "([$symbol$branch](fg:{{ .hex.accent }} bold))"
 
 [git_metrics]
 added_style = "fg:{{ .hex.color2 }}"
 deleted_style = "fg:{{ .hex.color1 }}"
 format = "( ([+$added](fg:{{ .hex.color2 }}))([-$deleted](fg:{{ .hex.color1 }})))"
 disabled = false
+only_nonzero_diffs = true
 
 [git_status]
 style = "fg:{{ .hex.accent }}"
-stashed = "$count"
-modified = "M$count"
 staged = "A$count"
-untracked = "?$count"
+modified = "M$count"
 deleted = "D$count"
 renamed = "R$count"
 typechanged = "T$count"
-ahead = "^$count"
-behind = "v$count"
-diverged = "<>$count"
-format = "( [$all_status](fg:{{ .hex.accent }}))( [$ahead_behind](fg:{{ .hex.accent }}))"
+untracked = "?$count"
+stashed = "S$count"
+ahead = "ahead:$count"
+behind = "behind:$count"
+diverged = "ahead:$ahead_count behind:$behind_count"
+format = "( [$ahead_behind](fg:{{ .hex.color8 }}))( [$all_status](fg:{{ .hex.color8 }}))"
 
 [git_state]
 style = "fg:{{ .hex.color3 }}"
 format = "( [$state($progress_current/$progress_total)](fg:{{ .hex.color3 }}))"
-
-[status]
-disabled = true
 
 [character]
 success_symbol = "[>](fg:{{ .hex.accent }} bold)"
 error_symbol = "[>](fg:{{ .hex.accent }} bold)"
 vimcmd_symbol = "[<](fg:{{ .hex.accent }} bold)"
 
-# Disable language modules
-[rust]
-disabled = true
-[golang]
-disabled = true
-[nodejs]
-disabled = true
-[python]
-disabled = true
-[lua]
-disabled = true
-[package]
-disabled = true
