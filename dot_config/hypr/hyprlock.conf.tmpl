@@ -5,41 +5,55 @@ general {
 
 background {
     path = ~/.config/hypr/wallpaper_current
-    blur_passes = 1
+    brightness = 0.8
+    blur_passes = 2
     blur_size = 2
+    noise = 0.10
 }
 
 label {
 	font_size = 48
 	font_family = JetBrainsMono Nerd Font
 	text = cmd[update:1000] echo "<span>$(date +"%H:%M")</span>"
-	color = rgba(255, 255, 255, 1.0)
-	position = 0,72
+	color = rgba(255, 255, 255, 1)
+    shadow_passes = 2
+    shadow_size = 2
+    shadow_color = rgb(255,255,255)
+	position = 0,48
 	halign = center
 	valign = center
 }
 
 label {
-	font_size = 16
+	font_size = 30
 	font_family = JetBrainsMono Nerd Font
-	text = cmd[update:1000] echo "<span>$(date +"%A, %b %d")</span>"
-	color = rgba(255, 255, 255, 1.0)
-	position = 0,32
+	text = cmd[update:1000] echo "<span>$(date +"%g-%m-%d")</span>"
+    shadow_passes = 2
+    shadow_size = 2
+    shadow_color = rgb(255,255,255)
+	color = rgba(255, 255, 255, 1)
+	position = 0,0
 	halign = center
 	valign = center
 }
 
 input-field {
-	size = 160, 24
+	size = 156, 24
 	font_family = JetBrainsMono Nerd Font
 	outline_thickness = 1
-	inner_color = rgba(255, 255, 255, 0.4)
-	fade_on_empty = false
+	dots_center = true
+	inner_color = rgba(255, 255, 255, 0.1)
+	outer_color = rgba(255, 255, 255, 0.6)
+	check_color = rgba(255, 255, 255, 0.8)
+	fail_color = rgba(255, 50, 50, 0.5)
+	font_color = rgb(255, 255, 255)
+	fade_on_empty = true
 	placeholder_text =
 	rounding = {{ .rounding }}
-	position = 0,0
+	position = 0, -38
 	halign = center
 	valign = center
-	fail_text =
+    shadow_passes = 2
+    shadow_size = 2
+    shadow_color = rgb(255, 255, 255)
 }
-
