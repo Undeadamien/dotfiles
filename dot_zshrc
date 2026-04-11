@@ -20,7 +20,7 @@ export FZF_DEFAULT_OPTS="
     --scheme=path \
     --border \
     --height 40% --min-height 20 \
-    --preview '~/.fzf/bin/fzf-preview.sh {}' \
+    --preview '~/.config/fzf/fzf-preview.sh {}' \
     --preview-window=right:50%
 "
 #todo: configure fzf-tab: https://github.com/Aloxaf/fzf-tab?tab=readme-ov-file#configure

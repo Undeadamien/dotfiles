@@ -114,6 +114,8 @@ preloaders = [
   { mime = "application/ms-opentype", run = "font" },
 ]
 previewers = [
+  { url = "*.kra", run = "kra" },
+  { mime = "application/x-krita", run = "kra" },
   { url = "*/", run = "folder" },
   { mime = "text/*", run = "code" },
   { mime = "application/{mbox,javascript,wine-extension-ini}", run = "code" },
