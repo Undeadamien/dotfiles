@@ -60,8 +60,15 @@ download = [
   { run = "ya emit download --open %S", desc = "Download and open" },
   { run = "ya emit download %S", desc = "Download" },
 ]
+krita = [
+  { run = "krita %s", desc = "Krita", for = "linux", orphan = true },
+]
 
 [open]
+prepend_rules = [
+  { url = "*.kra", use = ["krita", "reveal"] },
+  { mime = "application/x-krita", use = ["krita", "reveal"] },
+]
 rules = [
   { url = "*/", use = ["edit", "open", "reveal"] },
   { mime = "text/*", use = ["edit", "reveal"] },
@@ -113,9 +120,12 @@ preloaders = [
   { mime = "font/*", run = "font" },
   { mime = "application/ms-opentype", run = "font" },
 ]
-previewers = [
+
+prepend_previewers = [
   { url = "*.kra", run = "kra" },
   { mime = "application/x-krita", run = "kra" },
+]
+previewers = [
   { url = "*/", run = "folder" },
   { mime = "text/*", run = "code" },
   { mime = "application/{mbox,javascript,wine-extension-ini}", run = "code" },
