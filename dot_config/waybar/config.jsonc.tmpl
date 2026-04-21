@@ -1,6 +1,6 @@
 {
   "position": "top",
-  "margin": "{{ .gaps }} {{ .gaps }} 0 {{ .gaps }}",
+  "margin": "{{ sub .gaps 1}} {{ sub .gaps 1 }} -1 {{ sub .gaps  1 }}",
   "reload_style_on_change": true,
 
   "modules-left": ["clock#date", "clock#time", "mpd"],

@@ -16,7 +16,12 @@ tooltip {
 }
 
 #waybar {
-  background-color: alpha({{ .hex.bg }}, 1.0);
+  background-color: alpha({{ .hex.bg }}, 0.5);
+  border-radius: {{ .rounding }}px;
+}
+#waybar > * {
+  background-color: {{ .hex.bg }};
+  margin: 1px;
   color: {{ .hex.fg }};
   border: 1px solid {{ .hex.border }};
   border-radius: {{ .rounding }}px;
