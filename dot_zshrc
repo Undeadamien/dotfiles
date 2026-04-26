@@ -41,11 +41,12 @@ antidote load
 autoload -Uz compinit && compinit
 setopt globdots
 
-# Prompt
-eval "$(starship init zsh)"
-
 # Cli
 bindkey -v
+export KEYTIMEOUT=1
+
+# Prompt
+eval "$(starship init zsh)"
 
 # Nvm
 export NVM_DIR="$HOME/.nvm"
