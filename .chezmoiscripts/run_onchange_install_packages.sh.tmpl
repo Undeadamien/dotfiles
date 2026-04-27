@@ -1,0 +1,36 @@
+{{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch") -}}
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "Updating pacman databases..."
+sudo pacman -Syyu --noconfirm
+
+echo "Installing pacman packages..."
+sudo pacman -S --needed --noconfirm \
+{{- range .packages.pacman }}
+  {{ . }} \
+{{- end }}
+
+if ! command -v yay &>/dev/null; then
+    echo "Installing yay..."
+    sudo pacman -S --needed --noconfirm base-devel git
+    rm -rf /tmp/yay
+    git clone https://aur.archlinux.org/yay.git /tmp/yay
+    (cd /tmp/yay && makepkg -si --noconfirm --nosign)
+    rm -rf /tmp/yay
+fi
+
+echo "Installing AUR packages..."
+yay -S --needed --noconfirm \
+{{- range .packages.aur }}
+  {{ . }} \
+{{- end }}
+
+echo "Enabling user services..."
+{{- range .services.user }}
+systemctl --user enable --now {{ . }} || true
+{{- end }}
+{{- range .services.system }}
+systemctl enable --now {{ . }} || true
+{{- end }}
+{{ end -}}

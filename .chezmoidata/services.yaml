@@ -1,0 +1,6 @@
+services:
+  user:
+    - mpd.service
+    - syncthing.service
+    - xppentablet.service
+  system: []
