@@ -2,7 +2,7 @@
   font-family: "JetBrainsMono Nerd Font";
   font-size: 12px;
   font-weight: bold;
-  color: {{ .hex.fg }};
+  color: {{ .colors.fg }};
   margin: 0;
   padding: 0;
   box-shadow: none;
@@ -13,8 +13,8 @@
 }
 
 .control-center {
-  background: {{ .hex.bg }};
-  border: 1px solid {{ .hex.border }};
+  background: {{ .colors.bg }};
+  border: 1px solid {{ .colors.border }};
   border-radius: {{ .rounding }}px;
   padding: 10px;
 }
@@ -42,8 +42,8 @@
 }
 
 .widget-title > box > button {
-  background: {{ .hex.bg_alt }};
-  border: 1px solid {{ .hex.border }};
+  background: {{ .colors.bg_alt }};
+  border: 1px solid {{ .colors.border }};
   border-radius: {{ .rounding }}px;
   padding: 4px 0;
   margin: 0;
@@ -51,23 +51,23 @@
 }
 
 .widget-title > box > button:hover {
-  background: {{ .hex.bg_alt }};
+  background: {{ .colors.bg_alt }};
 }
 
 .notification {
-  background: {{ .hex.bg }};
-  border: 1px solid {{ .hex.border }};
+  background: {{ .colors.bg }};
+  border: 1px solid {{ .colors.border }};
   border-radius: {{ .rounding }}px;
   padding: 8px;
   margin: 0px 0;
 }
 
 .notification:hover {
-  background: {{ .hex.bg }};
+  background: {{ .colors.bg }};
 }
 
 .notification-body {
-  color: {{ .hex.fg }};
+  color: {{ .colors.fg }};
 }
 
 .notification-icon {
@@ -84,12 +84,12 @@
 
 .notification-title {
   font-weight: bold;
-  color: {{ .hex.fg }};
+  color: {{ .colors.fg }};
 }
 
 .notification-window {
-  background: {{ .hex.bg }};
-  border: 1px solid {{ .hex.border }};
+  background: {{ .colors.bg }};
+  border: 1px solid {{ .colors.border }};
   border-radius: {{ .rounding }}px;
   padding: 8px;
 }

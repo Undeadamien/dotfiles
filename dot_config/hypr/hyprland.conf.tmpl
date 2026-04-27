@@ -1,8 +1,9 @@
 monitor = ,preferred,auto,1
 
 $terminal = kitty
-$fileManager = thunar
-$menu = rofi -show drun -show-icons
+$menu = rofi
+$bar = waybar
+$browser = firefox
 
 exec-once = thunar --daemon
 exec-once = ~/.config/hypr/script/wallpaper_selector.sh
@@ -10,14 +11,14 @@ exec-once = wlsunset -l 48.9 -L 2.5
 exec-once = hypridle
 exec-once = swaync
 exec-once = discord --start-minimized
-exec-once = waybar
-exec-once = mpc random on
-exec-once = mpc repeat on
+exec-once = $bar
+exec-once = mpc random on & mpc repeat on
 
 exec-once = [ workspace 1 silent ] firefox
 exec-once = [ workspace 1 silent ] $terminal
 
-exec = rm "/tmp/hypr_all_opaque"
+
+exec = rm "/tmp/hypr_all_opaque" #should be removed once "https://github.com/hyprwm/Hyprland/pull/14157" is merged
 
 env = XCURSOR_SIZE,24
 env = HYPRCURSOR_SIZE,24
@@ -28,8 +29,8 @@ general {
     gaps_out = {{ .gaps }}px
     float_gaps = {{ .gaps }}px
     border_size = 1
-    col.active_border = rgba({{ .hex.border | trimPrefix "#" }}ff)
-    col.inactive_border = rgba({{ .hex.bg_alt | trimPrefix "#" }}ff)
+    col.active_border = rgba({{ .colors.border | trimPrefix "#" }}ff)
+    col.inactive_border = rgba({{ .colors.bg_alt | trimPrefix "#" }}ff)
     resize_on_border = false
     allow_tearing = false
     layout = dwindle
@@ -53,7 +54,7 @@ decoration {
         enabled = true
         range = 1
         sharp = true
-        color = rgba({{ .hex.bg | trimPrefix "#" }}80)
+        color = rgba({{ .colors.bg | trimPrefix "#" }}80)
     }
 }
 
@@ -116,16 +117,16 @@ ecosystem {
 
 $mainMod = SUPER
 
-bind = $mainMod, e, exec, rofi -show drun
+bind = $mainMod, e, exec, $menu -show drun
 bind = $mainMod, r, exec, ~/.config/hypr/script/wallpaper_selector.sh select
-bind = $mainMod, w, exec, rofi -show window
+bind = $mainMod, w, exec, $menu -show window
 bind = $mainMod, q, exec, $terminal
 bind = $mainMod, o, exec, hyprctl dispatch setprop "address:$(hyprctl activewindow -j | jq -r .address)" opaque toggle
 bind = $mainMod SHIFT, o, exec, ~/.config/hypr/script/toggle_opaque.sh
 bind = $mainMod, m, exec, loginctl lock-session
 bind = $mainMod SHIFT, n, exec, swaync-client -t -sw
 
-bind =  ALT, Shift_L, exec, hyprctl switchxkblayout all next & pkill -RTMIN+1 waybar
+bind =  ALT, Shift_L, exec, hyprctl switchxkblayout all next & pkill -RTMIN+1 $bar
 bind = , code:121, exec, wpctl set-mute @DEFAULT_SINK@ toggle
 binde = , code:122, exec, wpctl set-volume @DEFAULT_SINK@ 5%-
 binde = , code:123, exec, wpctl set-volume @DEFAULT_SINK@ 5%+
@@ -147,38 +148,21 @@ binde = $mainMod, code:21, resizeactive, 1% 0
 binde = $mainMod SHIFT, code:20, resizeactive, 0 -1%
 binde = $mainMod SHIFT, code:21, resizeactive, 0 1%
 
-bind = $mainMod, h, movefocus, l
-bind = $mainMod, l, movefocus, r
-bind = $mainMod, k, movefocus, u
-bind = $mainMod, j, movefocus, d
-bind = $mainMod SHIFT, h, swapwindow, l
-bind = $mainMod SHIFT, l, swapwindow, r
-bind = $mainMod SHIFT, k, swapwindow, u
-bind = $mainMod SHIFT, j, swapwindow, d
-bind = $mainMod CTRL, h, movewindow, l
-bind = $mainMod CTRL, l, movewindow, r
-bind = $mainMod CTRL, k, movewindow, u
-bind = $mainMod CTRL, j, movewindow, d
+{{- $keys := dict "h" "l" "l" "r" "k" "u" "j" "d" }}
+{{range $key, $direction := $keys }}
+bind = $mainMod, {{ $key }}, movefocus, {{ $direction }}
+bind = $mainMod SHIFT, {{ $key }}, swapwindow, {{ $direction }}
+bind = $mainMod CTRL, {{ $key }}, movewindow, {{ $direction }}
+{{- end}}
 bind = $mainMod, n, cyclenext
 bind = $mainMod, p, cyclenext, prev
-
-bind = $mainMod, 1, workspace, 1
-bind = $mainMod, 2, workspace, 2
-bind = $mainMod, 3, workspace, 3
-bind = $mainMod, 4, workspace, 4
-bind = $mainMod, 5, workspace, 5
-bind = $mainMod SHIFT, 1, movetoworkspace, 1
-bind = $mainMod SHIFT, 2, movetoworkspace, 2
-bind = $mainMod SHIFT, 3, movetoworkspace, 3
-bind = $mainMod SHIFT, 4, movetoworkspace, 4
-bind = $mainMod SHIFT, 5, movetoworkspace, 5
-bind = $mainMod CTRL, 1, movetoworkspacesilent, 1
-bind = $mainMod CTRL, 2, movetoworkspacesilent, 2
-bind = $mainMod CTRL, 3, movetoworkspacesilent, 3
-bind = $mainMod CTRL, 4, movetoworkspacesilent, 4
-bind = $mainMod CTRL, 5, movetoworkspacesilent, 5
-bind = $mainMod, TAB, exec, ~/.config/hypr/script/workspace_cycle.sh next 5
-bind = $mainMod SHIFT, TAB, exec, ~/.config/hypr/script/workspace_cycle.sh prev 5
+{{ range $i := untilStep 1 (int (add (int .workspaces) 1)) 1 }}
+bind = $mainMod, {{ $i }}, workspace, {{ $i }}
+bind = $mainMod SHIFT, {{ $i }}, movetoworkspace, {{ $i }}
+bind = $mainMod CTRL, {{ $i }}, movetoworkspacesilent, {{ $i }}
+{{- end}}
+bind = $mainMod, TAB, exec, ~/.config/hypr/script/workspace_cycle.sh next {{ .workspaces }}
+bind = $mainMod SHIFT, TAB, exec, ~/.config/hypr/script/workspace_cycle.sh prev {{ .workspaces }}
 
 bindm = $mainMod, mouse:272, movewindow
 bindm = $mainMod, mouse:273, resizewindow
@@ -194,8 +178,7 @@ windowrule {
   opacity = 1 override
 }
 
-layerrule = dim_around on, match:namespace rofi
+layerrule = dim_around on, match:namespace $menu
 layerrule = dim_around on, match:namespace swaync-control-center
-layerrule = animation slide slow, match:namespace waybar
-# todo: check for a way to set the speed
+layerrule = animation slide slow, match:namespace $bar
 layerrule = animation slide right, match:namespace swaync-control-center

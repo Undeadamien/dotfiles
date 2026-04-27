@@ -6,28 +6,28 @@ add_newline = false
 
 [username]
 show_always = true
-style_user = "fg:{{ .hex.fg }} bold"
+style_user = "fg:{{ .colors.fg }} bold"
 format = "[$user]($style)"
 
 [directory]
-format = "[$path](fg:{{ .hex.color8 }})"
+format = "[$path](fg:{{ .colors.color8 }})"
 truncate_to_repo = true
 truncation_length = 0
 home_symbol = "~"
 
 [git_branch]
 symbol = "git:"
-format = "([$symbol$branch](fg:{{ .hex.accent }} bold))"
+format = "([$symbol$branch](fg:{{ .colors.accent }} bold))"
 
 [git_metrics]
-added_style = "fg:{{ .hex.color2 }}"
-deleted_style = "fg:{{ .hex.color1 }}"
-format = "( ([+$added](fg:{{ .hex.color2 }}))([-$deleted](fg:{{ .hex.color1 }})))"
+added_style = "fg:{{ .colors.color2 }}"
+deleted_style = "fg:{{ .colors.color1 }}"
+format = "( ([+$added](fg:{{ .colors.color2 }}))([-$deleted](fg:{{ .colors.color1 }})))"
 disabled = false
 only_nonzero_diffs = true
 
 [git_status]
-style = "fg:{{ .hex.accent }}"
+style = "fg:{{ .colors.accent }}"
 staged = "A$count"
 modified = "M$count"
 deleted = "D$count"
@@ -38,14 +38,14 @@ stashed = "S$count"
 ahead = "ahead:$count"
 behind = "behind:$count"
 diverged = "ahead:$ahead_count behind:$behind_count"
-format = "( [$ahead_behind](fg:{{ .hex.color8 }}))( [$all_status](fg:{{ .hex.color8 }}))"
+format = "( [$ahead_behind](fg:{{ .colors.color8 }}))( [$all_status](fg:{{ .colors.color8 }}))"
 
 [git_state]
-style = "fg:{{ .hex.color3 }}"
-format = "( [$state($progress_current/$progress_total)](fg:{{ .hex.color3 }}))"
+style = "fg:{{ .colors.color3 }}"
+format = "( [$state($progress_current/$progress_total)](fg:{{ .colors.color3 }}))"
 
 [character]
-success_symbol = "[>](fg:{{ .hex.accent }} bold)"
-error_symbol = "[>](fg:{{ .hex.accent }} bold)"
-vimcmd_symbol = "[<](fg:{{ .hex.accent }} bold)"
+success_symbol = "[>](fg:{{ .colors.accent }} bold)"
+error_symbol = "[>](fg:{{ .colors.accent }} bold)"
+vimcmd_symbol = "[<](fg:{{ .colors.accent }} bold)"
 

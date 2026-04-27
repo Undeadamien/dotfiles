@@ -12,45 +12,45 @@
     header_background_color: None,
     modal_background_color: None,
     modal_backdrop: false,
-    preview_label_style: (fg: "{{ .hex.accent }}"),
-    preview_metadata_group_style: (fg: "{{ .hex.accent }}", modifiers: "Bold"),
+    preview_label_style: (fg: "{{ .colors.accent }}"),
+    preview_metadata_group_style: (fg: "{{ .colors.accent }}", modifiers: "Bold"),
     tab_bar: (
-        active_style: (fg: "black", bg: "{{ .hex.accent }}", modifiers: None),
+        active_style: (fg: "black", bg: "{{ .colors.accent }}", modifiers: None),
         inactive_style: (modifiers: None),
     ),
-    highlighted_item_style: (fg: "{{ .hex.accent }}", modifiers: "Bold"),
-    current_item_style: (fg: "black", bg: "{{ .hex.accent }}", modifiers: "Bold"),
-    borders_style: (fg: "{{ .hex.border }}"),
-    highlight_border_style: (fg: "{{ .hex.border }}"),
+    highlighted_item_style: (fg: "{{ .colors.accent }}", modifiers: "Bold"),
+    current_item_style: (fg: "black", bg: "{{ .colors.accent }}", modifiers: "Bold"),
+    borders_style: (fg: "{{ .colors.border }}"),
+    highlight_border_style: (fg: "{{ .colors.border }}"),
     symbols: (
         song: "♪",
         dir: "🖿 ",
         playlist: "🗒",
         marker: "◆ ",
         ellipsis: "...",
-        song_style: (fg: "{{ .hex.accent }}"),
-        dir_style: (fg: "{{ .hex.accent }}"),
-        playlist_style: (fd: "{{ .hex.accent }}"),
+        song_style: (fg: "{{ .colors.accent }}"),
+        dir_style: (fg: "{{ .colors.accent }}"),
+        playlist_style: (fd: "{{ .colors.accent }}"),
     ),
     level_styles: (
-        info: (fg: "{{ .hex.accent }}", bg: "black"),
-        warn: (fg: "{{ .hex.accent }}", bg: "black"),
+        info: (fg: "{{ .colors.accent }}", bg: "black"),
+        warn: (fg: "{{ .colors.accent }}", bg: "black"),
         error: (fg: "red", bg: "black"),
         debug: (fg: "light_green", bg: "black"),
-        trace: (fg: "{{ .hex.accent }}", bg: "black"),
+        trace: (fg: "{{ .colors.accent }}", bg: "black"),
     ),
     progress_bar: (
         symbols: ["▐", "█", "◣", "█", "▌"],
         track_style: (fg: "#1e2030"),
-        elapsed_style: (fg: "{{ .hex.accent }}"),
-        thumb_style: (fg: "{{ .hex.accent }}", bg: "#1e2030"),
+        elapsed_style: (fg: "{{ .colors.accent }}"),
+        thumb_style: (fg: "{{ .colors.accent }}", bg: "#1e2030"),
         use_track_when_empty: false,
     ),
     scrollbar: (
         symbols: ["│", "█", "", ""],
         track_style: (),
         ends_style: (),
-        thumb_style: (fg: "{{ .hex.accent }}"),
+        thumb_style: (fg: "{{ .colors.accent }}"),
     ),
     song_table_format: [
         (prop: (kind: Property(Title), default: (kind: Property(Filename))), width: "100%", label: "Title / Filename"),
@@ -72,9 +72,9 @@
         rows: [
             (
                 left: [
-                    (kind: Text(""), style: (fg: "{{ .hex.accent }}", modifiers: "Bold")),
-                    (kind: Property(Status(StateV2(playing_label: " Playing ", paused_label: " Paused ", stopped_label: " Stopped "))), style: (fg: "black", bg: "{{ .hex.accent }}", modifiers: "Bold")),
-                    (kind: Text("◣"), style: (fg: "{{ .hex.accent }}", modifiers: "Bold"))
+                    (kind: Text(""), style: (fg: "{{ .colors.accent }}", modifiers: "Bold")),
+                    (kind: Property(Status(StateV2(playing_label: " Playing ", paused_label: " Paused ", stopped_label: " Stopped "))), style: (fg: "black", bg: "{{ .colors.accent }}", modifiers: "Bold")),
+                    (kind: Text("◣"), style: (fg: "{{ .colors.accent }}", modifiers: "Bold"))
                 ],
                 center: [
                     (kind: Property(Song(Title)), style: (modifiers: "Bold"),
@@ -82,8 +82,8 @@
                     )
                 ],
                 right: [
-                    (kind: Property(Widget(ScanStatus)), style: (fg: "{{ .hex.accent }}")),
-                    (kind: Property(Widget(Volume)), style: (fg: "{{ .hex.accent }}"))
+                    (kind: Property(Widget(ScanStatus)), style: (fg: "{{ .colors.accent }}")),
+                    (kind: Property(Widget(Volume)), style: (fg: "{{ .colors.accent }}"))
                 ]
             ),
             (
@@ -132,8 +132,8 @@
         bar_width: 2,
         bar_spacing: 0,
         bar_color: Gradient({
-            0: "{{ .hex.color0 }}",
-            100: "{{ .hex.accent }}"
+            0: "{{ .colors.color0 }}",
+            100: "{{ .colors.accent }}"
     })
     )
 )
