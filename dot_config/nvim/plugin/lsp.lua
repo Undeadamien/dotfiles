@@ -18,6 +18,7 @@ require("mason-tool-installer").setup({
 		"tombi",
 		"typescript-language-server",
 		"vim-language-server",
+		"yamlfmt",
 	},
 })
 

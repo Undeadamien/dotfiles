@@ -25,6 +25,7 @@ local formatters_by_ft = {
 	tsx = { "prettier" },
 	typescript = { "prettier" },
 	typescriptreact = { "prettier" },
+	yaml = { "yamlfmt" },
 	zsh = { "shfmt" },
 }
 vim.keymap.set("n", "<leader>cf", function()
