@@ -19,6 +19,7 @@ require("mason-tool-installer").setup({
 		"typescript-language-server",
 		"vim-language-server",
 		"yamlfmt",
+		"mbake",
 	},
 })
 

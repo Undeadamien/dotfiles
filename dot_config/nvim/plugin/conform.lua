@@ -15,6 +15,7 @@ local formatters_by_ft = {
 	jsonc = { "prettier" },
 	jsx = { "prettier" },
 	lua = { "stylua" },
+	make = { "mbake" },
 	markdown = { "prettier" },
 	python = { "isort", "black" },
 	qml = { "qmlformat" },
@@ -28,6 +29,15 @@ local formatters_by_ft = {
 	yaml = { "yamlfmt" },
 	zsh = { "shfmt" },
 }
+local formatters = {
+	mbake = {
+		inherit = false,
+		command = "mbake",
+		args = { "format", "$FILENAME" },
+		stdin = false,
+	},
+}
+
 vim.keymap.set("n", "<leader>cf", function()
 	format_on_save_enabled = not format_on_save_enabled
 	conform.setup({
@@ -39,5 +49,6 @@ end, { noremap = true, silent = true })
 
 conform.setup({
 	formatters_by_ft = formatters_by_ft,
+	formatters = formatters,
 	format_on_save = format_on_save_enabled,
 })
