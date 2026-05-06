@@ -1,5 +1,5 @@
 format = """
-$username $directory( [\\[](bold)$git_branch$git_status$git_metrics$git_state[\\]](bold))
+$username $directory( [\\[](bold)$git_branch$git_status$git_metrics$git_state[\\]](bold))( $python)
 $character"""
 
 add_newline = false
@@ -43,6 +43,10 @@ format = "( [$ahead_behind](fg:{{ .colors.color8 }}))( [$all_status](fg:{{ .colo
 [git_state]
 style = "fg:{{ .colors.color3 }}"
 format = "( [$state($progress_current/$progress_total)](fg:{{ .colors.color3 }}))"
+
+[python]
+style = "fg:{{ .colors.color4 }} bold"
+format = "[\\[](bold)[$virtualenv]($style)[\\]](bold)"
 
 [character]
 success_symbol = "[>](fg:{{ .colors.accent }} bold)"
