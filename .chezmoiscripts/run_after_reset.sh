@@ -19,3 +19,4 @@ if [[ -f "$wallpaper_script" ]]; then
     hyprctl dispatch exec "$wallpaper_script" >/dev/null || true
 fi
 hyprctl reload --quiet
+swaync-client --reload-css --reload-config || true
