@@ -4,12 +4,12 @@ option=$(echo -e "screen\nwindow\narea" | rofi -dmenu -p "Screenshot")
 
 case "$option" in
 "screen")
-	hyprshot -m output -m active
-	;;
+    sleep 1 && hyprshot -m output -m active
+    ;;
 "window")
-	hyprshot -m window
-	;;
+    hyprshot -m window
+    ;;
 "area")
-	hyprshot -m region
-	;;
+    hyprshot -m region
+    ;;
 esac
