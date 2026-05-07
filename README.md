@@ -2,6 +2,15 @@
 
 Personal dotfiles, managed with [chezmoi](https://www.chezmoi.io/), for a **Hyprland** setup, designed for an Arch-based system
 
+<div align="center">
+  <img src="./assets/screenshot_0.png" width="49%">
+  <img src="./assets/screenshot_1.png" width="49%">
+</div>
+
+<p align="center">
+  <i>Wallpapers from <a href=https://www.instagram.com/guweiz/>Guweiz</a> and <a href=https://www.instagram.com/wlop/>WLOP</a></i>
+</p>
+
 ## Features
 
 ### Desktop environment
@@ -56,22 +65,3 @@ During `chezmoi apply`, multiple [scripts](https://www.chezmoi.io/user-guide/use
 - Install packages (pacman & yay)
 - Restart applications
 - Cleanup files
-
-## Todo / Future Improvements
-
-**Dotfiles**
-
-- [x] Add a notification module to `waybar` [example](https://github.com/ErikReider/SwayNotificationCenter?tab=readme-ov-file#waybar-example)
-- [x] Configure `yazi`
-
-**Chezmoi**
-
-- [ ] Configure nvim using [run_once](https://www.chezmoi.io/user-guide/use-scripts-to-perform-actions/)
-- [ ] Configure systemd services using [run_onchange](https://www.chezmoi.io/user-guide/use-scripts-to-perform-actions/)
-  - [ ] xp-pentablet
-  - [ ] mpd
-
-**Readme**
-
-- [ ] Add screenshots/gifs
-- [ ] Add some decorations/badges
