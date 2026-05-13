@@ -17,7 +17,7 @@ local formatters_by_ft = {
 	lua = { "stylua" },
 	make = { "mbake" },
 	markdown = { "prettier" },
-	python = { "isort", "black" },
+	python = { "black", "isort" },
 	qml = { "qmlformat" },
 	rust = { "rustfmt" },
 	s = { "asmfmt" },
@@ -34,6 +34,12 @@ local formatters = {
 		inherit = false,
 		command = "mbake",
 		args = { "format", "$FILENAME" },
+		stdin = false,
+	},
+	isort = {
+		inherit = false,
+		command = "isort",
+		args = { "--profile", "black", "$FILENAME" },
 		stdin = false,
 	},
 }
