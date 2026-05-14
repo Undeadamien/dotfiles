@@ -12,6 +12,7 @@ packages:
     - dust
     - firefox
     - fzf
+    - gh
     - glow
     - go
     - hypridle
