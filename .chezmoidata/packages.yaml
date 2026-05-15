@@ -12,7 +12,7 @@ packages:
     - dust
     - firefox
     - fzf
-    - gh
+    - github-cli
     - glow
     - go
     - hypridle
