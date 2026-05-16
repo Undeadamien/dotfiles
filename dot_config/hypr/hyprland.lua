@@ -47,8 +47,8 @@ hl.config({
 	cursor = { inactive_timeout = 3 },
 	decoration = {
 		rounding = config.rounding,
-		active_opacity = 0.95,
-		inactive_opacity = 0.925,
+		active_opacity = 0.925,
+		inactive_opacity = 0.90,
 		blur = {
 			enabled = false,
 			size = 2,
