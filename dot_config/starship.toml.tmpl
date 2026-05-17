@@ -1,6 +1,7 @@
 format = """
-$username $directory( [\\[](bold)$git_branch$git_status$git_metrics$git_state[\\]](bold))( $python)
-$character"""
+$username $directory( [\\[](bold)$git_branch$git_status$git_metrics$git_state[\\]](bold))( $python)$fill( $cmd_duration)
+$character
+"""
 
 add_newline = false
 scan_timeout = 100
@@ -17,14 +18,14 @@ truncation_length = 0
 home_symbol = "~"
 
 [git_branch]
-symbol = "git:"
-format = "([$symbol$branch](fg:{{ .colors.accent }} bold))"
+symbol = ""
+format = "([$branch](fg:{{ .colors.accent }} bold))"
 
 [git_metrics]
+disabled = false
 added_style = "fg:{{ .colors.color2 }}"
 deleted_style = "fg:{{ .colors.color1 }}"
 format = "( ([+$added](fg:{{ .colors.color2 }}))([-$deleted](fg:{{ .colors.color1 }})))"
-disabled = false
 only_nonzero_diffs = true
 
 [git_status]
@@ -42,6 +43,7 @@ diverged = "ahead:$ahead_count behind:$behind_count"
 format = "( [$ahead_behind](fg:{{ .colors.color8 }}))( [$all_status](fg:{{ .colors.color8 }}))"
 
 [git_state]
+disabled = true
 style = "fg:{{ .colors.color3 }}"
 format = "( [$state($progress_current/$progress_total)](fg:{{ .colors.color3 }}))"
 
@@ -54,3 +56,10 @@ success_symbol = "[>](fg:{{ .colors.accent }} bold)"
 error_symbol = "[>](fg:{{ .colors.accent }} bold)"
 vimcmd_symbol = "[<](fg:{{ .colors.accent }} bold)"
 
+[fill]
+symbol = ' '
+
+[cmd_duration]
+disabled = false
+min_time = 2000
+format = "[$duration](dimmed)"
