@@ -179,9 +179,16 @@ hl.window_rule({ match = { class = "krita" }, opacity = "1 override" })
 hl.window_rule({ match = { title = ".*YouTube.*" }, opacity = "1 override" })
 hl.window_rule({ match = { title = "mpv.*" }, opacity = "1 override" })
 
+hl.bind(mainMod .. " + m", function()
+	hl.exec_cmd("hyprlock")
+end)
+hl.bind(mainMod .. " + b", function()
+	hl.exec_cmd("pkill -SIGUSR1 waybar")
+end)
 hl.bind(mainMod .. " + o", function()
 	hl.dispatch(hl.dsp.window.set_prop({ prop = "opaque", value = "toggle" }))
 end)
+
 local allOpaqueRule = hl.window_rule({
 	name = "all-opaque",
 	enabled = false,
