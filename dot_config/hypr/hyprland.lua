@@ -50,9 +50,11 @@ hl.config({
 		active_opacity = 0.925,
 		inactive_opacity = 0.90,
 		blur = {
-			enabled = false,
-			size = 2,
+			enabled = true,
+			new_optimizations = true,
+			size = 3,
 			passes = 2,
+			noise = 0.2,
 			vibrancy = 0.1696,
 		},
 		shadow = {
@@ -189,13 +191,21 @@ hl.bind(mainMod .. " + o", function()
 	hl.dispatch(hl.dsp.window.set_prop({ prop = "opaque", value = "toggle" }))
 end)
 
+local allBlurRule = hl.window_rule({
+	match = { initial_title = ".*" },
+	enabled = false,
+	no_blur = true,
+})
+hl.bind(mainMod .. " + SHIFT + b", function()
+	allBlurRule:set_enabled(not allBlurRule:is_enabled())
+end)
+
 local allOpaqueRule = hl.window_rule({
 	name = "all-opaque",
 	enabled = false,
-	match = { class = ".*" },
+	match = { initial_title = ".*" },
 	opacity = "1 override",
 })
-
 hl.bind(mainMod .. " + SHIFT + o", function()
 	allOpaqueRule:set_enabled(not allOpaqueRule:is_enabled())
 end)
