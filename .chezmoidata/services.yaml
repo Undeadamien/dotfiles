@@ -3,4 +3,5 @@ services:
     - mpd.service
     - syncthing.service
     - xppentablet.service
+    - hyprpolkitagent.service
   system: []
