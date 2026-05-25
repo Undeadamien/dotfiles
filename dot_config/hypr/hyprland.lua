@@ -6,10 +6,12 @@ local menu = "rofi"
 
 hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
 
+local set_random_wallpaper = "find ~/.config/hypr/wallpaper/ -type f | shuf -n1 | xargs -I{} bash -c 'ln -sf \"{}\" ~/.config/hypr/wallpaper_current && awww img ~/.config/hypr/wallpaper_current --transition-duration 8 --transition-type fade --transition-fps 60'"
+
 hl.on("hyprland.start", function()
 	hl.exec_cmd("awww-daemon")
 	hl.exec_cmd("thunar --daemon")
-	hl.exec_cmd("~/.config/hypr/script/wallpaper_selector.sh")
+	hl.exec_cmd(set_random_wallpaper)
 	hl.exec_cmd("wlsunset -l 48.9 -L 2.5")
 	hl.exec_cmd("hypridle")
 	hl.exec_cmd("swaync")
@@ -22,7 +24,7 @@ end)
 
 hl.on("config.reloaded", function()
 	hl.exec_cmd("pkill waybar; waybar")
-	hl.exec_cmd("~/.config/hypr/script/wallpaper_selector.sh")
+	hl.exec_cmd(set_random_wallpaper)
 	hl.exec_cmd("swaync-client --reload-css --reload-config")
 end)
 
@@ -100,7 +102,7 @@ hl.animation({ leaf = "workspaces", enabled = true, speed = 3, bezier = "fast", 
 hl.animation({ leaf = "layers", enabled = true, speed = 3, bezier = "fast", style = "popin 95%" })
 
 hl.bind(mainMod .. " + e", hl.dsp.exec_cmd(menu .. " -show drun"))
-hl.bind(mainMod .. " + r", hl.dsp.exec_cmd("bash ~/.config/hypr/script/wallpaper_selector.sh select"))
+hl.bind(mainMod .. " + r", hl.dsp.exec_cmd("quickshell --no-duplicate"))
 hl.bind(mainMod .. " + w", hl.dsp.exec_cmd(menu .. " -show window"))
 hl.bind(mainMod .. " + q", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + m", hl.dsp.exec_cmd("loginctl lock-session"))
@@ -214,3 +216,4 @@ hl.layer_rule({ match = { namespace = menu }, dim_around = true })
 hl.layer_rule({ match = { namespace = "swaync-control-center" }, dim_around = true })
 hl.layer_rule({ match = { namespace = "waybar" }, animation = "slide slow" })
 hl.layer_rule({ match = { namespace = "swaync-control-center" }, animation = "slide right" })
+hl.layer_rule({ match = { namespace = "quickshell_wallpaper" }, dim_around = true })

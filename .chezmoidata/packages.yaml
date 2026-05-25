@@ -33,6 +33,7 @@ packages:
     - pulsemixer
     - python-adblock
     - qbittorrent
+    - quickshell
     - qutebrowser
     - ripgrep
     - rmpc

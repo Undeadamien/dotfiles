@@ -1,0 +1,7 @@
+import QtQuick
+
+QtObject {
+    property int gaps: {{ .gaps }}
+    property color borderColor: "{{ .colors.border }}"
+    property string homeDir: "{{ .chezmoi.homeDir }}"
+}
