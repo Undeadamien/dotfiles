@@ -1,10 +1,12 @@
 import Qt.labs.folderlistmodel
+import QtMultimedia
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Shapes
 import QtQuick.Window
 import Quickshell
 import Quickshell.Hyprland
+import Quickshell.Services.Mpris
 import Quickshell.Wayland
 
 PanelWindow {
@@ -14,6 +16,11 @@ PanelWindow {
         var path = url.toString().replace("file://", "");
         var current = root.config.homeDir + "/.config/hypr/wallpaper_current";
         Quickshell.execDetached(["bash", "-c", "ln -sf \"" + path + "\" \"" + current + "\" && " + "awww img \"" + current + "\" --transition-duration 8 --transition-type fade --transition-fps 60"]);
+    }
+
+    function playSound() {
+        player.stop();
+        player.play();
     }
 
     color: "#00000000"
@@ -26,6 +33,17 @@ PanelWindow {
         left: true
         right: true
         top: true
+    }
+
+    MediaPlayer {
+        id: player
+
+        source: "file://" + root.config.homeDir + "/.config/quickshell/button_press.mp3"
+
+        audioOutput: AudioOutput {
+            volume: 1
+        }
+
     }
 
     Item {
@@ -62,6 +80,7 @@ PanelWindow {
                     card.startSlide(dir);
 
             }
+            playSound();
         }
 
         function confirmWallpaper() {
