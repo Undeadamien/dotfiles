@@ -147,6 +147,18 @@ PanelWindow {
             }
         }
 
+        Repeater {
+            model: root.allUrls
+            delegate: Image {
+                source: modelData
+                sourceSize.width: root.cardWidth * 2
+                sourceSize.height: root.cardHeight * 2
+                asynchronous: true
+                cache: true
+                visible: false
+            }
+        }
+
         Row {
             id: cardRow
 
@@ -206,6 +218,9 @@ PanelWindow {
                             fillMode: Image.PreserveAspectCrop
                             asynchronous: true
                             smooth: true
+                            cache: true
+                            sourceSize.width: root.cardWidth * 2
+                            sourceSize.height: root.cardHeight * 2
                             opacity: bg.status === Image.Ready ? 1 : 0
 
                             Behavior on opacity {
@@ -233,6 +248,9 @@ PanelWindow {
                             fillMode: Image.PreserveAspectCrop
                             asynchronous: true
                             smooth: true
+                            cache: true
+                            sourceSize.width: root.cardWidth * 2
+                            sourceSize.height: root.cardHeight * 2
                             opacity: 0
                             transform: [
                                 Matrix4x4 {
