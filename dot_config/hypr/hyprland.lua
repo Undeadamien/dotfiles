@@ -6,7 +6,9 @@ local menu = "rofi"
 
 hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
 
-local set_random_wallpaper = "find ~/.config/hypr/wallpaper/ -type f | shuf -n1 | xargs -I{} bash -c 'ln -sf \"{}\" ~/.config/hypr/wallpaper_current && awww img ~/.config/hypr/wallpaper_current --transition-duration 8 --transition-type fade --transition-fps 60'"
+--todo: find a way to reduce this bullshit
+local set_random_wallpaper =
+	"find ~/.config/hypr/wallpaper/ -type f | shuf -n1 | xargs -I{} bash -c 'ln -sf \"{}\" ~/.config/hypr/wallpaper_current && awww img ~/.config/hypr/wallpaper_current --transition-duration 8 --transition-type fade --transition-fps 60'"
 
 hl.on("hyprland.start", function()
 	hl.exec_cmd("awww-daemon")
@@ -187,7 +189,7 @@ hl.bind(mainMod .. " + m", function()
 	hl.exec_cmd("hyprlock")
 end)
 hl.bind(mainMod .. " + b", function()
-	hl.exec_cmd("pkill -SIGUSR1 waybar")
+	hl.exec_cmd("pkill -SIGUSR1 waybar || waybar")
 end)
 hl.bind(mainMod .. " + o", function()
 	hl.dispatch(hl.dsp.window.set_prop({ prop = "opaque", value = "toggle" }))
