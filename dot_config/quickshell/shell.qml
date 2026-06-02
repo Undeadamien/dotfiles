@@ -225,7 +225,7 @@ PanelWindow {
 
                             Behavior on opacity {
                                 NumberAnimation {
-                                    duration: 300
+                                    duration: 600
                                     easing.type: Easing.OutCubic
                                 }
 
