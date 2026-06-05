@@ -6,7 +6,7 @@ local menu = "rofi"
 
 hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
 
---todo: find a way to reduce this bullshit
+--todo: find a way to reduce this bullshit or put it inside quickshell_wallpaper
 local set_random_wallpaper =
 	"find ~/.config/hypr/wallpaper/ -type f | shuf -n1 | xargs -I{} bash -c 'ln -sf \"{}\" ~/.config/hypr/wallpaper_current && awww img ~/.config/hypr/wallpaper_current --transition-duration 8 --transition-type fade --transition-fps 60'"
 
@@ -25,7 +25,10 @@ hl.on("hyprland.start", function()
 end)
 
 hl.on("config.reloaded", function()
-	hl.exec_cmd("pkill waybar; waybar")
+	hl.exec_cmd(
+		"kill $(hyprctl layers -j | jq '.. | objects | select(.namespace==\"waybar\") | .pid // empty'); waybar"
+	)
+	hl.exec_cmd("awww-daemon")
 	hl.exec_cmd(set_random_wallpaper)
 	hl.exec_cmd("swaync-client --reload-css --reload-config")
 end)
@@ -54,7 +57,7 @@ hl.config({
 		active_opacity = 0.925,
 		inactive_opacity = 0.90,
 		blur = {
-			enabled = true,
+			enabled = false,
 			new_optimizations = true,
 			size = 3,
 			passes = 2,
@@ -101,14 +104,13 @@ hl.animation({ leaf = "windows", enabled = true, speed = 3, bezier = "fast", sty
 hl.animation({ leaf = "windowsOut", enabled = true, speed = 3, bezier = "fast", style = "slide" })
 hl.animation({ leaf = "border", enabled = true, speed = 2, bezier = "fast" })
 hl.animation({ leaf = "fade", enabled = true, speed = 2, bezier = "fast" })
-hl.animation({ leaf = "workspaces", enabled = true, speed = 3, bezier = "fast", style = "slide" })
-hl.animation({ leaf = "layers", enabled = true, speed = 3, bezier = "fast", style = "popin 95%" })
+hl.animation({ leaf = "workspaces", enabled = false, speed = 2, bezier = "fast", style = "fade" })
+hl.animation({ leaf = "layers", enabled = true, speed = 5, bezier = "fast", style = "fade" })
 
 hl.bind(mainMod .. " + e", hl.dsp.exec_cmd(menu .. " -show drun"))
 hl.bind(mainMod .. " + r", hl.dsp.exec_cmd("quickshell --no-duplicate"))
 hl.bind(mainMod .. " + w", hl.dsp.exec_cmd(menu .. " -show window"))
 hl.bind(mainMod .. " + q", hl.dsp.exec_cmd(terminal))
-hl.bind(mainMod .. " + m", hl.dsp.exec_cmd("loginctl lock-session"))
 hl.bind(mainMod .. " + SHIFT + n", hl.dsp.exec_cmd("swaync-client -t -sw"))
 
 hl.bind("code:121", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_SINK@ toggle"))
@@ -218,19 +220,13 @@ hl.bind(mainMod .. " + m", function()
 	hl.exec_cmd("hyprlock")
 end)
 hl.bind(mainMod .. " + b", function()
-	hl.exec_cmd("pkill -SIGUSR1 waybar || waybar")
+	-- -SIGUSR1 should be used to hide the bar but it will prevent the animation
+	hl.exec_cmd(
+		"kill $(hyprctl layers -j | jq '.. | objects | select(.namespace==\"waybar\") | .pid // empty') || waybar"
+	)
 end)
 hl.bind(mainMod .. " + o", function()
 	hl.dispatch(hl.dsp.window.set_prop({ prop = "opaque", value = "toggle" }))
-end)
-
-local allBlurRule = hl.window_rule({
-	match = { initial_title = ".*" },
-	enabled = false,
-	no_blur = true,
-})
-hl.bind(mainMod .. " + SHIFT + b", function()
-	allBlurRule:set_enabled(not allBlurRule:is_enabled())
 end)
 
 local allOpaqueRule = hl.window_rule({
@@ -245,6 +241,6 @@ end)
 
 hl.layer_rule({ match = { namespace = menu }, dim_around = true })
 hl.layer_rule({ match = { namespace = "swaync-control-center" }, dim_around = true })
-hl.layer_rule({ match = { namespace = "waybar" }, animation = "slide slow" })
+hl.layer_rule({ match = { namespace = "waybar" }, animation = "slide top" })
 hl.layer_rule({ match = { namespace = "swaync-control-center" }, animation = "slide right" })
 hl.layer_rule({ match = { namespace = "quickshell_wallpaper" }, dim_around = true })

@@ -23,7 +23,7 @@ PanelWindow {
         player.play();
     }
 
-    color: "#00000000"
+    color: "#80000000"
     WlrLayershell.layer: WlrLayer.Top
     WlrLayershell.keyboardFocus: WlrKeyboardFocus.Exclusive
     WlrLayershell.namespace: "quickshell_wallpaper"
@@ -55,12 +55,18 @@ PanelWindow {
 
         property var allUrls: []
         property int currentIndex: 0
-        readonly property int visibleCount: 5
-        readonly property real cardWidth: Screen.width * (2 / 3) / visibleCount
+        property int visibleCount: 5
+        readonly property real cardWidth: Screen.width * (2 / 3) / 5
         readonly property real cardHeight: Screen.height / 3
         readonly property real skewAngle: -16
         readonly property real skewTan: Math.tan(skewAngle * Math.PI / 180)
         readonly property real extraWidth: Math.abs(skewTan) * cardHeight
+        readonly property int centerIndex: Math.floor(visibleCount / 2)
+        readonly property int visibleRadius: 2
+
+        function isCardVisible(idx) {
+            return Math.abs(idx - root.centerIndex) <= root.visibleRadius;
+        }
 
         function navigate(dir) {
             var total = root.allUrls.length;
@@ -88,7 +94,7 @@ PanelWindow {
             if (total === 0)
                 return ;
 
-            var middleUrl = root.allUrls[(root.currentIndex + 2) % total];
+            var middleUrl = root.allUrls[(root.currentIndex + Math.floor(root.visibleCount / 2)) % total];
             if (middleUrl)
                 window.setWallpaper(middleUrl);
 
@@ -144,27 +150,16 @@ PanelWindow {
                 var urls = [];
                 for (var i = 0; i < count; i++) urls.push(folderModel.get(indices[i], "fileUrl"))
                 root.allUrls = urls;
-            }
-        }
-
-        Repeater {
-            model: root.allUrls
-            delegate: Image {
-                source: modelData
-                sourceSize.width: root.cardWidth * 2
-                sourceSize.height: root.cardHeight * 2
-                asynchronous: true
-                cache: true
-                visible: false
+                root.visibleCount = count;
             }
         }
 
         Row {
             id: cardRow
 
-            anchors.centerIn: parent
-            anchors.horizontalCenterOffset: -root.skewTan * Screen.height / 6
             spacing: root.config.gaps * 2
+            anchors.verticalCenter: parent.verticalCenter
+            x: (parent.width - root.cardWidth) / 2 - root.centerIndex * (root.cardWidth + spacing) - root.skewTan * Screen.height / 6
 
             Repeater {
                 id: cardRepeater
@@ -184,16 +179,14 @@ PanelWindow {
                         if (fg.source === "")
                             return ;
 
-                        fgSlide.x = 0;
                         fg.opacity = 1;
-                        fgSlideAnim.to = -dir * root.cardWidth;
-                        fgSlideAnim.start();
                         fgFadeAnim.start();
                     }
 
                     width: root.cardWidth
                     height: root.cardHeight
                     antialiasing: true
+                    opacity: root.isCardVisible(index) ? 1 : 0
 
                     Item {
                         id: clipItem
@@ -225,7 +218,7 @@ PanelWindow {
 
                             Behavior on opacity {
                                 NumberAnimation {
-                                    duration: 600
+                                    duration: 100
                                     easing.type: Easing.OutCubic
                                 }
 
@@ -246,31 +239,11 @@ PanelWindow {
                             height: parent.height
                             source: ""
                             fillMode: Image.PreserveAspectCrop
-                            asynchronous: true
                             smooth: true
                             cache: true
                             sourceSize.width: root.cardWidth * 2
                             sourceSize.height: root.cardHeight * 2
                             opacity: 0
-                            transform: [
-                                Matrix4x4 {
-                                    matrix: Qt.matrix4x4(1, -root.skewTan, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
-                                },
-                                Translate {
-                                    id: fgSlide
-
-                                    x: 0
-                                }
-                            ]
-
-                            NumberAnimation {
-                                id: fgSlideAnim
-
-                                target: fgSlide
-                                property: "x"
-                                duration: 150
-                                easing.type: Easing.OutCubic
-                            }
 
                             NumberAnimation {
                                 id: fgFadeAnim
@@ -278,13 +251,17 @@ PanelWindow {
                                 target: fg
                                 property: "opacity"
                                 to: 0
-                                duration: 150
+                                duration: 100
                                 easing.type: Easing.OutCubic
                                 onRunningChanged: {
                                     if (!running)
                                         fg.source = "";
 
                                 }
+                            }
+
+                            transform: Matrix4x4 {
+                                matrix: Qt.matrix4x4(1, -root.skewTan, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
                             }
 
                         }
@@ -305,6 +282,14 @@ PanelWindow {
                         border.width: 1
                         color: "transparent"
                         opacity: 0.5
+                    }
+
+                    Behavior on opacity {
+                        NumberAnimation {
+                            duration: 200
+                            easing.type: Easing.OutCubic
+                        }
+
                     }
 
                     transform: Matrix4x4 {

@@ -44,7 +44,7 @@ packages:
     - syncthing
     - thunar
     - tree
-    - otf-geist-mono-nerd
+    - ttf-firacode-nerd
     - vlc
     - waybar
     - wev
