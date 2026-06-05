@@ -73,12 +73,13 @@ hl.config({
 		force_split = 2,
 	},
 	master = { new_status = "slave" },
+	scrolling = { focus_fit_method = 0, column_width = 0.5, fullscreen_on_one_column = false },
 	misc = {
 		force_default_wallpaper = 0,
 		disable_hyprland_logo = true,
 	},
 	input = {
-		kb_layout = "us, fr, pl",
+		kb_layout = "us",
 		kb_variant = "",
 		kb_model = "",
 		kb_options = "caps:none",
@@ -110,8 +111,6 @@ hl.bind(mainMod .. " + q", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + m", hl.dsp.exec_cmd("loginctl lock-session"))
 hl.bind(mainMod .. " + SHIFT + n", hl.dsp.exec_cmd("swaync-client -t -sw"))
 
-hl.bind("ALT + Shift_L", hl.dsp.exec_cmd("hyprctl switchxkblayout all next & pkill -RTMIN+1 waybar"))
-
 hl.bind("code:121", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_SINK@ toggle"))
 hl.bind("code:122", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_SINK@ 5%-"), { repeating = true })
 hl.bind("code:123", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_SINK@ 5%+"), { repeating = true })
@@ -122,11 +121,41 @@ hl.bind("code:107", hl.dsp.exec_cmd("~/.config/hypr/script/screenshot.sh"))
 hl.bind(mainMod .. " + f", hl.dsp.window.fullscreen({ mode = "maximized" }))
 hl.bind(mainMod .. " + SHIFT + f", hl.dsp.window.fullscreen({ mode = "fullscreen" }))
 hl.bind(mainMod .. " + c", hl.dsp.window.close())
-hl.bind(mainMod .. " + s", hl.dsp.layout("togglesplit"))
+hl.bind(mainMod .. " + s", function()
+	local ws = hl.get_active_workspace()
+	if not ws then
+		return
+	end
+	if ws.tiled_layout == "dwindle" then
+		hl.dispatch(hl.dsp.layout("togglesplit"))
+	end
+end)
 hl.bind(mainMod .. " + SHIFT + m", hl.dsp.exit())
 hl.bind(mainMod .. " + SHIFT + p", hl.dsp.window.pin())
 hl.bind(mainMod .. " + SHIFT + c", hl.dsp.window.center())
 hl.bind(mainMod .. " + CTRL + f", hl.dsp.window.float({ action = "toggle" }))
+
+local layout_rule = nil
+hl.bind(mainMod .. " + Tab", function()
+	local layouts = { "dwindle", "scrolling" }
+	local workspace = hl.get_active_workspace()
+	if not workspace then
+		return
+	end
+
+	local next_layout = layouts[1]
+	for i, l in ipairs(layouts) do
+		if l == workspace.tiled_layout then
+			next_layout = layouts[(i % #layouts) + 1]
+			break
+		end
+	end
+
+	if layout_rule then
+		layout_rule:remove()
+	end
+	layout_rule = hl.workspace_rule({ workspace = workspace.name, layout = next_layout })
+end)
 
 hl.bind(
 	mainMod .. " + code:20",
@@ -167,12 +196,12 @@ for i = 1, config.workspaces do
 	hl.bind(mainMod .. " + CTRL + " .. i, hl.dsp.window.move({ workspace = i, follow = false }))
 end
 
-hl.bind(mainMod .. " + TAB", function()
+hl.bind(mainMod .. " + grave", function()
 	local current = hl.get_active_workspace().id
 	local new = (current % config.workspaces) + 1
 	hl.dispatch(hl.dsp.focus({ workspace = new }))
 end)
-hl.bind(mainMod .. " + SHIFT + TAB", function()
+hl.bind(mainMod .. " + SHIFT + grave", function()
 	local current = hl.get_active_workspace().id
 	local new = (current + config.workspaces - 2) % config.workspaces + 1
 	hl.dispatch(hl.dsp.focus({ workspace = new }))

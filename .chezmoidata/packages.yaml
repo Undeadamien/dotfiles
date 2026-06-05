@@ -44,9 +44,7 @@ packages:
     - syncthing
     - thunar
     - tree
-    - ttf-ubuntu-font-family
-    - ttf-ubuntu-mono-nerd
-    - ttf-ubuntu-nerd
+    - otf-geist-mono-nerd
     - vlc
     - waybar
     - wev
