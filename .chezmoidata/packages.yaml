@@ -22,6 +22,7 @@ packages:
     - hyprshot
     - iwd
     - krita
+    - ttf-jetbrains-mono-nerd
     - lazygit
     - ly
     - mpc
@@ -44,7 +45,6 @@ packages:
     - syncthing
     - thunar
     - tree
-    - ttf-firacode-nerd
     - vlc
     - waybar
     - wev
@@ -57,3 +57,4 @@ packages:
     - opera
     - uni
     - xp-pen-tablet
+    - otf-departure-mono-nerd
