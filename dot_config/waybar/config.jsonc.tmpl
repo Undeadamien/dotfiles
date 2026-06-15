@@ -57,7 +57,7 @@
   "network": {
     "tooltip": true,
     "tooltip-format": "{ifname}",
-    "tooltip-format-wifi": "{essid} ({signalStrength}%)",
+    "tooltip-format-wifi": "{essid} ({signalStrength:02}%)",
     "tooltip-format-ethernet": "{ifname}",
     "tooltip-format-disconnected": "Disconnected",
     "interval": 5,
@@ -70,9 +70,9 @@
     "tooltip": true,
     "interval": 5,
     "full-at": 95,
-    "format": "BAT:{capacity}",
-    "format-charging": "BAT:{capacity}{icon}",
-    "format-icons": ["^"],
+    "format": "BAT:{capacity:02}",
+    "format-charging": "BAT:{capacity:02}{icon}",
+    "format-icons": [""],
   },
   "custom/notification": {
     "tooltip": false,

@@ -85,6 +85,24 @@ tooltip {
   background: {{ .colors.bg_alt }};
 }
 
+@keyframes wave {
+  0% { color: {{ .colors.fg }}; }
+  50% { color: {{ .colors.color8 }}; }
+  100% { color: {{ .colors.fg }}; }
+}
+
+#battery.charging {
+  animation: wave 3s ease-in-out infinite;
+}
+
+#pulseaudio.muted {
+  color: {{ .colors.color8 }};
+}
+
+#network.disconnected {
+  color: {{ .colors.color8 }};
+}
+
 #custom-notification {
   color: {{ .colors.fg }};
 }
