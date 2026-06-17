@@ -46,7 +46,7 @@ packages:
     - thunar
     - tree
     - vlc
-    - waybar
+    # - waybar
     - wev
     - wget
     - wlsunset
