@@ -14,7 +14,7 @@ packages:
     - fzf
     - github-cli
     - glow
-    - go
+    - gtk-layer-shell
     - hypridle
     - hyprland
     - hyprlock
@@ -22,15 +22,14 @@ packages:
     - hyprshot
     - iwd
     - krita
-    - ttf-jetbrains-mono-nerd
     - lazygit
     - ly
     - mpc
     - mpd
     - mpv
     - neovim
-    - obsidian
     - pavucontrol
+    - playerctl
     - pulsemixer
     - python-adblock
     - qbittorrent
@@ -39,12 +38,15 @@ packages:
     - ripgrep
     - rmpc
     - rofi
+    - scdoc
     - starship
     - steam
     - swaync
     - syncthing
     - thunar
     - tree
+    - ttf-jetbrains-mono-nerd
+    - upower
     - vlc
     # - waybar
     - wev
@@ -55,6 +57,6 @@ packages:
     - zsh-autocomplete
   aur:
     - opera
+    - otf-departure-mono-nerd
     - uni
     - xp-pen-tablet
-    - otf-departure-mono-nerd
