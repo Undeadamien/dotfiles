@@ -27,10 +27,10 @@
     "format-paused": "MPD:PSD",
     "format-stopped": "MPD:STP",
     "format-disconnected": "MPD:---",
-    "on-click": "rmpc togglepause",
-    "on-click-right": "",
-    "on-scroll-up": "rmpc volume -5",
-    "on-scroll-down": "rmpc volume +5",
+    "on-click": "if [ -z \"$(mpc playlist)\" ]; then mpc add / && mpc play; else mpc toggle; fi",
+    "on-click-right": "hyprctl dispatch 'hl.dsp.exec_cmd(\"kitty -e rmpc\")'",
+    "on-scroll-up": "rmpc volume +5",
+    "on-scroll-down": "rmpc volume -5",
   },
 
   "hyprland/workspaces": {
@@ -52,7 +52,8 @@
     "format": "VOL:{volume:02}",
     "format-muted": "MUT:{volume:02}",
     "scroll-step": 5,
-    "on-click": "",
+    "on-click": "hyprctl dispatch 'hl.dsp.exec_cmd(\"pulsemixer --toggle-mute\")'",
+    "on-click-right": "hyprctl dispatch 'hl.dsp.exec_cmd(\"kitty -e pulsemixer\")'",
   },
   "network": {
     "tooltip": true,
@@ -64,7 +65,7 @@
     "format-wifi": "NET:{signalStrength:02}",
     "format-ethernet": "NET:ON",
     "format-disconnected": "NET:--",
-    "on-click": "",
+    "on-click-right": "hyprctl dispatch 'hl.dsp.exec_cmd(\"kitty -e iwctl\")'",
   },
   "battery": {
     "tooltip": true,
