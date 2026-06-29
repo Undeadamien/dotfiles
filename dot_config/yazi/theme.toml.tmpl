@@ -124,7 +124,7 @@ rules = [
   { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", fg = "{{ .colors.color1 }}" },
   { mime = "application/{pdf,doc,rtf}", fg = "{{ .colors.color6 }}" },
   { mime = "vfs/{absent,stale}", fg = "{{ .colors.color8 }}" },
-  { url = "*", is = "orphan", bg = "{{ .colors.color1 }}" },
+  { url = "*", is = "orphan", bg = "reset" },
   { url = "*", is = "exec", fg = "{{ .colors.color2 }}" },
   { url = "*", is = "dummy", bg = "{{ .colors.color1 }}" },
   { url = "*/", is = "dummy", bg = "{{ .colors.color1 }}" },

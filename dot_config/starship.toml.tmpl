@@ -12,7 +12,7 @@ style_user = "fg:{{ .colors.fg }} bold"
 format = "[$user]($style)"
 
 [directory]
-format = "[$path](fg:{{ .colors.color8 }})"
+format = "[$path](fg:{{ .colors.border }})"
 truncate_to_repo = true
 truncation_length = 0
 home_symbol = "~"
@@ -40,7 +40,7 @@ stashed = "S$count"
 ahead = "ahead:$count"
 behind = "behind:$count"
 diverged = "ahead:$ahead_count behind:$behind_count"
-format = "( [$ahead_behind](fg:{{ .colors.color8 }}))( [$all_status](fg:{{ .colors.color8 }}))"
+format = "( [$ahead_behind](fg:{{ .colors.border }}))( [$all_status](fg:{{ .colors.border }}))"
 
 [git_state]
 disabled = true
