@@ -6,14 +6,12 @@ local menu = "rofi"
 
 hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
 
---todo: find a way to reduce this bullshit or put it inside quickshell_wallpaper
-local set_random_wallpaper =
-	"find ~/.config/hypr/wallpaper/ -type f | shuf -n1 | xargs -I{} bash -c 'ln -sf \"{}\" ~/.config/hypr/wallpaper_current && awww img ~/.config/hypr/wallpaper_current --transition-duration 8 --transition-type fade --transition-fps 60'"
+local wallpaper_script = "~/.config/hypr/script/wallpaper_selector.sh"
 
 hl.on("hyprland.start", function()
 	hl.exec_cmd("awww-daemon")
 	hl.exec_cmd("thunar --daemon")
-	hl.exec_cmd(set_random_wallpaper)
+	hl.exec_cmd(wallpaper_script)
 	hl.exec_cmd("wlsunset -l 48.9 -L 2.5")
 	hl.exec_cmd("hypridle")
 	hl.exec_cmd("swaync")
@@ -28,8 +26,7 @@ hl.on("config.reloaded", function()
 	hl.exec_cmd(
 		"kill $(hyprctl layers -j | jq '.. | objects | select(.namespace==\"waybar\") | .pid // empty'); waybar"
 	)
-	hl.exec_cmd("awww-daemon")
-	hl.exec_cmd(set_random_wallpaper)
+	hl.exec_cmd(wallpaper_script)
 	hl.exec_cmd("swaync-client --reload-css --reload-config")
 end)
 
