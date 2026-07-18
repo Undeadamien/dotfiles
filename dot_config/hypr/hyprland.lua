@@ -73,7 +73,11 @@ hl.config({
 		force_split = 2,
 	},
 	master = { new_status = "slave" },
-	scrolling = { focus_fit_method = 0, column_width = 0.5, fullscreen_on_one_column = false },
+	scrolling = {
+		focus_fit_method = 0,
+		column_width = 3 / 5,
+		fullscreen_on_one_column = false,
+	},
 	misc = {
 		force_default_wallpaper = 0,
 		disable_hyprland_logo = true,
@@ -135,7 +139,7 @@ hl.bind(mainMod .. " + SHIFT + c", hl.dsp.window.center())
 hl.bind(mainMod .. " + CTRL + f", hl.dsp.window.float({ action = "toggle" }))
 
 local layout_rule = nil
-hl.bind(mainMod .. " + Tab", function()
+hl.bind(mainMod .. " + GRAVE", function()
 	local layouts = { "dwindle", "scrolling" }
 	local workspace = hl.get_active_workspace()
 	if not workspace then
@@ -195,12 +199,12 @@ for i = 1, config.workspaces do
 	hl.bind(mainMod .. " + CTRL + " .. i, hl.dsp.window.move({ workspace = i, follow = false }))
 end
 
-hl.bind(mainMod .. " + grave", function()
+hl.bind(mainMod .. " + TAB", function()
 	local current = hl.get_active_workspace().id
 	local new = (current % config.workspaces) + 1
 	hl.dispatch(hl.dsp.focus({ workspace = new }))
 end)
-hl.bind(mainMod .. " + SHIFT + grave", function()
+hl.bind(mainMod .. " + SHIFT + TAB", function()
 	local current = hl.get_active_workspace().id
 	local new = (current + config.workspaces - 2) % config.workspaces + 1
 	hl.dispatch(hl.dsp.focus({ workspace = new }))
