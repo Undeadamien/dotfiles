@@ -138,26 +138,20 @@ hl.bind(mainMod .. " + SHIFT + p", hl.dsp.window.pin())
 hl.bind(mainMod .. " + SHIFT + c", hl.dsp.window.center())
 hl.bind(mainMod .. " + CTRL + f", hl.dsp.window.float({ action = "toggle" }))
 
-local layout_rule = nil
 hl.bind(mainMod .. " + GRAVE", function()
 	local layouts = { "dwindle", "scrolling" }
 	local workspace = hl.get_active_workspace()
+	local next_layout = "scrolling"
 	if not workspace then
 		return
 	end
-
-	local next_layout = layouts[1]
-	for i, l in ipairs(layouts) do
-		if l == workspace.tiled_layout then
+	for i = 1, #layouts do
+		if layouts[i] == workspace.tiled_layout then
 			next_layout = layouts[(i % #layouts) + 1]
 			break
 		end
 	end
-
-	if layout_rule then
-		layout_rule:remove()
-	end
-	layout_rule = hl.workspace_rule({ workspace = workspace.name, layout = next_layout })
+	hl.workspace_rule({ workspace = workspace.name, layout = next_layout })
 end)
 
 hl.bind(
