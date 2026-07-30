@@ -21,14 +21,7 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("[workspace 1 silent] firefox")
 	hl.exec_cmd("[workspace 1 silent] " .. terminal)
 end)
-
-hl.on("config.reloaded", function()
-	hl.exec_cmd(
-		"kill $(hyprctl layers -j | jq '.. | objects | select(.namespace==\"waybar\") | .pid // empty'); waybar"
-	)
-	hl.exec_cmd(wallpaper_script)
-	hl.exec_cmd("swaync-client --reload-css --reload-config")
-end)
+hl.on("config.reloaded", function() end)
 
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
@@ -114,9 +107,15 @@ hl.bind(mainMod .. " + w", hl.dsp.exec_cmd(menu .. " -show window"))
 hl.bind(mainMod .. " + q", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + SHIFT + n", hl.dsp.exec_cmd("swaync-client -t -sw"))
 
-hl.bind("code:121", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_SINK@ toggle"))
-hl.bind("code:122", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_SINK@ 5%-"), { repeating = true })
-hl.bind("code:123", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_SINK@ 5%+"), { repeating = true })
+local function notify_volume()
+	return 'notify-send -t 2000 -h string:x-canonical-private-synchronous:volume -h int:transient:1 "Volume: '
+		.. "$(wpctl get-volume @DEFAULT_SINK@ | awk '{print $2, $3}') "
+		.. '"'
+end
+hl.bind("code:121", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_SINK@ toggle && " .. notify_volume()))
+hl.bind("code:122", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_SINK@ 5%- && " .. notify_volume()), { repeating = true })
+hl.bind("code:123", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_SINK@ 5%+ && " .. notify_volume()), { repeating = true })
+
 hl.bind("code:232", hl.dsp.exec_cmd("brightnessctl s 10%-"), { repeating = true })
 hl.bind("code:233", hl.dsp.exec_cmd("brightnessctl s 10%+"), { repeating = true })
 hl.bind("code:107", hl.dsp.exec_cmd("~/.config/hypr/script/screenshot.sh"))
@@ -152,6 +151,12 @@ hl.bind(mainMod .. " + GRAVE", function()
 		end
 	end
 	hl.workspace_rule({ workspace = workspace.name, layout = next_layout })
+	hl.exec_cmd(
+		string.format(
+			'notify-send -t 2000 -h string:x-canonical-private-synchronous:layout -h int:transient:1 "Layout: %s"',
+			next_layout:lower():gsub("^%l", string.upper)
+		)
+	)
 end)
 
 hl.bind(
@@ -194,14 +199,18 @@ for i = 1, config.workspaces do
 end
 
 hl.bind(mainMod .. " + TAB", function()
-	local current = hl.get_active_workspace().id
-	local new = (current % config.workspaces) + 1
-	hl.dispatch(hl.dsp.focus({ workspace = new }))
+	local ws = hl.get_active_workspace()
+	if not ws then
+		return
+	end
+	hl.dispatch(hl.dsp.focus({ workspace = (ws.id % config.workspaces) + 1 }))
 end)
 hl.bind(mainMod .. " + SHIFT + TAB", function()
-	local current = hl.get_active_workspace().id
-	local new = (current + config.workspaces - 2) % config.workspaces + 1
-	hl.dispatch(hl.dsp.focus({ workspace = new }))
+	local ws = hl.get_active_workspace()
+	if not ws then
+		return
+	end
+	hl.dispatch(hl.dsp.focus({ workspace = (ws.id + config.workspaces - 2) % config.workspaces + 1 }))
 end)
 
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
@@ -215,10 +224,7 @@ hl.bind(mainMod .. " + m", function()
 	hl.exec_cmd("hyprlock")
 end)
 hl.bind(mainMod .. " + b", function()
-	-- -SIGUSR1 should be used to hide the bar but it will prevent the animation
-	hl.exec_cmd(
-		"kill $(hyprctl layers -j | jq '.. | objects | select(.namespace==\"waybar\") | .pid // empty') || waybar"
-	)
+	hl.exec_cmd("pkill -SIGUSR1 waybar || waybar &")
 end)
 hl.bind(mainMod .. " + o", function()
 	hl.dispatch(hl.dsp.window.set_prop({ prop = "opaque", value = "toggle" }))
@@ -231,7 +237,12 @@ local allOpaqueRule = hl.window_rule({
 	opacity = "1 override",
 })
 hl.bind(mainMod .. " + SHIFT + o", function()
-	allOpaqueRule:set_enabled(not allOpaqueRule:is_enabled())
+	local state = not allOpaqueRule:is_enabled()
+	allOpaqueRule:set_enabled(state)
+	hl.exec_cmd(
+		"notify-send -t 2000 -h string:x-canonical-private-synchronous:all_opaque -h int:transient:1"
+			.. string.format("'Global Opacity: %s'", state and "Enabled" or "Disabled")
+	)
 end)
 
 hl.layer_rule({ match = { namespace = menu }, dim_around = true })
