@@ -116,8 +116,13 @@ hl.bind("code:121", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_SINK@ toggle && " .
 hl.bind("code:122", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_SINK@ 5%- && " .. notify_volume()), { repeating = true })
 hl.bind("code:123", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_SINK@ 5%+ && " .. notify_volume()), { repeating = true })
 
-hl.bind("code:232", hl.dsp.exec_cmd("brightnessctl s 10%-"), { repeating = true })
-hl.bind("code:233", hl.dsp.exec_cmd("brightnessctl s 10%+"), { repeating = true })
+local function notify_brightness()
+	return 'notify-send -t 2000 -h string:x-canonical-private-synchronous:brightness -h int:transient:1 "Brightness: '
+		.. "$(brightnessctl -m --class=backlight | awk -F, '{print $4}') "
+		.. '"'
+end
+hl.bind("code:232", hl.dsp.exec_cmd("brightnessctl s 10%- && " .. notify_brightness()), { repeating = true })
+hl.bind("code:233", hl.dsp.exec_cmd("brightnessctl s 10%+ && " .. notify_brightness()), { repeating = true })
 hl.bind("code:107", hl.dsp.exec_cmd("~/.config/hypr/script/screenshot.sh"))
 
 hl.bind(mainMod .. " + f", hl.dsp.window.fullscreen({ mode = "maximized" }))
