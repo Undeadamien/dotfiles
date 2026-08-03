@@ -36,7 +36,7 @@
   "hyprland/workspaces": {
     "active-only": false,
     "format": "",
-    "persistent-workspaces": { "*": {{ .workspaces }} },
+    "persistent-workspaces": { "*": {{ $ids := list }}{{ range $i := untilStep 1 (int (add 1 (int .workspaces))) 1 }}{{ $ids = append $ids $i }}{{ end }}{{ toJson $ids }} },
   },
 
   "hyprland/submap": {
