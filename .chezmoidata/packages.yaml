@@ -12,6 +12,7 @@ packages:
     - dust
     - firefox
     - fzf
+    - gamescope
     - github-cli
     - glow
     - gtk-layer-shell
@@ -53,6 +54,7 @@ packages:
     - wget
     - wlsunset
     - yazi
+    - ydotool
     - yt-dlp
     - zsh-autocomplete
   aur:

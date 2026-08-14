@@ -83,6 +83,7 @@ hl.config({
 		kb_rules = "",
 		follow_mouse = 2,
 		sensitivity = 0,
+		accel_profile = "flat",
 		numlock_by_default = true,
 		touchpad = { natural_scroll = true, disable_while_typing = true },
 		touchdevice = { enabled = true },
@@ -90,8 +91,6 @@ hl.config({
 	xwayland = { force_zero_scaling = true },
 	ecosystem = { no_update_news = true },
 })
-
-hl.device({ name = "epic-mouse-v1", sensitivity = -0.5 })
 
 hl.curve("fast", { type = "bezier", points = { { 0.33, 1 }, { 0.68, 1 } } })
 hl.animation({ leaf = "windows", enabled = true, speed = 3, bezier = "fast", style = "slide" })
@@ -255,3 +254,29 @@ hl.layer_rule({ match = { namespace = "swaync-control-center" }, dim_around = tr
 hl.layer_rule({ match = { namespace = "waybar" }, animation = "slide top" })
 hl.layer_rule({ match = { namespace = "swaync-control-center" }, animation = "slide right" })
 hl.layer_rule({ match = { namespace = "quickshell_wallpaper" }, dim_around = true })
+
+--NWNEE
+local nwneeKeybind = hl.bind(
+	"ALT_L",
+	hl.dsp.exec_cmd("bash -c '" .. [=[
+        ACTIVE="$(hyprctl activewindow -j | jq -r '.initialTitle')"
+        if [[ ! "$ACTIVE" =~ "Neverwinter Nights" ]]; then exit; fi
+        X="$(hyprctl cursorpos | cut -d, -f1)"
+        Y="$(hyprctl cursorpos | cut -d, -f2)"
+        ydotool click 0xC0
+        ydotool mousemove -a -x 900 -y 600
+        ydotool click 0xC0
+        ydotool mousemove -a -x "$X" -y "$Y"
+        ]=] .. "'"),
+	{ repeating = false, release = true, ignore_mods = true }
+)
+nwneeKeybind:set_enabled(false)
+local function isNwnee(win)
+	return win ~= nil and win.initial_title ~= nil and win.initial_title:find("Neverwinter Nights", 1, true) ~= nil
+end
+hl.on("window.active", function(win)
+	nwneeKeybind:set_enabled(isNwnee(win))
+end)
+if isNwnee(hl.get_active_window()) then
+	nwneeKeybind:set_enabled(true)
+end
