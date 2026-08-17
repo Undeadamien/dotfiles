@@ -258,16 +258,7 @@ hl.layer_rule({ match = { namespace = "quickshell_wallpaper" }, dim_around = tru
 --NWNEE
 local nwneeKeybind = hl.bind(
 	"ALT_L",
-	hl.dsp.exec_cmd("bash -c '" .. [=[
-        ACTIVE="$(hyprctl activewindow -j | jq -r '.initialTitle')"
-        if [[ ! "$ACTIVE" =~ "Neverwinter Nights" ]]; then exit; fi
-        X="$(hyprctl cursorpos | cut -d, -f1)"
-        Y="$(hyprctl cursorpos | cut -d, -f2)"
-        ydotool click 0xC0
-        ydotool mousemove -a -x 900 -y 600
-        ydotool click 0xC0
-        ydotool mousemove -a -x "$X" -y "$Y"
-        ]=] .. "'"),
+	hl.dsp.exec_cmd "~/.config/hypr/script/nwnee_click.sh",
 	{ repeating = false, release = true, ignore_mods = true }
 )
 nwneeKeybind:set_enabled(false)
