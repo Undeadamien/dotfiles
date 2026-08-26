@@ -86,7 +86,7 @@ hl.config({
 		accel_profile = "flat",
 		numlock_by_default = true,
 		touchpad = { natural_scroll = true, disable_while_typing = true },
-		touchdevice = { enabled = true },
+		touchdevice = { enabled = false },
 	},
 	xwayland = { force_zero_scaling = true },
 	ecosystem = { no_update_news = true },
@@ -244,7 +244,7 @@ hl.bind(mainMod .. " + SHIFT + o", function()
 	local state = not allOpaqueRule:is_enabled()
 	allOpaqueRule:set_enabled(state)
 	hl.exec_cmd(
-		"notify-send -t 2000 -h string:x-canonical-private-synchronous:all_opaque -h int:transient:1"
+		"notify-send -t 2000 -h string:x-canonical-private-synchronous:all_opaque -h int:transient:1 "
 			.. string.format("'Global Opacity: %s'", state and "Enabled" or "Disabled")
 	)
 end)
@@ -255,10 +255,19 @@ hl.layer_rule({ match = { namespace = "waybar" }, animation = "slide top" })
 hl.layer_rule({ match = { namespace = "swaync-control-center" }, animation = "slide right" })
 hl.layer_rule({ match = { namespace = "quickshell_wallpaper" }, dim_around = true })
 
+hl.bind(mainMod .. " + t", function()
+	local state = hl.get_config("input.touchdevice.enabled")
+	hl.config({ input = { touchdevice = { enabled = not state } } })
+	hl.exec_cmd(
+		"notify-send -t 2000 -h string:x-canonical-private-synchronous:all_opaque -h int:transient:1 "
+			.. string.format("'Touchdevice: %s'", state and "Disabled" or "Enabled")
+	)
+end)
+
 --NWNEE
 local nwneeKeybind = hl.bind(
 	"ALT_L",
-	hl.dsp.exec_cmd "~/.config/hypr/script/nwnee_click.sh",
+	hl.dsp.exec_cmd("~/.config/hypr/script/nwnee_click.sh"),
 	{ repeating = false, release = true, ignore_mods = true }
 )
 nwneeKeybind:set_enabled(false)
