@@ -5,4 +5,6 @@ services:
     - xppentablet.service
     - hyprpolkitagent.service
     - ydotool.service
-  system: []
+    - wayland-pipewire-idle-inhibit.service
+  system:
+    - bluetooth.service

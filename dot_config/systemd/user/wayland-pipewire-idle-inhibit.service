@@ -1,0 +1,13 @@
+[Unit]
+Description=Inhibit Wayland idle while PipeWire is playing media
+Documentation=https://github.com/rafaelrc7/wayland-pipewire-idle-inhibit
+Wants=graphical-session.target
+After=pipewire.service graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/wayland-pipewire-idle-inhibit
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target

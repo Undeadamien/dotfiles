@@ -5,6 +5,8 @@ packages:
     - bat
     - brightnessctl
     - btop
+    - bluez
+    - bluez-utils
     - cava
     - chezmoi
     - cronie
@@ -61,4 +63,5 @@ packages:
     - opera
     - otf-departure-mono-nerd
     - uni
+    - wayland-pipewire-idle-inhibit
     - xp-pen-tablet
