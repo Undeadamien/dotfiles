@@ -51,7 +51,7 @@ packages:
     - ttf-jetbrains-mono-nerd
     - upower
     - vlc
-    # - waybar
+    # - waybar (provided by waybar-git from aur instead)
     - wev
     - wget
     - wlsunset
@@ -63,5 +63,6 @@ packages:
     - opera
     - otf-departure-mono-nerd
     - uni
+    - waybar-git
     - wayland-pipewire-idle-inhibit
     - xp-pen-tablet
