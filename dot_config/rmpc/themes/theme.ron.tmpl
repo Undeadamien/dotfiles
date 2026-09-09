@@ -1,6 +1,7 @@
 #![enable(implicit_some)]
 #![enable(unwrap_newtypes)]
 #![enable(unwrap_variant_newtypes)]
+
 (
     default_album_art_path: None,
     show_song_table_header: true,
@@ -30,7 +31,7 @@
         ellipsis: "...",
         song_style: (fg: "{{ .colors.accent }}"),
         dir_style: (fg: "{{ .colors.accent }}"),
-        playlist_style: (fd: "{{ .colors.accent }}"),
+        playlist_style: (fg: "{{ .colors.accent }}"),
     ),
     level_styles: (
         info: (fg: "{{ .colors.accent }}", bg: "black"),
@@ -41,9 +42,9 @@
     ),
     progress_bar: (
         symbols: ["▐", "█", "◣", "█", "▌"],
-        track_style: (fg: "#1e2030"),
+        track_style: (fg: "{{ .colors.color8 }}"),
         elapsed_style: (fg: "{{ .colors.accent }}"),
-        thumb_style: (fg: "{{ .colors.accent }}", bg: "#1e2030"),
+        thumb_style: (fg: "{{ .colors.accent }}", bg: "{{ .colors.color8 }}"),
         use_track_when_empty: false,
     ),
     scrollbar: (
@@ -53,10 +54,31 @@
         thumb_style: (fg: "{{ .colors.accent }}"),
     ),
     song_table_format: [
-        (prop: (kind: Property(Title), default: (kind: Property(Filename))), width: "100%", label: "Title / Filename"),
-        (prop: (kind: Property(Artist), default: (kind: Text("Unknown"), style: (fg: "dark_gray"))), width: "20%"),
-        (prop: (kind: Property(Album), style: (fg: "white"), default: (kind: Text("Unknown"), style: (fg: "dark_gray"))), width: "20%"),
-        (prop: (kind: Property(Duration), default: (kind: Text("-"))), width: "10%", alignment: Right),
+        (
+            prop: (kind: Property(Title), default: (kind: Property(Filename))),
+            width: "100%",
+            label: "Title / Filename",
+        ),
+        (
+            prop: (
+                kind: Property(Artist),
+                default: (kind: Text("Unknown"), style: (fg: "dark_gray")),
+            ),
+            width: "20%",
+        ),
+        (
+            prop: (
+                kind: Property(Album),
+                style: (fg: "white"),
+                default: (kind: Text("Unknown"), style: (fg: "dark_gray")),
+            ),
+            width: "20%",
+        ),
+        (
+            prop: (kind: Property(Duration), default: (kind: Text("-"))),
+            width: "10%",
+            alignment: Right,
+        ),
     ],
     components: {},
     layout: Split(
@@ -65,7 +87,12 @@
             (borders: "ALL", pane: Pane(Tabs), size: "3"),
             (borders: "NONE", pane: Pane(TabContent), size: "100%"),
             (borders: "TOP|LEFT|RIGHT", pane: Pane(ProgressBar), size: "2"),
-            (borders: "ALL", pane: Pane(Header), size: "4", border_symbols: Inherited(parent: Plain, top_left: "├", top_right: "┤")),
+            (
+                borders: "ALL",
+                pane: Pane(Header),
+                size: "4",
+                border_symbols: Inherited(parent: Plain, top_left: "├", top_right: "┤"),
+            ),
         ],
     ),
     header: (
@@ -73,18 +100,31 @@
             (
                 left: [
                     (kind: Text(""), style: (fg: "{{ .colors.accent }}", modifiers: "Bold")),
-                    (kind: Property(Status(StateV2(playing_label: " Playing ", paused_label: " Paused ", stopped_label: " Stopped "))), style: (fg: "black", bg: "{{ .colors.accent }}", modifiers: "Bold")),
-                    (kind: Text("◣"), style: (fg: "{{ .colors.accent }}", modifiers: "Bold"))
+                    (
+                        kind: Property(
+                            Status(
+                                StateV2(
+                                    playing_label: " Playing ",
+                                    paused_label: " Paused ",
+                                    stopped_label: " Stopped ",
+                                ),
+                            ),
+                        ),
+                        style: (fg: "black", bg: "{{ .colors.accent }}", modifiers: "Bold"),
+                    ),
+                    (kind: Text("◣"), style: (fg: "{{ .colors.accent }}", modifiers: "Bold")),
                 ],
                 center: [
-                    (kind: Property(Song(Title)), style: (modifiers: "Bold"),
-                        default: (kind: Property(Song(Filename)), style: (modifiers: "Bold"))
-                    )
+                    (
+                        kind: Property(Song(Title)),
+                        style: (modifiers: "Bold"),
+                        default: (kind: Property(Song(Filename)), style: (modifiers: "Bold")),
+                    ),
                 ],
                 right: [
                     (kind: Property(Widget(ScanStatus)), style: (fg: "{{ .colors.accent }}")),
-                    (kind: Property(Widget(Volume)), style: (fg: "{{ .colors.accent }}"))
-                ]
+                    (kind: Property(Widget(Volume)), style: (fg: "{{ .colors.accent }}")),
+                ],
             ),
             (
                 left: [
@@ -93,47 +133,43 @@
                     (kind: Property(Status(Duration))),
                     (kind: Text(" (")),
                     (kind: Property(Status(Bitrate))),
-                    (kind: Text(" kbps)"))
+                    (kind: Text(" kbps)")),
                 ],
                 center: [
-                    (kind: Property(Song(Artist)), style: (fg: "white"), default: (kind: Text("Unknown"), style: (fg: "dark_gray"))),
+                    (
+                        kind: Property(Song(Artist)),
+                        style: (fg: "white"),
+                        default: (kind: Text("Unknown"), style: (fg: "dark_gray")),
+                    ),
                     (kind: Text(" - ")),
-                    (kind: Property(Song(Album)), default: (kind: Text("Unknown"), style: (fg: "dark_gray")))
+                    (
+                        kind: Property(Song(Album)),
+                        default: (kind: Text("Unknown"), style: (fg: "dark_gray")),
+                    ),
                 ],
                 right: [
                     (
-                        kind: Property(Widget(States(
-                            active_style: (fg: "white", modifiers: "Bold"),
-                            separator_style: (fg: "white")))
+                        kind: Property(
+                            Widget(
+                                States(active_style: (fg: "white", modifiers: "Bold"), separator_style: (fg: "white")),
+                            ),
                         ),
-                        style: (fg: "dark_gray")
+                        style: (fg: "dark_gray"),
                     ),
-                ]
+                ],
             ),
         ],
     ),
     browser_song_format: [
+        (kind: Group([(kind: Property(Track)), (kind: Text(" "))])),
         (
-            kind: Group([
-                (kind: Property(Track)),
-                (kind: Text(" ")),
-            ])
-        ),
-        (
-            kind: Group([
-                (kind: Property(Artist)),
-                (kind: Text(" - ")),
-                (kind: Property(Title)),
-            ]),
-            default: (kind: Property(Filename))
+            kind: Group([(kind: Property(Artist)), (kind: Text(" - ")), (kind: Property(Title))]),
+            default: (kind: Property(Filename)),
         ),
     ],
     cava: (
         bar_width: 2,
         bar_spacing: 0,
-        bar_color: Gradient({
-            0: "{{ .colors.color0 }}",
-            100: "{{ .colors.accent }}"
-    })
-    )
+        bar_color: Gradient({0: "{{ .colors.color0 }}", 100: "{{ .colors.accent }}"}),
+    ),
 )
