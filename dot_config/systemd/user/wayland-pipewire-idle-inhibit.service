@@ -8,6 +8,7 @@ After=pipewire.service graphical-session.target
 Type=simple
 ExecStart=/usr/bin/wayland-pipewire-idle-inhibit
 Restart=on-failure
+RestartSec=5
 
 [Install]
 WantedBy=graphical-session.target
