@@ -115,6 +115,20 @@ hl.bind("code:121", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_SINK@ toggle && " .
 hl.bind("code:122", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_SINK@ 5%- && " .. notify_volume()), { repeating = true })
 hl.bind("code:123", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_SINK@ 5%+ && " .. notify_volume()), { repeating = true })
 
+local function notify_media()
+	return 'notify-send -t 2000 -h string:x-canonical-private-synchronous:media -h int:transient:1 "Media: '
+		.. '$(mpc status %state% | sed "s/.*/\\u&/")'
+		.. '"'
+end
+
+hl.bind(
+	"code:172",
+	hl.dsp.exec_cmd('if [ -z "$(mpc playlist)" ]; then mpc add / && mpc play; else mpc toggle; fi;' .. notify_media())
+)
+hl.bind("code:171", hl.dsp.exec_cmd("mpc next"))
+hl.bind("code:144", hl.dsp.exec_cmd("mpc prev"))
+hl.bind("code:174", hl.dsp.exec_cmd("mpc stop && " .. notify_media()))
+
 local function notify_brightness()
 	return 'notify-send -t 2000 -h string:x-canonical-private-synchronous:brightness -h int:transient:1 "Brightness: '
 		.. "$(brightnessctl -m --class=backlight | awk -F, '{print $4}') "
