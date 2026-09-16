@@ -285,12 +285,12 @@ local nwneeKeybind = hl.bind(
 	{ repeating = false, release = true, ignore_mods = true }
 )
 nwneeKeybind:set_enabled(false)
-local function isNwnee(win)
-	return win ~= nil and win.initial_title ~= nil and win.initial_title:find("Neverwinter Nights", 1, true) ~= nil
+local function updateNwnee(win)
+	local focused = win ~= nil
+		and win.initial_title ~= nil
+		and win.initial_title:find("Neverwinter Nights", 1, true) ~= nil
+	nwneeKeybind:set_enabled(focused)
+	hl.exec_cmd('PID=$(pgrep -x nwmain-linux) && wpctl set-mute -p "$PID" ' .. (focused and "0" or "1"))
 end
-hl.on("window.active", function(win)
-	nwneeKeybind:set_enabled(isNwnee(win))
-end)
-if isNwnee(hl.get_active_window()) then
-	nwneeKeybind:set_enabled(true)
-end
+hl.on("window.active", updateNwnee)
+updateNwnee(hl.get_active_window())
