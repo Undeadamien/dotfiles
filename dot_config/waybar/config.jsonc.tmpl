@@ -30,8 +30,8 @@
     "format-disconnected": "MPD:---",
     "on-click": "if [ -z \"$(mpc playlist)\" ]; then mpc add / && mpc play; else mpc toggle; fi",
     "on-click-right": "hyprctl dispatch 'hl.dsp.exec_cmd(\"kitty -e rmpc\")'",
-    "on-scroll-up": "rmpc volume +5",
-    "on-scroll-down": "rmpc volume -5",
+    "on-scroll-up": "rmpc volume +5 && notify-send -a \"rmpc\" -t 2000 -h string:x-canonical-private-synchronous:mpd -h int:transient:1 \"MPD: $(rmpc volume)%\"",
+    "on-scroll-down": "rmpc volume -5 && notify-send -a \"rmpc\" -t 2000 -h string:x-canonical-private-synchronous:mpd -h int:transient:1 \"MPD: $(rmpc volume)%\"",
   },
 
   "hyprland/workspaces": {

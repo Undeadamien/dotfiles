@@ -108,7 +108,7 @@ hl.bind(mainMod .. " + SHIFT + n", hl.dsp.exec_cmd("swaync-client -t -sw"))
 
 local function notify_volume()
 	return 'notify-send -t 2000 -h string:x-canonical-private-synchronous:volume -h int:transient:1 "Volume: '
-		.. "$(wpctl get-volume @DEFAULT_SINK@ | awk '{print $2, $3}') "
+		.. "$(wpctl get-volume @DEFAULT_SINK@ | awk '{ printf \"%d%% %s\", $2*100, $3 }') "
 		.. '"'
 end
 hl.bind("code:121", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_SINK@ toggle && " .. notify_volume()))
