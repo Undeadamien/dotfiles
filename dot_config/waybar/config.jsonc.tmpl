@@ -28,8 +28,15 @@
     "format-paused": "MPD:PSD",
     "format-stopped": "MPD:STP",
     "format-disconnected": "MPD:---",
+    "menu": "on-click-right",
+    "menu-file": "{{ .chezmoi.homeDir }}/.config/waybar/menu_mpd.xml",
+    "menu-actions": {
+      "toggle": "mpc toggle",
+      "prev": "mpc prev",
+      "next": "mpc next",
+      "rmpc": "hyprctl dispatch 'hl.dsp.exec_cmd(\"kitty -e rmpc\")'"
+    },
     "on-click": "if [ -z \"$(mpc playlist)\" ]; then mpc add / && mpc play; else mpc toggle; fi",
-    "on-click-right": "hyprctl dispatch 'hl.dsp.exec_cmd(\"kitty -e rmpc\")'",
     "on-scroll-up": "rmpc volume +5 && notify-send -a \"rmpc\" -t 2000 -h string:x-canonical-private-synchronous:mpd -h int:transient:1 \"MPD: $(rmpc volume)%\"",
     "on-scroll-down": "rmpc volume -5 && notify-send -a \"rmpc\" -t 2000 -h string:x-canonical-private-synchronous:mpd -h int:transient:1 \"MPD: $(rmpc volume)%\"",
   },
