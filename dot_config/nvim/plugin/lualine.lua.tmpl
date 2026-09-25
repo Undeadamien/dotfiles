@@ -1,0 +1,135 @@
+local colors = {
+	bg = "{{ .colors.bg }}",
+	bg_mid = "{{ .colors.bg_mid }}",
+	bg_alt = "{{ .colors.bg_alt }}",
+	accent = "{{ .colors.accent }}",
+	muted = "{{ .colors.border }}",
+	fg = "{{ .colors.fg }}",
+}
+
+local mode_accents = {
+	normal = colors.accent,
+	insert = "{{ .colors.color2 }}",
+	visual = "{{ .colors.color11 }}",
+	replace = "{{ .colors.color9 }}",
+	command = "{{ .colors.color13 }}",
+	terminal = "{{ .colors.color2 }}",
+}
+
+local function gradient(accent)
+	return {
+		a = { fg = colors.bg, bg = accent, gui = "bold" },
+		b = { fg = colors.fg, bg = colors.bg_alt },
+		c = { fg = colors.fg, bg = "" },
+		x = { fg = colors.fg, bg = "" },
+		y = { fg = colors.fg, bg = colors.bg_alt },
+		z = { fg = colors.bg, bg = accent },
+	}
+end
+
+local theme = {}
+for mode, accent in pairs(mode_accents) do
+	theme[mode] = gradient(accent)
+end
+theme.inactive = gradient(colors.muted)
+
+local function location_formatted()
+	return string.format("%02d:%02d", vim.fn.line("."), vim.fn.col("."))
+end
+
+local function has_filename()
+	return vim.api.nvim_buf_get_name(0) ~= ""
+end
+
+local function has_filetype()
+	return vim.bo.filetype ~= ""
+end
+
+local function is_focused()
+	return require("lualine.utils.utils").is_focused()
+end
+
+
+local function triangle(symbol, cond, color)
+	return {
+		function()
+			return symbol
+		end,
+		color = color,
+		separator = "",
+		padding = 0,
+		cond = cond,
+	}
+end
+
+local filename = {
+	"filename",
+	path = 1,
+	color = { bg = colors.bg_mid },
+	separator = "",
+	cond = has_filename,
+}
+
+local filetype = {
+	"filetype",
+	color = { bg = colors.bg_mid },
+	separator = "",
+	cond = has_filetype,
+}
+
+require("lualine").setup({
+	options = {
+		icons_enabled = false,
+		theme = theme,
+		component_separators = { left = "|", right = "|" },
+		section_separators = { left = "◣", right = "◢" },
+		always_divide_middle = true,
+		globalstatus = false,
+		refresh = {
+            statusline = 100,
+            tabline = 100,
+            winbar = 100,
+            events = {
+                'WinEnter',
+                'BufEnter',
+                'BufWritePost',
+                'SessionLoadPost',
+                'FileChangedShellPost',
+                'VimResized',
+                'Filetype',
+                'CursorMoved',
+                'CursorMovedI',
+                'ModeChanged',
+            },
+        },
+	},
+
+	sections = {
+		lualine_a = { "mode" },
+		lualine_b = { "branch", "diff", "diagnostics" },
+		lualine_c = {
+			filename,
+			triangle("◣", has_filename, { fg = colors.bg_mid, bg = "" }),
+		},
+		lualine_x = {
+			triangle("◢", has_filetype, { fg = colors.bg_mid, bg = "" }),
+			filetype,
+		},
+		lualine_y = { "progress" },
+		lualine_z = { location_formatted },
+	},
+	inactive_sections = {
+		lualine_a = {},
+		lualine_b = {},
+		lualine_c = {
+			filename,
+			triangle("◣", has_filename, { fg = colors.bg_mid, bg = "" }),
+		},
+		lualine_x = {
+			triangle("◢", has_filetype, { fg = colors.bg_mid, bg = "" }),
+			filetype,
+		},
+		lualine_y = { "progress" },
+		lualine_z = { location_formatted },
+	},
+})

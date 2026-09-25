@@ -1,5 +1,6 @@
 colors:
   bg: "#101010"
+  bg_mid: "#242424"
   bg_alt: "#363636"
   fg: "#e0e0e0"
   border: "#999999"
