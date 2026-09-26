@@ -15,12 +15,13 @@ set -g prompt-command-cursor-style block
 set -g status on
 set -g status-interval 1
 set -g status-style bg={{ .colors.bg }},fg={{ .colors.fg }}
-set -g status-left "#[bold,{{ .colors.fg }}][#{session_name}]#[default] "
+set -g status-left "#[bold,fg={{ .colors.fg }},bg={{.colors.bg_alt}}][#{session_name}] #[default]"
+set -g status-left-style "#[bg={{.colors.bg_alt}}]"
 set -g status-left-length 0
-set -g window-status-current-format "#[bold,{{ .colors.fg }}]#I:#W#{?window_flags,#{window_flags}}#[default]"
-set -g window-status-format "#[bold]#I:#W#{?window_flags,#{window_flags}}"
-set -g window-status-separator " "
-set -g status-right "#[bold]#[align=absolute-centre]%H:%M#[align=right] #(echo #{session_path} | sed 's@^${HOME}@~@')"
+set -g window-status-current-format "#[bold,fg={{ .colors.fg }},bg={{.colors.bg_alt}}]#I:#W#{?window_flags,#{window_flags}}#[default]"
+set -g window-status-format "#[bold,bg={{.colors.bg_alt}}]#I:#W#{?window_flags,#{window_flags}}"
+set -g window-status-separator "#[bg={{.colors.bg_alt}}] #[default]"
+set -g status-right "#[align=left,bg={{.colors.bg_alt}}] #[fg={{.colors.bg_alt}},bg={{.colors.bg}}]◣#[default]#[bold]#[align=absolute-centre] #[fg={{.colors.bg_alt}}]◥#[bg={{.colors.bg_alt}}] #[fg={{.colors.fg}}]%H:%M #[fg={{.colors.bg_alt}},bg={{.colors.bg}}]◤#[default]#[align=right]#[fg={{.colors.bg_alt}},bg={{.colors.bg}}]◢#[default,bg={{.colors.bg_alt}}] #(echo #{session_path} | sed 's@^${HOME}@~@') "
 set -g status-right-length 0
 
 set -g pane-border-indicators colour
