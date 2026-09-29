@@ -24,7 +24,7 @@ manual_select() {
 }
 
 if ! pgrep -x awww-daemon >/dev/null; then hyprctl dispatch exec awww-daemon; fi
-if ! timeout 2 bash -c 'until awww query >/dev/null 2>&1; do sleep 0.1; done'; then exit 1; fi
+timeout 10 bash -c 'until awww query >/dev/null 2>&1; do sleep 0.2; done' || true
 
 if [[ "${1:-}" == "select" ]]; then
     manual_select
