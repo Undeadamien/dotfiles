@@ -1,0 +1,218 @@
+vim.o.background = "dark"
+
+local group_overrides = {
+	Normal = { fg = "{{ .colors.fg }}" },
+	NormalNC = { fg = "{{ .colors.fg }}" },
+	StatusLine = { fg = "{{ .colors.fg }}", bg = "NONE" },
+	StatusLineNC = { fg = "{{ .colors.border }}", bg = "NONE" },
+
+	CursorLine = { bg = "{{ .colors.bg_mid }}" },
+	ColorColumn = { bg = "{{ .colors.bg }}" },
+	CursorLineNr = { fg = "{{ .colors.accent }}" },
+	LineNr = { fg = "{{ .colors.border }}" },
+	EndOfBuffer = { fg = "{{ .colors.bg_alt }}" },
+	Whitespace = { fg = "{{ .colors.bg_alt }}" },
+	Conceal = { fg = "{{ .colors.color4 }}" },
+
+	Search = { fg = "{{ .colors.bg }}", bg = "{{ .colors.bg_alt }}" },
+	IncSearch = { fg = "{{ .colors.bg }}", bg = "{{ .colors.accent }}" },
+	CurSearch = { fg = "{{ .colors.bg }}", bg = "{{ .colors.accent }}" },
+
+	Pmenu = { fg = "{{ .colors.fg }}", bg = "{{ .colors.bg }}" },
+	PmenuSel = { fg = "{{ .colors.fg }}", bg = "{{ .colors.bg_mid }}", bold = true },
+	PmenuSbar = { bg = "{{ .colors.bg }}" },
+	PmenuThumb = { bg = "{{ .colors.bg_alt }}" },
+	FloatBorder = { fg = "{{ .colors.border }}", bg = "NONE" },
+	NormalFloat = { fg = "{{ .colors.fg }}", bg = "NONE" },
+
+	Comment = { fg = "{{ .colors.border }}" },
+	String = { fg = "{{ .colors.color2 }}" },
+	Character = { fg = "{{ .colors.color2 }}" },
+	Function = { fg = "{{ .colors.color12 }}" },
+	Identifier = { fg = "{{ .colors.fg }}" },
+	DiffAdd = { bg = "{{ .colors.bg_mid }}" },
+	DiffDelete = { bg = "{{ .colors.bg_mid }}" },
+	DiffText = { bg = "{{ .colors.bg_alt }}" },
+}
+
+local capture_links = {
+	["@comment"] = "Comment",
+	["@comment.documentation"] = "Comment",
+	["@comment.error"] = "DiagnosticError",
+	["@comment.warning"] = "DiagnosticWarn",
+	["@comment.todo"] = "Todo",
+	["@string"] = "String",
+	["@string.documentation"] = "String",
+	["@string.regexp"] = "String",
+	["@string.escape"] = "Special",
+	["@string.special"] = "Special",
+	["@string.special.url"] = "Underlined",
+	["@character"] = "Character",
+	["@character.special"] = "Special",
+	["@number"] = "Number",
+	["@number.float"] = "Number",
+	["@boolean"] = "Boolean",
+	["@constant"] = "Constant",
+	["@constant.builtin"] = "Constant",
+	["@constant.macro"] = "PreProc",
+	["@function"] = "Function",
+	["@function.builtin"] = "Function",
+	["@function.call"] = "Function",
+	["@function.macro"] = "PreProc",
+	["@function.method"] = "Function",
+	["@method"] = "Function",
+	["@constructor"] = "Type",
+	["@type"] = "Type",
+	["@type.builtin"] = "Type",
+	["@type.definition"] = "Type",
+	["@variable"] = "Identifier",
+	["@variable.builtin"] = "Identifier",
+	["@variable.parameter"] = "Identifier",
+	["@variable.member"] = "Identifier",
+	["@property"] = "Identifier",
+	["@field"] = "Identifier",
+	["@keyword"] = "Keyword",
+	["@keyword.conditional"] = "Keyword",
+	["@keyword.repeat"] = "Keyword",
+	["@keyword.return"] = "Keyword",
+	["@keyword.function"] = "Keyword",
+	["@keyword.operator"] = "Operator",
+	["@keyword.import"] = "Include",
+	["@keyword.exception"] = "Exception",
+	["@operator"] = "Operator",
+	["@punctuation.delimiter"] = "Delimiter",
+	["@punctuation.bracket"] = "Delimiter",
+	["@punctuation.special"] = "Special",
+	["@tag"] = "Tag",
+	["@tag.builtin"] = "Tag",
+	["@tag.attribute"] = "Identifier",
+	["@tag.delimiter"] = "Delimiter",
+	["@module"] = "Identifier",
+	["@namespace"] = "Type",
+	["@label"] = "Label",
+	["@exception"] = "Exception",
+	["@include"] = "Include",
+	["@define"] = "PreProc",
+	["@preproc"] = "PreProc",
+	["@macro"] = "PreProc",
+	["@conditional"] = "Conditional",
+	["@repeat"] = "Repeat",
+	["@return"] = "Keyword",
+	["@debug"] = "Debug",
+	["@error"] = "DiagnosticError",
+	["@diff.plus"] = "DiffAdd",
+	["@diff.minus"] = "DiffDelete",
+	["@diff.delta"] = "DiffChange",
+	["@markup.quote"] = "Comment",
+	["@markup.raw"] = "String",
+	["@markup.link.label"] = "Underlined",
+	["@markup.link.url"] = "Underlined",
+}
+
+for capture, group in pairs(capture_links) do
+	group_overrides[capture] = { link = group }
+end
+
+group_overrides["@markup.heading"] = { fg = "{{ .colors.color12 }}", bold = true }
+group_overrides["@markup.strong"] = { bold = true }
+group_overrides["@markup.italic"] = { italic = true }
+group_overrides["@markup.link"] = { fg = "{{ .colors.color4 }}", underline = true }
+
+require("vscode").setup({
+	transparent = true,
+
+	color_overrides = {
+		-- base
+		vscNone = "NONE",
+		vscFront = "{{ .colors.fg }}",
+		vscBack = "NONE",
+
+		-- tabs
+		vscTabCurrent = "{{ .colors.bg_mid }}",
+		vscTabOther = "{{ .colors.bg }}",
+		vscTabOutside = "{{ .colors.bg }}",
+
+		-- sidebars
+		vscLeftDark = "{{ .colors.bg }}",
+		vscLeftMid = "{{ .colors.bg_mid }}",
+		vscLeftLight = "{{ .colors.bg_alt }}",
+
+		-- popups
+		vscPopupFront = "{{ .colors.fg }}",
+		vscPopupBack = "{{ .colors.bg }}",
+		vscPopupHighlightBlue = "{{ .colors.bg_mid }}",
+		vscPopupHighlightGray = "{{ .colors.bg_mid }}",
+		vscPopupHighlightLightBlue = "{{ .colors.bg_alt }}",
+
+		-- splits
+		vscSplitLight = "{{ .colors.bg_alt }}",
+		vscSplitDark = "{{ .colors.bg_alt }}",
+		vscSplitThumb = "{{ .colors.bg_alt }}",
+
+		-- cursor, selection, line numbers
+		vscCursorDarkDark = "{{ .colors.bg }}",
+		vscCursorDark = "{{ .colors.bg_alt }}",
+		vscCursorLight = "{{ .colors.fg }}",
+		vscSelection = "{{ .colors.bg_alt }}",
+		vscLineNumber = "{{ .colors.border }}",
+
+		-- diffs
+		vscDiffRedDark = "{{ .colors.bg_mid }}",
+		vscDiffRedLight = "{{ .colors.color9 }}",
+		vscDiffRedLightLight = "{{ .colors.color9 }}",
+		vscDiffGreenDark = "{{ .colors.bg_mid }}",
+		vscDiffGreenLight = "{{ .colors.color2 }}",
+
+		-- search
+		vscSearch = "{{ .colors.bg_alt }}",
+		vscSearchCurrent = "{{ .colors.accent }}",
+
+		-- git
+		vscGitAdded = "{{ .colors.color2 }}",
+		vscGitModified = "{{ .colors.color3 }}",
+		vscGitDeleted = "{{ .colors.color9 }}",
+		vscGitRenamed = "{{ .colors.color6 }}",
+		vscGitUntracked = "{{ .colors.color2 }}",
+		vscGitIgnored = "{{ .colors.border }}",
+		vscGitStageModified = "{{ .colors.color3 }}",
+		vscGitStageDeleted = "{{ .colors.color9 }}",
+		vscGitConflicting = "{{ .colors.color1 }}",
+		vscGitSubmodule = "{{ .colors.color4 }}",
+
+		-- context, folds, misc ui
+		vscContext = "{{ .colors.bg_mid }}",
+		vscContextCurrent = "{{ .colors.border }}",
+		vscFoldBackground = "{{ .colors.bg_mid }}",
+		vscSuggestion = "{{ .colors.border }}",
+		vscDimHighlight = "{{ .colors.bg_alt }}",
+		vscUiBlue = "{{ .colors.bg_mid }}",
+		vscUiOrange = "{{ .colors.color3 }}",
+		vscGray = "{{ .colors.border }}",
+
+		-- syntax
+		vscViolet = "{{ .colors.color5 }}",
+		vscBlue = "{{ .colors.color4 }}",
+		vscAccentBlue = "{{ .colors.color12 }}",
+		vscDarkBlue = "{{ .colors.bg_alt }}",
+		vscMediumBlue = "{{ .colors.color4 }}",
+		vscDisabledBlue = "{{ .colors.color4 }}",
+		vscLightBlue = "{{ .colors.color12 }}",
+		vscGreen = "{{ .colors.color2 }}",
+		vscBlueGreen = "{{ .colors.color6 }}",
+		vscLightGreen = "{{ .colors.color10 }}",
+		vscRed = "{{ .colors.color9 }}",
+		vscOrange = "{{ .colors.color3 }}",
+		vscLightRed = "{{ .colors.color1 }}",
+		vscYellowOrange = "{{ .colors.color11 }}",
+		vscYellow = "{{ .colors.color3 }}",
+		vscDarkYellow = "{{ .colors.color11 }}",
+		vscPink = "{{ .colors.color13 }}",
+	},
+
+	group_overrides = group_overrides,
+})
+
+require("vscode").load()
+
+vim.g.colors_name = "vscode-palette"
+vim.api.nvim_exec_autocmds("ColorScheme", { pattern = "vscode-palette" })

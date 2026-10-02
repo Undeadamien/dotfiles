@@ -17,7 +17,10 @@ require("lazy").setup({
 	"WhoIsSethDaniel/mason-tool-installer.nvim",
 
 	-- ColorScheme
-	"Mofiqul/vscode.nvim",
+	-- Pinned: colors.lua uses the pre-3.0 `group_overrides` option and the
+	-- `vscLeftDark`/`vscPopupFront` color_override keys, all removed in v3.
+	-- On v3 the overrides are silently ignored and the palette reverts to stock.
+	{ "Mofiqul/vscode.nvim", version = "6439ed89d0e10193f07e92268a321d7c6f6e93ee" },
 
 	-- TreeSitter
 	"nvim-treesitter/nvim-treesitter",
