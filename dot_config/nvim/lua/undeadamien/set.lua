@@ -42,6 +42,7 @@ vim.o.undolevels = 1000
 
 --Other
 vim.o.scrolloff = 8
+vim.o.cmdheight = 0
 
 --Cmd alias/abbrev
 vim.cmd("cabbrev E Ex")
