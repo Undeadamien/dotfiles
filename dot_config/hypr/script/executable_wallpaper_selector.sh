@@ -3,7 +3,7 @@
 set -euo pipefail
 wallpaper_dir="${HOME}/.config/hypr/wallpaper/"
 current="${HOME}/.config/hypr/wallpaper_current"
-fps=60
+fps=30
 speed=8
 
 set_wallpaper() {

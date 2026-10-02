@@ -26,6 +26,7 @@ packages:
     - iwd
     - krita
     - lazygit
+    - libvips
     - ly
     - mpc
     - mpd

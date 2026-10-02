@@ -6,6 +6,7 @@ import QtQuick.Shapes
 import QtQuick.Window
 import Quickshell
 import Quickshell.Hyprland
+import Quickshell.Io
 import Quickshell.Services.Mpris
 import Quickshell.Wayland
 
@@ -15,7 +16,7 @@ PanelWindow {
     function setWallpaper(url) {
         var path = url.toString().replace("file://", "");
         var current = root.config.homeDir + "/.config/hypr/wallpaper_current";
-        Quickshell.execDetached(["bash", "-c", "ln -sf \"" + path + "\" \"" + current + "\" && " + "awww img \"" + current + "\" --transition-duration 8 --transition-type fade --transition-fps 60"]);
+        Quickshell.execDetached(["bash", "-c", "ln -sf \"" + path + "\" \"" + current + "\" && " + "awww img \"" + current + "\" --transition-duration 8 --transition-type fade --transition-fps 30"]);
     }
 
     function playSound() {
@@ -54,14 +55,43 @@ PanelWindow {
         }
 
         property var allUrls: []
+        property var allThumbs: []
+        property bool thumbsReady: false
         property int currentIndex: 0
         property int visibleCount: 5
         readonly property int deckSlots: 5
         readonly property int visibleRadius: Math.floor((deckSlots - 1) / 2)
         readonly property real cardWidth: Screen.width * config.deckWidthFraction / deckSlots
-        readonly property real cardHeight: Screen.height / 3
+        readonly property real cardHeight: cardWidth * 9 / 16
         readonly property real cardSpacing: config.gaps * 2
         readonly property int centerIndex: Math.floor(visibleCount / 2)
+        readonly property string thumbDir: (Quickshell.env("XDG_CACHE_HOME") || root.config.homeDir + "/.cache") + "/hypr/wallpaper-thumbs"
+
+        function refreshDeck() {
+            if (folderModel.count === 0 || !root.thumbsReady)
+                return ;
+
+            var indices = Array.from({
+                "length": folderModel.count
+            }, (_, i) => {
+                return i;
+            });
+            for (var i = indices.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                [indices[i], indices[j]] = [indices[j], indices[i]];
+            }
+
+            var urls = [];
+            var thumbs = [];
+            for (var i = 0; i < folderModel.count; i++) {
+                var url = folderModel.get(indices[i], "fileUrl");
+                urls.push(url);
+                thumbs.push("file://" + root.thumbDir + "/" + url.toString().split("/").pop());
+            }
+            root.allUrls = urls;
+            root.allThumbs = thumbs;
+            root.visibleCount = Math.min(folderModel.count, root.deckSlots);
+        }
 
         function isCardVisible(idx) {
             return Math.abs(idx - root.centerIndex) <= root.visibleRadius;
@@ -134,22 +164,22 @@ PanelWindow {
             showDotAndDotDot: false
             nameFilters: ["*"]
             onCountChanged: {
-                if (count === 0)
-                    return ;
+                if (count > 0 && !root.thumbsReady)
+                    thumbnailer.running = true;
+                else
+                    root.refreshDeck();
 
-                var indices = Array.from({
-                    "length": count
-                }, (_, i) => {
-                    return i;
-                });
-                for (var i = indices.length - 1; i > 0; i--) {
-                    var j = Math.floor(Math.random() * (i + 1));
-                    [indices[i], indices[j]] = [indices[j], indices[i]];
-                }
-                var urls = [];
-                for (var i = 0; i < count; i++) urls.push(folderModel.get(indices[i], "fileUrl"))
-                root.allUrls = urls;
-                root.visibleCount = count;
+            }
+        }
+
+        Process {
+            id: thumbnailer
+
+            command: [ "bash", root.config.homeDir + "/.config/quickshell/wallpaper/thumbnails.sh" ]
+            running: true
+            onExited: {
+                root.thumbsReady = true;
+                root.refreshDeck();
             }
         }
 
@@ -203,7 +233,7 @@ PanelWindow {
                             id: bg
 
                             anchors.fill: parent
-                            source: root.allUrls.length > 0 ? root.allUrls[(root.currentIndex + index) % root.allUrls.length] : ""
+                            source: root.allThumbs.length > 0 ? root.allThumbs[(root.currentIndex + index) % root.allThumbs.length] : ""
                             fillMode: Image.PreserveAspectCrop
                             asynchronous: true
                             smooth: true
