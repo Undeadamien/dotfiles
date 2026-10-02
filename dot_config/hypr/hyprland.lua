@@ -104,7 +104,7 @@ hl.animation({ leaf = "workspaces", enabled = false, speed = 2, bezier = "fast",
 hl.animation({ leaf = "layers", enabled = true, speed = 5, bezier = "fast", style = "fade" })
 
 hl.bind(mainMod .. " + e", hl.dsp.exec_cmd(menu .. " -show drun"))
-hl.bind(mainMod .. " + r", hl.dsp.exec_cmd("quickshell --no-duplicate"))
+hl.bind(mainMod .. " + r", hl.dsp.exec_cmd("quickshell --no-duplicate -c wallpaper"))
 hl.bind(mainMod .. " + w", hl.dsp.exec_cmd(menu .. " -show window"))
 hl.bind(mainMod .. " + q", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + SHIFT + n", hl.dsp.exec_cmd("swaync-client -t -sw"))

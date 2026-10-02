@@ -38,7 +38,7 @@ PanelWindow {
     MediaPlayer {
         id: player
 
-        source: "file://" + root.config.homeDir + "/.config/quickshell/button_press.mp3"
+        source: "file://" + root.config.homeDir + "/.config/quickshell/wallpaper/button_press.mp3"
 
         audioOutput: AudioOutput {
             volume: 1
@@ -56,13 +56,12 @@ PanelWindow {
         property var allUrls: []
         property int currentIndex: 0
         property int visibleCount: 5
-        readonly property real cardWidth: Screen.width * (2 / 3) / 5
+        readonly property int deckSlots: 5
+        readonly property int visibleRadius: Math.floor((deckSlots - 1) / 2)
+        readonly property real cardWidth: Screen.width * config.deckWidthFraction / deckSlots
         readonly property real cardHeight: Screen.height / 3
-        readonly property real skewAngle: -16
-        readonly property real skewTan: Math.tan(skewAngle * Math.PI / 180)
-        readonly property real extraWidth: Math.abs(skewTan) * cardHeight
+        readonly property real cardSpacing: config.gaps * 2
         readonly property int centerIndex: Math.floor(visibleCount / 2)
-        readonly property int visibleRadius: 2
 
         function isCardVisible(idx) {
             return Math.abs(idx - root.centerIndex) <= root.visibleRadius;
@@ -107,11 +106,11 @@ PanelWindow {
         Keys.onPressed: (event) => {
             switch (event.key) {
             case Qt.Key_H:
-            case Qt.Key_K:
+            case Qt.Key_J:
             case Qt.Key_Left:
                 root.navigate(-1);
                 break;
-            case Qt.Key_J:
+            case Qt.Key_K:
             case Qt.Key_L:
             case Qt.Key_Right:
                 root.navigate(1);
@@ -157,9 +156,9 @@ PanelWindow {
         Row {
             id: cardRow
 
-            spacing: root.config.gaps * 2
+            spacing: root.cardSpacing
             anchors.verticalCenter: parent.verticalCenter
-            x: (parent.width - root.cardWidth) / 2 - root.centerIndex * (root.cardWidth + spacing) - root.skewTan * Screen.height / 6
+            x: (parent.width - root.cardWidth) / 2 - root.centerIndex * (root.cardWidth + root.cardSpacing)
 
             Repeater {
                 id: cardRepeater
@@ -203,10 +202,7 @@ PanelWindow {
                         Image {
                             id: bg
 
-                            x: -root.extraWidth
-                            y: 0
-                            width: parent.width + 2 * root.extraWidth
-                            height: parent.height
+                            anchors.fill: parent
                             source: root.allUrls.length > 0 ? root.allUrls[(root.currentIndex + index) % root.allUrls.length] : ""
                             fillMode: Image.PreserveAspectCrop
                             asynchronous: true
@@ -224,19 +220,12 @@ PanelWindow {
 
                             }
 
-                            transform: Matrix4x4 {
-                                matrix: Qt.matrix4x4(1, -root.skewTan, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
-                            }
-
                         }
 
                         Image {
                             id: fg
 
-                            x: -root.extraWidth
-                            y: 0
-                            width: parent.width + 2 * root.extraWidth
-                            height: parent.height
+                            anchors.fill: parent
                             source: ""
                             fillMode: Image.PreserveAspectCrop
                             smooth: true
@@ -260,10 +249,6 @@ PanelWindow {
                                 }
                             }
 
-                            transform: Matrix4x4 {
-                                matrix: Qt.matrix4x4(1, -root.skewTan, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
-                            }
-
                         }
 
                         Rectangle {
@@ -275,25 +260,12 @@ PanelWindow {
 
                     }
 
-                    Rectangle {
-                        anchors.fill: clipItem
-                        anchors.margins: -1
-                        border.color: "black"
-                        border.width: 1
-                        color: "transparent"
-                        opacity: 0.5
-                    }
-
                     Behavior on opacity {
                         NumberAnimation {
                             duration: 200
                             easing.type: Easing.OutCubic
                         }
 
-                    }
-
-                    transform: Matrix4x4 {
-                        matrix: Qt.matrix4x4(1, root.skewTan, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
                     }
 
                 }
