@@ -27,71 +27,97 @@ Rectangle {
 
     }
 
-    Label {
-        id: clock
+    Rectangle {
+        anchors.fill: parent
+        color: "#60000000"
+    }
 
-        property var date: new Date()
-
-        color: "white"
-        renderType: Text.NativeRendering
-        text: {
-            const hours = this.date.getHours().toString().padStart(2, '0');
-            const minutes = this.date.getMinutes().toString().padStart(2, '0');
-            return `${hours}:${minutes}`;
-        }
+    ColumnLayout {
+        spacing: 4
 
         anchors {
-            left: parent.left
+            horizontalCenter: parent.horizontalCenter
             top: parent.top
+            topMargin: parent.height * 0.12
         }
 
-        font {
-            bold: true
-            italic: true
-            pointSize: 80
+        Label {
+            id: clock
+
+            property var date: new Date()
+
+            color: "white"
+            renderType: Text.NativeRendering
+            text: {
+                const hours = this.date.getHours().toString().padStart(2, '0');
+                const minutes = this.date.getMinutes().toString().padStart(2, '0');
+                return `${hours}-${minutes}`;
+            }
+            Layout.alignment: Qt.AlignHCenter
+            font.pointSize: Math.min(root.width / 20, 80)
+            font.weight: Font.DemiBold
+
+            Timer {
+                running: true
+                repeat: true
+                interval: 1000
+                onTriggered: clock.date = new Date()
+            }
+
         }
 
-        Timer {
-            running: true
-            repeat: true
-            interval: 1000
-            onTriggered: clock.date = new Date()
+        Label {
+            color: "white"
+            opacity: 0.85
+            renderType: Text.NativeRendering
+            font.pointSize: Math.min(root.width / 60, 24)
+            text: Qt.locale().toString(clock.date, "dddd, MMMM d")
+            Layout.alignment: Qt.AlignHCenter
         }
 
     }
 
     ColumnLayout {
-        width: childrenRect.width
-        spacing: 32
+        spacing: 24
 
         anchors {
             horizontalCenter: parent.horizontalCenter
             bottom: parent.bottom
+            bottomMargin: parent.height * 0.08
         }
 
         Label {
             color: 'white'
             renderType: Text.NativeRendering
             text: Quickshell.env("USER") ?? "User"
-
-            anchors {
-                horizontalCenter: parent.horizontalCenter
-            }
-
+            Layout.alignment: Qt.AlignHCenter
+            opacity: 0.95
+            font.pointSize: 13
         }
 
         TextField {
             id: passwordBox
 
+            implicitWidth: Math.min(260, root.width * 0.16)
             focus: true
             enabled: !root.context.unlockInProgress
             echoMode: TextInput.Password
+            passwordCharacter: "━"
             inputMethodHints: Qt.ImhSensitiveData
+            horizontalAlignment: TextInput.AlignHCenter
+            padding: 4
+            color: "white"
+            palette.text: "white"
+            palette.placeholderText: "#80ffffff"
             onTextChanged: root.context.currentText = this.text
             onAccepted: root.context.tryUnlock()
+            cursorVisible: false
+            cursorDelegate: Item {}
+            Layout.alignment: Qt.AlignHCenter
 
-            anchors {
-                horizontalCenter: parent.horizontalCenter
+            font {
+                letterSpacing: 6
+                pointSize: 12
             }
 
             Connections {
@@ -100,6 +126,13 @@ Rectangle {
                 }
 
                 target: root.context
+            }
+
+            background: Rectangle {
+                anchors.bottom: parent.bottom
+                width: parent.width
+                height: 1
+                color: root.context.showFailure ? "#ff5c5c" : (passwordBox.activeFocus ? "white" : "#e6ffffff")
             }
 
         }
