@@ -11,6 +11,21 @@ Rectangle {
 
     color: colors.window
 
+    Image {
+        width: parent.width
+        height: parent.height
+        source: "/home/undeadamien/.config/hypr/wallpaper_current" //TODO: change the hard-coded path
+
+        Image {
+            source: "white_noise.png"
+            width: parent.width
+            height: parent.height
+            fillMode: Image.Tile
+            opacity: 0.1
+        }
+
+    }
+
     Button {
         text: "Its not working, let me out"
         onClicked: context.unlocked()
@@ -21,6 +36,7 @@ Rectangle {
 
         property var date: new Date()
 
+        color: "white"
         renderType: Text.NativeRendering
         font.pointSize: 80
         text: {
@@ -71,14 +87,6 @@ Rectangle {
                     target: root.context
                 }
 
-            }
-
-            Button {
-                text: "Unlock"
-                padding: 10
-                focusPolicy: Qt.NoFocus
-                enabled: !root.context.unlockInProgress && root.context.currentText !== ""
-                onClicked: root.context.tryUnlock()
             }
 
         }
