@@ -14,9 +14,10 @@ Rectangle {
     color: colors.window
 
     Image {
+        source: Quickshell.env("HOME") + "/.config/hypr/wallpaper_current"
         width: parent.width
         height: parent.height
-        source: Quickshell.env("HOME") + "/.config/hypr/wallpaper_current"
+        fillMode: Image.PreserveAspectCrop
 
         Image {
             source: "white_noise.png"
@@ -152,7 +153,7 @@ Rectangle {
                 width: parent.width
                 height: 1
                 color: root.context.showFailure ? "#ff5c5c" : (passwordBox.activeFocus ? config.fg : config.fg)
-            opacity: root.context.showFailure ? 1.0 : (passwordBox.activeFocus ? 1.0 : 0.9)
+                opacity: root.context.showFailure ? 1 : (passwordBox.activeFocus ? 1 : 0.9)
             }
 
         }
