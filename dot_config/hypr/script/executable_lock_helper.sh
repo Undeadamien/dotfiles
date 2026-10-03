@@ -26,5 +26,5 @@ if [ "$WAS_MUTED" = "0" ]; then
     wpctl set-mute @DEFAULT_AUDIO_SINK@ 1
 fi
 
-# Run hyprlock - this blocks until the screen is unlocked
-hyprlock
+# Run the quickshell lockscreen - this blocks until the screen is unlocked
+quickshell -c lockscreen

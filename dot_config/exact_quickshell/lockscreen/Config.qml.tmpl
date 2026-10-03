@@ -1,0 +1,13 @@
+import QtQuick
+
+QtObject {
+    property string font: "{{ .font }}"
+    property int gaps: {{ .gaps }}
+    property color bg: "{{ .colors.bg }}"
+    property color bgAlt: "{{ .colors.bg_alt }}"
+    property color fg: "{{ .colors.fg }}"
+    property color border: "{{ .colors.border }}"
+    property color accent: "{{ .colors.accent }}"
+    property color color1: "{{ .colors.color1 }}"
+    property string homeDir: "{{ .chezmoi.homeDir }}"
+}

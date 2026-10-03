@@ -1,0 +1,13 @@
+import QtQuick
+
+QtObject {
+    property int gaps: {{ .gaps }}
+    property color bg: "{{ .colors.bg }}"
+    property color bgAlt: "{{ .colors.bg_alt }}"
+    property color fg: "{{ .colors.fg }}"
+    property color border: "{{ .colors.border }}"
+    property color borderColor: "{{ .colors.border }}"
+    property color accent: "{{ .colors.accent }}"
+    property string homeDir: "{{ .chezmoi.homeDir }}"
+    property real deckWidthFraction: 1.2
+}

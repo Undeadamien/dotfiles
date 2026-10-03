@@ -19,11 +19,6 @@ PanelWindow {
         Quickshell.execDetached(["bash", "-c", "ln -sf \"" + path + "\" \"" + current + "\" && " + "awww img \"" + current + "\" --transition-duration 8 --transition-type fade --transition-fps 30"]);
     }
 
-    function playSound() {
-        player.stop();
-        player.play();
-    }
-
     color: "#80000000"
     WlrLayershell.layer: WlrLayer.Top
     WlrLayershell.keyboardFocus: WlrKeyboardFocus.Exclusive
@@ -36,15 +31,10 @@ PanelWindow {
         top: true
     }
 
-    MediaPlayer {
+    SoundEffect {
         id: player
 
-        source: "file://" + root.config.homeDir + "/.config/quickshell/wallpaper/button_press.mp3"
-
-        audioOutput: AudioOutput {
-            volume: 1
-        }
-
+        source: "file://" + root.config.homeDir + "/.config/quickshell/button_press.wav"
     }
 
     Item {
@@ -80,7 +70,6 @@ PanelWindow {
                 var j = Math.floor(Math.random() * (i + 1));
                 [indices[i], indices[j]] = [indices[j], indices[i]];
             }
-
             var urls = [];
             var thumbs = [];
             for (var i = 0; i < folderModel.count; i++) {
@@ -115,7 +104,8 @@ PanelWindow {
                     card.startSlide(dir);
 
             }
-            playSound();
+            player.stop();
+            player.play();
         }
 
         function confirmWallpaper() {
@@ -168,14 +158,13 @@ PanelWindow {
                     thumbnailer.running = true;
                 else
                     root.refreshDeck();
-
             }
         }
 
         Process {
             id: thumbnailer
 
-            command: [ "bash", root.config.homeDir + "/.config/quickshell/wallpaper/thumbnails.sh" ]
+            command: ["bash", root.config.homeDir + "/.config/quickshell/wallpaper/thumbnails.sh"]
             running: true
             onExited: {
                 root.thumbsReady = true;
