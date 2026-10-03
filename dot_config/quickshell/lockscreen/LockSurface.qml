@@ -8,6 +8,7 @@ Rectangle {
     id: root
 
     required property LockContext context
+    required property QtObject config
     readonly property ColorGroup colors: Window.active ? palette.active : palette.inactive
 
     color: colors.window
@@ -46,7 +47,7 @@ Rectangle {
 
             property var date: new Date()
 
-            color: "white"
+            color: config.fg
             renderType: Text.NativeRendering
             text: {
                 const hours = this.date.getHours().toString().padStart(2, '0');
@@ -56,7 +57,7 @@ Rectangle {
             Layout.alignment: Qt.AlignHCenter
 
             font {
-                pointSize: Math.min(root.width / 20, 80)
+                pointSize: Math.max(1, Math.min(root.width / 20, 80))
                 weight: Font.DemiBold
                 family: "DepartureMono Nerd Font"
             }
@@ -71,14 +72,14 @@ Rectangle {
         }
 
         Label {
-            color: "white"
+            color: config.fg
             opacity: 0.85
             renderType: Text.NativeRendering
             text: Qt.locale().toString(clock.date, "dddd, MMMM d")
             Layout.alignment: Qt.AlignHCenter
 
             font {
-                pointSize: Math.min(root.width / 60, 24)
+                pointSize: Math.max(1, Math.min(root.width / 60, 24))
                 family: "DepartureMono Nerd Font"
             }
 
@@ -96,7 +97,7 @@ Rectangle {
         }
 
         Label {
-            color: 'white'
+            color: config.fg
             renderType: Text.NativeRendering
             text: Quickshell.env("USER") ?? "User"
             Layout.alignment: Qt.AlignHCenter
@@ -120,8 +121,10 @@ Rectangle {
             inputMethodHints: Qt.ImhSensitiveData
             horizontalAlignment: TextInput.AlignHCenter
             padding: 4
-            color: "white"
-            palette.text: "white"
+            color: config.fg
+            palette.text: config.fg
+            palette.windowText: config.fg
+            palette.buttonText: config.fg
             palette.placeholderText: "#80ffffff"
             onTextChanged: root.context.currentText = this.text
             onAccepted: root.context.tryUnlock()
@@ -148,7 +151,8 @@ Rectangle {
                 anchors.bottom: parent.bottom
                 width: parent.width
                 height: 1
-                color: root.context.showFailure ? "#ff5c5c" : (passwordBox.activeFocus ? "white" : "#e6ffffff")
+                color: root.context.showFailure ? "#ff5c5c" : (passwordBox.activeFocus ? config.fg : config.fg)
+            opacity: root.context.showFailure ? 1.0 : (passwordBox.activeFocus ? 1.0 : 0.9)
             }
 
         }

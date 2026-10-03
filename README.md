@@ -24,7 +24,8 @@ A minimal, keyboard-driven Wayland setup focused on speed, consistency, and repr
 ### Desktop workflow
 
 - `hyprland` – tiling Wayland compositor
-- `hyprlock/hypridle` – lock + idle
+- `quickshell` – lockscreen + wallpaper shell
+- `hypridle` – idle
 - `hyprshot` – screenshot
 - `rofi` – launcher
 - `swaync` – notifications

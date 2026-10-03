@@ -242,7 +242,7 @@ hl.window_rule({ match = { title = ".*YouTube.*" }, opacity = "1 override" })
 hl.window_rule({ match = { title = "mpv.*" }, opacity = "1 override" })
 
 hl.bind(mainMod .. " + m", function()
-	hl.exec_cmd("hyprlock")
+	hl.exec_cmd("quickshell --no-duplicate -c lockscreen")
 end)
 hl.bind(mainMod .. " + b", function()
 	hl.exec_cmd("pkill -SIGUSR1 waybar || waybar &")

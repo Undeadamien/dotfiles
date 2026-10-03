@@ -2,6 +2,10 @@ import Quickshell
 import Quickshell.Wayland
 
 ShellRoot {
+    Config {
+        id: cfg
+    }
+
     LockContext {
         id: lockContext
 
@@ -20,6 +24,7 @@ ShellRoot {
             LockSurface {
                 anchors.fill: parent
                 context: lockContext
+                config: cfg
             }
 
         }
