@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls.Fusion
 import QtQuick.Layouts
+import Quickshell
 import Quickshell.Wayland
 
 Rectangle {
@@ -14,7 +15,7 @@ Rectangle {
     Image {
         width: parent.width
         height: parent.height
-        source: "/home/undeadamien/.config/hypr/wallpaper_current" //TODO: change the hard-coded path
+        source: Quickshell.env("HOME") + "/.config/hypr/wallpaper_current"
 
         Image {
             source: "white_noise.png"
@@ -26,11 +27,6 @@ Rectangle {
 
     }
 
-    Button {
-        text: "Its not working, let me out"
-        onClicked: context.unlocked()
-    }
-
     Label {
         id: clock
 
@@ -38,7 +34,6 @@ Rectangle {
 
         color: "white"
         renderType: Text.NativeRendering
-        font.pointSize: 80
         text: {
             const hours = this.date.getHours().toString().padStart(2, '0');
             const minutes = this.date.getMinutes().toString().padStart(2, '0');
@@ -46,9 +41,14 @@ Rectangle {
         }
 
         anchors {
-            horizontalCenter: parent.horizontalCenter
+            left: parent.left
             top: parent.top
-            topMargin: 100
+        }
+
+        font {
+            bold: true
+            italic: true
+            pointSize: 80
         }
 
         Timer {
@@ -61,39 +61,47 @@ Rectangle {
     }
 
     ColumnLayout {
+        width: childrenRect.width
+        spacing: 32
+
         anchors {
             horizontalCenter: parent.horizontalCenter
-            top: parent.verticalCenter
+            bottom: parent.bottom
         }
 
-        ColumnLayout {
-            TextField {
-                id: passwordBox
+        Label {
+            color: 'white'
+            renderType: Text.NativeRendering
+            text: Quickshell.env("USER") ?? "User"
 
-                implicitWidth: 400
-                padding: 10
-                focus: true
-                enabled: !root.context.unlockInProgress
-                echoMode: TextInput.Password
-                inputMethodHints: Qt.ImhSensitiveData
-                onTextChanged: root.context.currentText = this.text
-                onAccepted: root.context.tryUnlock()
-
-                Connections {
-                    function onCurrentTextChanged() {
-                        passwordBox.text = root.context.currentText;
-                    }
-
-                    target: root.context
-                }
-
+            anchors {
+                horizontalCenter: parent.horizontalCenter
             }
 
         }
 
-        Label {
-            visible: root.context.showFailure
-            text: "Incorrect password"
+        TextField {
+            id: passwordBox
+
+            focus: true
+            enabled: !root.context.unlockInProgress
+            echoMode: TextInput.Password
+            inputMethodHints: Qt.ImhSensitiveData
+            onTextChanged: root.context.currentText = this.text
+            onAccepted: root.context.tryUnlock()
+
+            anchors {
+                horizontalCenter: parent.horizontalCenter
+            }
+
+            Connections {
+                function onCurrentTextChanged() {
+                    passwordBox.text = root.context.currentText;
+                }
+
+                target: root.context
+            }
+
         }
 
     }
