@@ -54,8 +54,12 @@ Rectangle {
                 return `${hours}-${minutes}`;
             }
             Layout.alignment: Qt.AlignHCenter
-            font.pointSize: Math.min(root.width / 20, 80)
-            font.weight: Font.DemiBold
+
+            font {
+                pointSize: Math.min(root.width / 20, 80)
+                weight: Font.DemiBold
+                family: "DepartureMono Nerd Font"
+            }
 
             Timer {
                 running: true
@@ -70,9 +74,14 @@ Rectangle {
             color: "white"
             opacity: 0.85
             renderType: Text.NativeRendering
-            font.pointSize: Math.min(root.width / 60, 24)
             text: Qt.locale().toString(clock.date, "dddd, MMMM d")
             Layout.alignment: Qt.AlignHCenter
+
+            font {
+                pointSize: Math.min(root.width / 60, 24)
+                family: "DepartureMono Nerd Font"
+            }
+
         }
 
     }
@@ -92,7 +101,12 @@ Rectangle {
             text: Quickshell.env("USER") ?? "User"
             Layout.alignment: Qt.AlignHCenter
             opacity: 0.95
-            font.pointSize: 13
+
+            font {
+                pointSize: 13
+                family: "DepartureMono Nerd Font"
+            }
+
         }
 
         TextField {
@@ -112,7 +126,6 @@ Rectangle {
             onTextChanged: root.context.currentText = this.text
             onAccepted: root.context.tryUnlock()
             cursorVisible: false
-            cursorDelegate: Item {}
             Layout.alignment: Qt.AlignHCenter
 
             font {
@@ -126,6 +139,9 @@ Rectangle {
                 }
 
                 target: root.context
+            }
+
+            cursorDelegate: Item {
             }
 
             background: Rectangle {
