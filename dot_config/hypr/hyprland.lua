@@ -281,6 +281,16 @@ hl.bind(mainMod .. " + t", function()
 	)
 end)
 
+--DUMMY
+hl.bind(mainMod .. " + SHIFT + b", function()
+	hl.exec_cmd("quickshell -c dummy")
+end)
+hl.window_rule({
+	match = { title = "quickshell_dummy" },
+	no_shadow = true,
+	border_size = 0,
+})
+
 --NWNEE
 local nwneeKeybind = hl.bind(
 	"ALT_L",
