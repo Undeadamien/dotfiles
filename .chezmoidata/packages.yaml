@@ -8,6 +8,7 @@ packages:
     - bluez
     - bluez-utils
     - cava
+    - chafa
     - chezmoi
     - cronie
     - discord
@@ -23,6 +24,7 @@ packages:
     - hyprpolkitagent
     - hyprshot
     - iwd
+    - jq
     - krita
     - lazygit
     - libvips
