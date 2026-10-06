@@ -121,6 +121,11 @@ Rectangle {
                 root.context.tryUnlock();
                 player.play();
             }
+            onCursorPositionChanged: {
+                if (cursorPosition !== text.length)
+                    cursorPosition = text.length;
+
+            }
             cursorVisible: false
             Layout.alignment: Qt.AlignHCenter
 
