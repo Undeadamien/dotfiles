@@ -31,6 +31,7 @@ packages:
     - mpd
     - mpv
     - neovim
+    - noto-fonts-emoji
     - pavucontrol
     - playerctl
     - pulsemixer
