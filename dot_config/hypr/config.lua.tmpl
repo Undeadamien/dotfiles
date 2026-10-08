@@ -2,6 +2,7 @@ return {
     gaps       = {{ .gaps }},
     rounding   = {{ .rounding }},
     workspaces = {{ .workspaces }},
+    chassis    = "{{ includeTemplate "chassis" .}}",
     colors = {
         border = "{{ .colors.border }}",
         bg      = "{{ .colors.bg }}",

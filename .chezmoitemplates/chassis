@@ -1,0 +1,5 @@
+{{- $chassisType := "desktop" }}
+{{- if eq .chezmoi.os "linux" }}
+{{-   $chassisType = (output "hostnamectl" "--json=short" | mustFromJson).Chassis }}
+{{- end -}}
+{{- $chassisType -}}

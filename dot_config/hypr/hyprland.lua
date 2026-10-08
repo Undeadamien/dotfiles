@@ -307,3 +307,13 @@ local function updateNwnee(win)
 end
 hl.on("window.active", updateNwnee)
 updateNwnee(hl.get_active_window())
+
+if config.chassis == "laptop" then
+	hl.config({
+		animations = { enabled = false },
+		decoration = {
+			--shadow = { enabled = false },
+			blur = { enabled = false },
+		},
+	})
+end
