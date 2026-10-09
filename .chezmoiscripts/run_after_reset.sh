@@ -2,4 +2,4 @@
 
 set -euo pipefail
 
-hyprctl reload --quiet
+hyprctl reload --quiet || true
