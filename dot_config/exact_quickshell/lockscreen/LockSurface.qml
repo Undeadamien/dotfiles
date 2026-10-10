@@ -3,33 +3,64 @@ import QtQuick
 import QtQuick.Controls.Fusion
 import QtQuick.Layouts
 import Quickshell
-import Quickshell.Wayland
 
 Rectangle {
     id: root
 
     required property LockContext context
     required property QtObject config
+    property var lockFrame
 
     color: palette.window
+
+    Connections {
+        function onUnlocked() {
+            root.grabToImage((result) => {
+                root.lockFrame = result;
+                root.context.lockFrameCaptured(result.url);
+            });
+        }
+
+        target: root.context
+    }
 
     Image {
         source: Quickshell.env("HOME") + "/.config/hypr/wallpaper_current"
         anchors.fill: parent
         fillMode: Image.PreserveAspectCrop
-
-        Image {
-            source: "white_noise.png"
-            anchors.fill: parent
-            fillMode: Image.Tile
-            opacity: 0.1
-        }
-
     }
 
     Rectangle {
         anchors.fill: parent
-        color: "#60000000"
+        color: '#1a000000'
+    }
+
+    Rectangle {
+        anchors.fill: parent
+
+        gradient: Gradient {
+            GradientStop {
+                position: 0
+                color: '#8c000000'
+            }
+
+            GradientStop {
+                position: 0.4
+                color: "transparent"
+            }
+
+            GradientStop {
+                position: 0.6
+                color: "transparent"
+            }
+
+            GradientStop {
+                position: 1
+                color: '#8c000000'
+            }
+
+        }
+
     }
 
     ColumnLayout {
@@ -53,6 +84,7 @@ Rectangle {
             Layout.alignment: Qt.AlignHCenter
 
             font {
+                bold: true
                 pointSize: Math.max(1, Math.min(root.width / 20, 80))
                 family: config.font
             }
@@ -72,6 +104,7 @@ Rectangle {
             Layout.alignment: Qt.AlignHCenter
 
             font {
+                bold: true
                 pointSize: Math.max(1, Math.min(root.width / 60, 24))
                 family: config.font
             }
@@ -97,6 +130,7 @@ Rectangle {
             font {
                 pointSize: 16
                 family: config.font
+                bold: true
             }
 
         }
@@ -132,7 +166,7 @@ Rectangle {
             SoundEffect {
                 id: player
 
-                source: "file://" + root.config.homeDir + "/.config/quickshell/button_press.wav"
+                source: Quickshell.env("HOME") + "/.config/quickshell/button_press.wav"
             }
 
             palette {
@@ -142,6 +176,7 @@ Rectangle {
             }
 
             font {
+                bold: true
                 letterSpacing: 6
                 pointSize: 12
             }

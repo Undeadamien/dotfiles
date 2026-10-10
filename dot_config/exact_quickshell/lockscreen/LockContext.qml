@@ -10,7 +10,7 @@ Scope {
     property bool showFailure: false
 
     signal unlocked()
-    signal failed()
+    signal lockFrameCaptured(var frame)
 
     function tryUnlock() {
         if (currentText === "")

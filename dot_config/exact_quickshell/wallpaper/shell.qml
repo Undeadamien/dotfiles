@@ -1,13 +1,9 @@
 import Qt.labs.folderlistmodel
 import QtMultimedia
 import QtQuick
-import QtQuick.Layouts
-import QtQuick.Shapes
 import QtQuick.Window
 import Quickshell
-import Quickshell.Hyprland
 import Quickshell.Io
-import Quickshell.Services.Mpris
 import Quickshell.Wayland
 
 PanelWindow {
@@ -15,7 +11,7 @@ PanelWindow {
 
     function setWallpaper(url) {
         var path = url.toString().replace("file://", "");
-        var current = root.config.homeDir + "/.config/hypr/wallpaper_current";
+        var current = Quickshell.env("HOME") + "/.config/hypr/wallpaper_current";
         Quickshell.execDetached(["bash", "-c", "ln -sf \"" + path + "\" \"" + current + "\" && " + "awww img \"" + current + "\" --transition-duration 8 --transition-type fade --transition-fps 30"]);
     }
 
@@ -34,7 +30,7 @@ PanelWindow {
     SoundEffect {
         id: player
 
-        source: "file://" + root.config.homeDir + "/.config/quickshell/button_press.wav"
+        source: "file://" + Quickshell.env("HOME") + "/.config/quickshell/button_press.wav"
     }
 
     Item {
@@ -55,7 +51,7 @@ PanelWindow {
         readonly property real cardHeight: cardWidth * 9 / 16
         readonly property real cardSpacing: config.gaps * 2
         readonly property int centerIndex: Math.floor(visibleCount / 2)
-        readonly property string thumbDir: (Quickshell.env("XDG_CACHE_HOME") || root.config.homeDir + "/.cache") + "/hypr/wallpaper-thumbs"
+        readonly property string thumbDir: (Quickshell.env("XDG_CACHE_HOME") || Quickshell.env("HOME") + "/.cache") + "/hypr/wallpaper-thumbs"
 
         function refreshDeck() {
             if (folderModel.count === 0 || !root.thumbsReady)
@@ -149,7 +145,7 @@ PanelWindow {
         FolderListModel {
             id: folderModel
 
-            folder: "file://" + root.config.homeDir + "/.config/hypr/wallpaper/"
+            folder: "file://" + Quickshell.env("HOME") + "/.config/hypr/wallpaper/"
             showDirs: false
             showDotAndDotDot: false
             nameFilters: ["*"]
@@ -164,7 +160,7 @@ PanelWindow {
         Process {
             id: thumbnailer
 
-            command: ["bash", root.config.homeDir + "/.config/quickshell/wallpaper/thumbnails.sh"]
+            command: ["bash", Quickshell.env("HOME") + "/.config/quickshell/wallpaper/thumbnails.sh"]
             running: true
             onExited: {
                 root.thumbsReady = true;
@@ -173,8 +169,6 @@ PanelWindow {
         }
 
         Row {
-            id: cardRow
-
             spacing: root.cardSpacing
             anchors.verticalCenter: parent.verticalCenter
             x: (parent.width - root.cardWidth) / 2 - root.centerIndex * (root.cardWidth + root.cardSpacing)
@@ -185,8 +179,6 @@ PanelWindow {
                 model: root.visibleCount
 
                 delegate: Item {
-                    id: card
-
                     function captureOld() {
                         if (bg.status === Image.Ready)
                             fg.source = bg.source;
@@ -207,8 +199,6 @@ PanelWindow {
                     opacity: root.isCardVisible(index) ? 1 : 0
 
                     Item {
-                        id: clipItem
-
                         anchors.fill: parent
                         clip: true
                         antialiasing: true
