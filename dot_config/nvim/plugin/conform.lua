@@ -42,6 +42,12 @@ local formatters = {
 		args = { "--profile", "black", "$FILENAME" },
 		stdin = false,
 	},
+	qmlformat = {
+		inherit = false,
+		command = "/usr/lib/qt6/bin/qmlformat",
+		args = { "-i", "$FILENAME" },
+		stdin = false,
+	},
 }
 
 vim.keymap.set("n", "<leader>cf", function()
