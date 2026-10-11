@@ -9,12 +9,12 @@ Scope {
     property bool unlockInProgress: false
     property bool showFailure: false
 
-    signal unlocked()
+    signal unlocked
     signal lockFrameCaptured(var frame)
 
     function tryUnlock() {
         if (currentText === "")
-            return ;
+            return;
 
         root.unlockInProgress = true;
         pam.start();
@@ -30,9 +30,8 @@ Scope {
         onPamMessage: {
             if (this.responseRequired)
                 this.respond(root.currentText);
-
         }
-        onCompleted: (result) => {
+        onCompleted: result => {
             if (result == PamResult.Success) {
                 root.unlocked();
             } else {
@@ -42,5 +41,4 @@ Scope {
             root.unlockInProgress = false;
         }
     }
-
 }

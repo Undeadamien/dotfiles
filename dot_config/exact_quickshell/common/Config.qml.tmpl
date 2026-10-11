@@ -1,0 +1,30 @@
+pragma Singleton
+
+import QtQuick
+import Quickshell
+
+QtObject {
+    readonly property color fg: "{{ .colors.fg }}"
+    readonly property color bg: "{{ .colors.bg }}"
+    readonly property color bg_alt: "{{ .colors.bg_alt }}"
+    readonly property color bg_mid: "{{ .colors.bg_mid }}"
+    readonly property color border: "{{ .colors.border }}"
+    readonly property color failure: "{{ .colors.color1 }}"
+
+    readonly property int gaps: 8
+
+    readonly property int workspaces: {{ .workspaces }}
+
+    readonly property real deckWidthFraction: 1.2
+
+    readonly property string configHome: (Quickshell.env("HOME") ?? "") + "/.config"
+    readonly property string wallpaperCurrent: configHome + "/hypr/wallpaper_current"
+    readonly property string clickSound: configHome + "/quickshell/button_press.wav"
+
+    readonly property QtObject font: QtObject {
+        readonly property bool bold: true
+        readonly property int size: 12
+        readonly property string family: "DepartureMono Nerd Font"
+        readonly property string familyPropo: "DepartureMono Nerd Font Propo"
+    }
+}

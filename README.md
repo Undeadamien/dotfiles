@@ -24,12 +24,11 @@ A minimal, keyboard-driven Wayland setup focused on speed, consistency, and repr
 ### Desktop workflow
 
 - `hyprland` – tiling Wayland compositor
-- `quickshell` – lockscreen + wallpaper shell
+- `quickshell` – lockscreen + wallpaper + bar
 - `hypridle` – idle
 - `hyprshot` – screenshot
 - `rofi` – launcher
 - `swaync` – notifications
-- `waybar` – system bar
 
 ### Terminal workflow
 

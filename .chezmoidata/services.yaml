@@ -1,10 +1,11 @@
 services:
   user:
+    - hyprpolkitagent.service
+    - mpDris2.service
     - mpd.service
     - syncthing.service
-    - xppentablet.service
-    - hyprpolkitagent.service
-    - ydotool.service
     - wayland-pipewire-idle-inhibit.service
+    - xppentablet.service
+    - ydotool.service
   system:
     - bluetooth.service

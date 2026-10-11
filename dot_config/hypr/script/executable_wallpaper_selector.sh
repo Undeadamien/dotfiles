@@ -13,23 +13,8 @@ set_wallpaper() {
     awww img "${current}" --transition-duration "${speed}" --transition-type fade --transition-fps "${fps}"
 }
 
-manual_select() {
-    selection="$(
-        for img in "${wallpaper_dir}"/*; do
-            echo -en "$(basename "${img}")\0icon\x1f${img}\n"
-        done | rofi -dmenu -theme wallpaper.rasi -p "wallpapers" || true
-    )"
-    if [[ -z "${selection}" ]] || [[ ! -e "${wallpaper_dir}/${selection}" ]]; then return; fi
-    set_wallpaper "${wallpaper_dir}/${selection}"
-}
-
 if ! pgrep -x awww-daemon >/dev/null; then hyprctl dispatch exec awww-daemon; fi
 timeout 10 bash -c 'until awww query >/dev/null 2>&1; do sleep 0.2; done' || true
-
-if [[ "${1:-}" == "select" ]]; then
-    manual_select
-    exit 0
-fi
 
 if [[ "${1:-}" == "set" && -n "${2:-}" ]]; then
     set_wallpaper "$2"

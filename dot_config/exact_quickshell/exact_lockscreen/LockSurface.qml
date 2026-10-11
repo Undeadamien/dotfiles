@@ -3,19 +3,19 @@ import QtQuick
 import QtQuick.Controls.Fusion
 import QtQuick.Layouts
 import Quickshell
+import "common"
 
 Rectangle {
     id: root
 
     required property LockContext context
-    required property QtObject config
     property var lockFrame
 
     color: palette.window
 
     Connections {
         function onUnlocked() {
-            root.grabToImage((result) => {
+            root.grabToImage(result => {
                 root.lockFrame = result;
                 root.context.lockFrameCaptured(result.url);
             });
@@ -25,7 +25,7 @@ Rectangle {
     }
 
     Image {
-        source: Quickshell.env("HOME") + "/.config/hypr/wallpaper_current"
+        source: Config.wallpaperCurrent
         anchors.fill: parent
         fillMode: Image.PreserveAspectCrop
     }
@@ -58,9 +58,7 @@ Rectangle {
                 position: 1
                 color: '#8c000000'
             }
-
         }
-
     }
 
     ColumnLayout {
@@ -75,7 +73,7 @@ Rectangle {
 
             property var date: new Date()
 
-            color: config.fg
+            color: Config.fg
             text: {
                 const hours = this.date.getHours().toString().padStart(2, '0');
                 const minutes = this.date.getMinutes().toString().padStart(2, '0');
@@ -86,7 +84,7 @@ Rectangle {
             font {
                 bold: true
                 pointSize: Math.max(1, Math.min(root.width / 20, 80))
-                family: config.font
+                family: Config.font.family
             }
 
             Timer {
@@ -95,22 +93,19 @@ Rectangle {
                 interval: 1000
                 onTriggered: clock.date = new Date()
             }
-
         }
 
         Label {
-            color: config.fg
+            color: Config.fg
             text: Qt.locale().toString(clock.date, "dddd, MMMM d")
             Layout.alignment: Qt.AlignHCenter
 
             font {
                 bold: true
                 pointSize: Math.max(1, Math.min(root.width / 60, 24))
-                family: config.font
+                family: Config.font.family
             }
-
         }
-
     }
 
     ColumnLayout {
@@ -123,16 +118,15 @@ Rectangle {
         }
 
         Label {
-            color: config.fg
+            color: Config.fg
             text: Quickshell.env("USER") ?? "User"
             Layout.alignment: Qt.AlignHCenter
 
             font {
                 pointSize: 16
-                family: config.font
+                family: Config.font.family
                 bold: true
             }
-
         }
 
         TextField {
@@ -146,7 +140,7 @@ Rectangle {
             inputMethodHints: Qt.ImhSensitiveData
             horizontalAlignment: TextInput.AlignHCenter
             padding: 6
-            color: config.fg
+            color: Config.fg
             onTextChanged: {
                 root.context.currentText = this.text;
                 player.play();
@@ -158,7 +152,6 @@ Rectangle {
             onCursorPositionChanged: {
                 if (cursorPosition !== text.length)
                     cursorPosition = text.length;
-
             }
             cursorVisible: false
             Layout.alignment: Qt.AlignHCenter
@@ -166,13 +159,13 @@ Rectangle {
             SoundEffect {
                 id: player
 
-                source: Quickshell.env("HOME") + "/.config/quickshell/button_press.wav"
+                source: Config.clickSound
             }
 
             palette {
-                text: config.fg
-                windowText: config.fg
-                buttonText: config.fg
+                text: Config.fg
+                windowText: Config.fg
+                buttonText: Config.fg
             }
 
             font {
@@ -189,8 +182,7 @@ Rectangle {
                 target: root.context
             }
 
-            cursorDelegate: Item {
-            }
+            cursorDelegate: Item {}
 
             background: Rectangle {
                 id: underline
@@ -201,7 +193,7 @@ Rectangle {
                 anchors.bottom: parent.bottom
                 width: parent.width
                 height: 1
-                color: showingFailure ? config.color1 : config.fg
+                color: showingFailure ? Config.failure : Config.fg
 
                 Timer {
                     id: failureTimer
@@ -215,7 +207,6 @@ Rectangle {
                         underline.failureFaded = false;
                         if (root.context.showFailure)
                             failureTimer.restart();
-
                     }
 
                     target: root.context
@@ -228,13 +219,8 @@ Rectangle {
                         duration: 400
                         easing.type: Easing.OutCubic
                     }
-
                 }
-
             }
-
         }
-
     }
-
 }
