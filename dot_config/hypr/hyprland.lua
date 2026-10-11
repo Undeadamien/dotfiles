@@ -16,13 +16,12 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("hypridle")
 	hl.exec_cmd("swaync")
 	hl.exec_cmd("discord --start-minimized")
-	hl.exec_cmd("waybar")
+	hl.exec_cmd("qs -c bar")
 	hl.exec_cmd("mpc random on & mpc repeat on")
 	hl.exec_cmd("[workspace 1 silent] firefox")
 	hl.exec_cmd("[workspace 1 silent] " .. terminal)
 end)
 hl.on("config.reloaded", function()
-	hl.exec_cmd("killall waybar && waybar")
 	hl.exec_cmd("swaync --replace")
 end)
 
@@ -244,9 +243,6 @@ hl.window_rule({ match = { title = "mpv.*" }, opacity = "1 override" })
 hl.bind(mainMod .. " + m", function()
 	hl.exec_cmd("quickshell --no-duplicate -c lockscreen")
 end)
-hl.bind(mainMod .. " + b", function()
-	hl.exec_cmd("pkill -SIGUSR1 waybar || waybar &")
-end)
 hl.bind(mainMod .. " + o", function()
 	hl.dispatch(hl.dsp.window.set_prop({ prop = "opaque", value = "toggle" }))
 end)
@@ -268,7 +264,7 @@ end)
 
 hl.layer_rule({ match = { namespace = menu }, dim_around = true })
 hl.layer_rule({ match = { namespace = "swaync-control-center" }, dim_around = true })
-hl.layer_rule({ match = { namespace = "waybar" }, animation = "slide top" })
+hl.layer_rule({ match = { namespace = "qs -c bar" }, animation = "slide top" })
 hl.layer_rule({ match = { namespace = "swaync-control-center" }, animation = "slide right" })
 hl.layer_rule({ match = { namespace = "quickshell_wallpaper" }, dim_around = true })
 
@@ -310,7 +306,7 @@ updateNwnee(hl.get_active_window())
 
 if config.chassis == "laptop" then
 	hl.config({
-		animations = { enabled = false },
+		animations = { enabled = true },
 		decoration = {
 			--shadow = { enabled = false },
 			blur = { enabled = false },

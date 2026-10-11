@@ -3,14 +3,10 @@ import Quickshell
 import Quickshell.Wayland
 
 ShellRoot {
-    Config {
-        id: cfg
-    }
-
     LockContext {
         id: lockContext
 
-        onLockFrameCaptured: (frame) => {
+        onLockFrameCaptured: frame => {
             snapshot.source = frame;
             releaseTimer.start();
         }
@@ -35,7 +31,6 @@ ShellRoot {
             anchors.fill: parent
             fillMode: Image.PreserveAspectCrop
         }
-
     }
 
     WlSessionLock {
@@ -47,11 +42,8 @@ ShellRoot {
             LockSurface {
                 anchors.fill: parent
                 context: lockContext
-                config: cfg
             }
-
         }
-
     }
 
     Timer {
@@ -74,5 +66,4 @@ ShellRoot {
         easing.type: Easing.InOutQuad
         onFinished: Qt.quit()
     }
-
 }

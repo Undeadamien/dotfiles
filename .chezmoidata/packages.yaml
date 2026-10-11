@@ -23,7 +23,6 @@ packages:
     - hyprland
     - hyprpolkitagent
     - hyprshot
-    - iwd
     - jq
     - krita
     - lazygit
@@ -33,6 +32,7 @@ packages:
     - mpd
     - mpv
     - neovim
+    - noto-fonts-cjk
     - noto-fonts-emoji
     - pavucontrol
     - playerctl
@@ -54,7 +54,6 @@ packages:
     - ttf-jetbrains-mono-nerd
     - upower
     - vlc
-    # - waybar (provided by waybar-git from aur instead)
     - wev
     - wget
     - wlsunset
@@ -63,9 +62,8 @@ packages:
     - yt-dlp
     - zsh-autocomplete
   aur:
+    - mpdris2
     - opera
     - otf-departure-mono-nerd
-    - uni
-    - waybar-git
     - wayland-pipewire-idle-inhibit
     - xp-pen-tablet
