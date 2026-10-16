@@ -15,10 +15,25 @@ Label {
     readonly property string volume: mpdPlayer ? String(Math.round(mpdPlayer.volume * 100)).padStart(2, '0') : ""
     readonly property real barHeight: Window.window ? Window.window.height : height
 
+    readonly property string title: {
+        if (!mpdPlayer)
+            return "";
+        const meta = mpdPlayer.metadata;
+        if (meta["xesam:title"])
+            return (meta["xesam:title"]);
+        const url = meta["xesam:url"];
+        if (url) {
+            const filename = url.substring(url.lastIndexOf("/") + 1);
+            const dot = filename.lastIndexOf(".");
+            return dot > 0 ? filename.substring(0, dot) : filename;
+        }
+        return "";
+    }
+
     visible: mpdPlayer ?? false
 
     text: {
-        if (!mpdPlayer || !mpdPlayer.trackTitle)
+        if (!mpdPlayer || !title)
             return "MPD:STP";
         else if (mpdPlayer.isPlaying)
             return "MPD:PLY";
@@ -98,7 +113,7 @@ Label {
         hoverEnabled: true
         onClicked: event => {
             if (event.button === Qt.LeftButton) {
-                if (!mpdPlayer.trackTitle) {
+                if (!title) {
                     rmpcAddAll.running = true;
                 } else
                     mpdPlayer.togglePlaying();
