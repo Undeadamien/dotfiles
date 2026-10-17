@@ -76,18 +76,14 @@ Label {
 
         ColorAnimation {
             duration: 2000
-            from: Config.bg
             to: Config.fg
             easing.type: Easing.Linear
         }
         ColorAnimation {
             duration: 2000
             from: Config.fg
-            to: Config.bg
+            to: Config.bg_alt
             easing.type: Easing.Linear
         }
     }
-
-    //todo: add hover
-    //https://quickshell.org/docs/v0.1.0/types/Quickshell.Services.UPower/UPowerDeviceState/
 }
