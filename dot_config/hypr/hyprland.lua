@@ -105,6 +105,8 @@ hl.animation({ leaf = "layers", enabled = true, speed = 5, bezier = "fast", styl
 
 hl.bind(mainMod .. " + e", hl.dsp.exec_cmd(menu .. " -show drun"))
 hl.bind(mainMod .. " + r", hl.dsp.exec_cmd("quickshell --no-duplicate -c wallpaper"))
+hl.bind(mainMod .. " + i", hl.dsp.exec_cmd("cliphist list | rofi -dmenu | cliphist decode | wl-copy"))
+hl.bind(mainMod .. " + SHIFT + i", hl.dsp.exec_cmd("true"))
 hl.bind(mainMod .. " + w", hl.dsp.exec_cmd(menu .. " -show window"))
 hl.bind(mainMod .. " + q", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + SHIFT + n", hl.dsp.exec_cmd("swaync-client -t -sw"))

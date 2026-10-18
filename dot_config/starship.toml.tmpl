@@ -1,5 +1,5 @@
 format = """
-$username $directory( [\\[](bold)$git_branch$git_status$git_metrics$git_state[\\]](bold))( $python)$fill( $cmd_duration)
+$username $directory( [\\[](bold)$git_branch$git_status$git_metrics$git_state[\\]](bold))( $python)
 $character
 """
 
@@ -55,11 +55,3 @@ format = "[\\[](bold)[$virtualenv]($style)[\\]](bold)"
 success_symbol = "[>](fg:{{ .colors.accent }} bold)"
 error_symbol = "[>](fg:{{ .colors.accent }} bold)"
 vimcmd_symbol = "[<](fg:{{ .colors.accent }} bold)"
-
-[fill]
-symbol = ' '
-
-[cmd_duration]
-disabled = false
-min_time = 2000
-format = "[$duration](dimmed)"
