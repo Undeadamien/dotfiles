@@ -97,7 +97,7 @@ hl.config({
 
 hl.curve("fast", { type = "bezier", points = { { 0.33, 1 }, { 0.68, 1 } } })
 hl.animation({ leaf = "windows", enabled = true, speed = 3, bezier = "fast", style = "slide" })
-hl.animation({ leaf = "windowsOut", enabled = true, speed = 5, bezier = "fast", style = "popin 0%" })
+hl.animation({ leaf = "windowsOut", enabled = true, speed = 5, bezier = "fast", style = "slide" })
 hl.animation({ leaf = "border", enabled = true, speed = 2, bezier = "fast" })
 hl.animation({ leaf = "fade", enabled = true, speed = 2, bezier = "fast" })
 hl.animation({ leaf = "workspaces", enabled = true, speed = 3, bezier = "fast", style = "slide" })
