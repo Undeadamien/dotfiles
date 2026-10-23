@@ -52,19 +52,23 @@ Label {
         id: popupwindow
 
         visible: false
-        anchor.item: root
-        anchor.margins {
-            bottom: 3
-            left: 3
-            right: 3
-            top: 3
+        anchor.window: root.QsWindow.window
+        anchor.adjustment: PopupAdjustment.None
+        anchor.edges: Edges.Top | Edges.Left
+        anchor.gravity: Edges.Bottom | Edges.Right
+        anchor.onAnchoring: {
+            const win = root.QsWindow.window;
+            const p = win.contentItem.mapFromItem(root, 0, 0);
+            const margin = 8;
+            const gapBelowBar = 8;
+            let x = p.x + root.width / 2 - popupwindow.implicitWidth / 2;
+            x = Math.max(margin, Math.min(x, win.width - popupwindow.implicitWidth - margin));
+            anchor.rect = Qt.rect(x, win.height + gapBelowBar, 1, 1);
         }
+
         implicitWidth: column.implicitWidth
         implicitHeight: column.implicitHeight
         color: Config.bg
-
-        anchor.rect.x: root.implicitWidth / 2 - implicitWidth / 2
-        anchor.rect.y: (root.barHeight + root.height) / 2
 
         Column {
             id: column

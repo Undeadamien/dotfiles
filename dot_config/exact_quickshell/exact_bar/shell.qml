@@ -78,5 +78,6 @@ PanelWindow {
         }
         ModuleVolume {}
         ModuleNetwork {}
+        ModuleNotifications {}
     }
 }
