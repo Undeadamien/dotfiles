@@ -1,11 +1,11 @@
+import "common"
 import QtQuick
-import QtQuick.Effects
 import QtQuick.Controls.Fusion
+import QtQuick.Effects
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Io
 import Quickshell.Services.Mpris
-import "common"
 
 //todo: consider multiple Label for more control
 Label {
@@ -53,18 +53,13 @@ Label {
 
         visible: false
         anchor.item: root
-        anchor.margins {
-            bottom: 3
-            left: 3
-            right: 3
-            top: 3
-        }
+        anchor.edges: Edges.Bottom
+        anchor.gravity: Edges.Bottom
+        anchor.adjustment: PopupAdjustment.All
+
         implicitWidth: column.implicitWidth
         implicitHeight: column.implicitHeight
         color: Config.bg
-
-        anchor.rect.x: root.implicitWidth / 2 - implicitWidth / 2
-        anchor.rect.y: (root.barHeight + root.height) / 2
 
         Column {
             id: column
@@ -80,7 +75,6 @@ Label {
             }
         }
 
-        //TODO: add a shadow
         Rectangle {
             anchors.fill: parent
             border.color: Config.border

@@ -8,10 +8,10 @@ Label {
     id: root
     readonly property var devices: UPower.devices.values
     readonly property var battery: UPower.devices.values.find(d => d.isLaptopBattery)
-    property var lerpedColor: lerpColor(Config.bg_alt, Config.fg, battery.percentage)
+    property var lerpedColor: battery ? lerpColor(Config.bg_alt, Config.fg, battery.percentage) : Config.fg
 
     visible: battery !== undefined
-    text: battery ? "BAT:" + Math.floor(battery.percentage * 100) : ""
+    text: battery ? "BAT:" + String(Math.floor(battery.percentage * 100)).padStart(2, '0') : ""
     color: battery ? lerpedColor : Config.fg
 
     font {
@@ -37,23 +37,75 @@ Label {
     }
 
     Connections {
-        target: battery
+        target: battery ?? null
 
         ignoreUnknownSignals: true
         function onStateChanged() {
             if (!battery)
                 return;
-            console.log(UPowerDeviceState.toString(battery.state));
+            //console.log(UPowerDeviceState.toString(battery.state));
             if (isCharging()) {
                 animationCharging.start();
             } else {
                 animationCharging.stop();
                 root.color = lerpedColor;//todo: check if needed
             }
-            console.log(animationCharging.running);
+            //console.log(animationCharging.running);
         }
     }
 
+    PopupWindow {
+        id: popupwindow
+
+        visible: false
+        anchor.item: root
+        anchor.edges: Edges.Bottom
+        anchor.gravity: Edges.Bottom
+        anchor.adjustment: PopupAdjustment.All
+
+        implicitWidth: column.implicitWidth
+        implicitHeight: column.implicitHeight
+        color: Config.bg
+
+        Column {
+            id: column
+            Label {
+                text: {
+                    if (!battery)
+                        return "";
+                    var totalSeconds;
+                    if (battery.timeToFull)
+                        totalSeconds = battery.timeToFull;
+                    else if (battery.timeToEmpty)
+                        totalSeconds = battery.timeToEmpty;
+                    else
+                        return `${UPowerDeviceState.toString(battery.state)}: --:--:--`;
+                    const hours = Math.floor(totalSeconds / 3600);
+                    const minutes = Math.floor((totalSeconds % 3600) / 60);
+                    const seconds = totalSeconds % 60;
+                    var timeString = [hours, minutes, seconds].map(val => String(val).padStart(2, '0')).join(':');
+                    return `${UPowerDeviceState.toString(battery.state)}: ${timeString}`;
+                }
+
+                color: Config.fg
+                padding: 6
+                font {
+                    bold: true
+                    family: Config.font.familyPropo
+                    pixelSize: Config.font.size
+                }
+            }
+        }
+
+        Rectangle {
+            anchors.fill: parent
+            border.color: Config.border
+            border.width: 1
+            color: "transparent"
+        }
+    }
+
+    //todo: add a window an hover to show times and states
     MouseArea {
         id: mousearea
         anchors.fill: parent
@@ -68,7 +120,12 @@ Label {
             if (wheel.angleDelta.y > 0) {} else if (wheel.angleDelta.y < 0) {}
             wheel.accepted = true;
         }
-        onExited: event => {}
+        onEntered: event => {
+            popupwindow.visible = true;
+        }
+        onExited: event => {
+            popupwindow.visible = false;
+        }
     }
 
     Behavior on color {
