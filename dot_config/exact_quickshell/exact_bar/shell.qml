@@ -49,7 +49,6 @@ PanelWindow {
 
         ModuleDate {}
         ModuleTime {}
-
         Loader {
             active: Mpris.players.values.some(p => p.identity === "Music Player Daemon")
             visible: this.active //avoid taking space from spacing
@@ -78,5 +77,6 @@ PanelWindow {
         }
         ModuleVolume {}
         ModuleNetwork {}
+        ModuleNotifications {}
     }
 }

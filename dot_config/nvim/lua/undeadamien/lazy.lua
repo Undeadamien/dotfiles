@@ -104,7 +104,7 @@ require("lazy").setup({
 	"tpope/vim-fugitive",
 	"lewis6991/gitsigns.nvim",
 
-	-- Greeter
+	-- Greeter (config lives in plugin/alpha.lua)
 	{ "goolord/alpha-nvim", dependencies = { "nvim-tree/nvim-web-devicons" } },
 
 	-- Clock

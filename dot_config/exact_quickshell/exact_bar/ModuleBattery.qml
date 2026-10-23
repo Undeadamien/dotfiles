@@ -11,7 +11,7 @@ Label {
     property var lerpedColor: lerpColor(Config.bg_alt, Config.fg, battery.percentage)
 
     visible: battery !== undefined
-    text: battery ? "BAT:" + Math.floor(battery.percentage * 100) : ""
+    text: battery ? "BAT:" + String(Math.floor(battery.percentage * 100)).padStart(2, '0') : ""
     color: battery ? lerpedColor : Config.fg
 
     font {
@@ -43,17 +43,58 @@ Label {
         function onStateChanged() {
             if (!battery)
                 return;
-            console.log(UPowerDeviceState.toString(battery.state));
+            //console.log(UPowerDeviceState.toString(battery.state));
             if (isCharging()) {
                 animationCharging.start();
             } else {
                 animationCharging.stop();
                 root.color = lerpedColor;//todo: check if needed
             }
-            console.log(animationCharging.running);
+            //console.log(animationCharging.running);
         }
     }
 
+    PopupWindow {
+        id: popupwindow
+
+        visible: false
+        anchor.item: root
+        anchor.edges: Edges.Bottom
+        anchor.gravity: Edges.Bottom
+        anchor.adjustment: PopupAdjustment.All
+
+        implicitWidth: column.implicitWidth
+        implicitHeight: column.implicitHeight
+        color: Config.bg
+
+        Column {
+            id: column
+            Label {
+                text: {
+                    "placholder";
+                    //todo: add decharging time
+                    //todo: add charging time
+                }
+
+                color: Config.fg
+                padding: 6
+                font {
+                    bold: true
+                    family: Config.font.familyPropo
+                    pixelSize: Config.font.size
+                }
+            }
+        }
+
+        Rectangle {
+            anchors.fill: parent
+            border.color: Config.border
+            border.width: 1
+            color: "transparent"
+        }
+    }
+
+    //todo: add a window an hover to show times and states
     MouseArea {
         id: mousearea
         anchors.fill: parent
@@ -68,7 +109,12 @@ Label {
             if (wheel.angleDelta.y > 0) {} else if (wheel.angleDelta.y < 0) {}
             wheel.accepted = true;
         }
-        onExited: event => {}
+        onEntered: event => {
+            popupwindow.visible = true;
+        }
+        onExited: event => {
+            popupwindow.visible = false;
+        }
     }
 
     Behavior on color {
