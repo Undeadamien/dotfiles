@@ -11,6 +11,8 @@ import Quickshell.Wayland
 PanelWindow {
     id: root
 
+    readonly property int spacing_: 4
+
     color: Config.bg
     implicitHeight: 26
 
@@ -41,14 +43,33 @@ PanelWindow {
         border.width: 1
     }
 
+    Component {
+        id: separator
+        Label {
+            text: "|"
+            color: Config.fg
+            font {
+                bold: false
+                family: Config.font.familyPropo
+                pixelSize: Config.font.size
+            }
+        }
+    }
+
     RowLayout {
         anchors.left: parent.left
         anchors.leftMargin: 8
         anchors.verticalCenter: parent.verticalCenter
-        spacing: 8
+        spacing: spacing_
 
         ModuleDate {}
+        Loader {
+            sourceComponent: separator
+        }
         ModuleTime {}
+        Loader {
+            sourceComponent: separator
+        }
         Loader {
             active: Mpris.players.values.some(p => p.identity === "Music Player Daemon")
             visible: this.active //avoid taking space from spacing
@@ -67,16 +88,28 @@ PanelWindow {
         anchors.right: parent.right
         anchors.rightMargin: 8
         anchors.verticalCenter: parent.verticalCenter
-        spacing: 8
+        spacing: spacing_
 
         ModuleSystemTray {}
+        Loader {
+            sourceComponent: separator
+        }
         Loader {
             active: UPower.devices.values.some(d => d.isLaptopBattery)
             visible: this.active //avoid taking space from spacing
             sourceComponent: ModuleBattery {}
         }
+        Loader {
+            sourceComponent: separator
+        }
         ModuleVolume {}
+        Loader {
+            sourceComponent: separator
+        }
         ModuleNetwork {}
+        Loader {
+            sourceComponent: separator
+        }
         ModuleNotifications {}
     }
 }

@@ -309,7 +309,7 @@ updateNwnee(hl.get_active_window())
 
 if config.chassis == "laptop" then
 	hl.config({
-		animations = { enabled = true },
+		animations = { enabled = false },
 		decoration = {
 			--shadow = { enabled = false },
 			blur = { enabled = false },
