@@ -14,7 +14,6 @@ Label {
     property double lastClosed: 0
     readonly property int count: server.trackedNotifications.values.length
 
-    // todo: find a way to represent both count and DND
     text: root.count > 0 ? "<!>" : "<->"
     color: root.dnd ? Config.border : Config.fg
 
