@@ -71,9 +71,18 @@ Label {
             id: column
             Label {
                 text: {
-                    "placholder";
-                    //todo: add decharging time
-                    //todo: add charging time
+                    var totalSeconds;
+                    if (battery.timeToFull)
+                        totalSeconds = battery.timeToFull;
+                    else if (battery.timeToEmpty)
+                        totalSeconds = battery.timeToEmpty;
+                    else
+                        return `${UPowerDeviceState.toString(battery.state)}: --:--:--`;
+                    const hours = Math.floor(totalSeconds / 3600);
+                    const minutes = Math.floor((totalSeconds % 3600) / 60);
+                    const seconds = totalSeconds % 60;
+                    var timeString = [hours, minutes, seconds].map(val => String(val).padStart(2, '0')).join(':');
+                    return `${UPowerDeviceState.toString(battery.state)}: ${timeString}`;
                 }
 
                 color: Config.fg
