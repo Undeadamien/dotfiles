@@ -5,6 +5,7 @@ import QtQuick.Controls.Fusion
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Services.Mpris
+import Quickshell.Services.SystemTray
 import Quickshell.Services.UPower
 import Quickshell.Wayland
 
@@ -12,6 +13,10 @@ PanelWindow {
     id: root
 
     readonly property int spacing_: 4
+
+    readonly property bool hasMpd: Mpris.players.values.some(p => p.identity === "Music Player Daemon")
+    readonly property bool hasBattery: UPower.devices.values.some(d => d.isLaptopBattery)
+    readonly property bool hasTray: SystemTray.items.values.length != 0
 
     color: Config.bg
     implicitHeight: 26
@@ -43,16 +48,13 @@ PanelWindow {
         border.width: 1
     }
 
-    Component {
-        id: separator
-        Label {
-            text: "|"
-            color: Config.fg
-            font {
-                bold: false
-                family: Config.font.familyPropo
-                pixelSize: Config.font.size
-            }
+    component Sep: Label {
+        text: "|"
+        color: Config.fg
+        font {
+            bold: false
+            family: Config.font.familyPropo
+            pixelSize: Config.font.size
         }
     }
 
@@ -63,16 +65,14 @@ PanelWindow {
         spacing: spacing_
 
         ModuleDate {}
-        Loader {
-            sourceComponent: separator
-        }
+        Sep {}
         ModuleTime {}
-        Loader {
-            sourceComponent: separator
+        Sep {
+            visible: hasMpd
         }
         Loader {
-            active: Mpris.players.values.some(p => p.identity === "Music Player Daemon")
-            visible: this.active //avoid taking space from spacing
+            active: hasMpd
+            visible: hasMpd
             sourceComponent: ModuleMpris {}
         }
     }
@@ -90,26 +90,24 @@ PanelWindow {
         anchors.verticalCenter: parent.verticalCenter
         spacing: spacing_
 
-        ModuleSystemTray {}
-        Loader {
-            sourceComponent: separator
+        ModuleSystemTray {
+            parentwindow: root
+        }
+        Sep {
+            visible: hasTray
         }
         Loader {
-            active: UPower.devices.values.some(d => d.isLaptopBattery)
-            visible: this.active //avoid taking space from spacing
+            active: hasBattery
+            visible: hasBattery
             sourceComponent: ModuleBattery {}
         }
-        Loader {
-            sourceComponent: separator
+        Sep {
+            visible: hasBattery
         }
         ModuleVolume {}
-        Loader {
-            sourceComponent: separator
-        }
+        Sep {}
         ModuleNetwork {}
-        Loader {
-            sourceComponent: separator
-        }
+        Sep {}
         ModuleNotifications {}
     }
 }

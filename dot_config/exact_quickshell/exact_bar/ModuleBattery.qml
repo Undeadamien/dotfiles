@@ -8,7 +8,7 @@ Label {
     id: root
     readonly property var devices: UPower.devices.values
     readonly property var battery: UPower.devices.values.find(d => d.isLaptopBattery)
-    property var lerpedColor: lerpColor(Config.bg_alt, Config.fg, battery.percentage)
+    property var lerpedColor: battery ? lerpColor(Config.bg_alt, Config.fg, battery.percentage) : Config.fg
 
     visible: battery !== undefined
     text: battery ? "BAT:" + String(Math.floor(battery.percentage * 100)).padStart(2, '0') : ""
@@ -37,7 +37,7 @@ Label {
     }
 
     Connections {
-        target: battery
+        target: battery ?? null
 
         ignoreUnknownSignals: true
         function onStateChanged() {
@@ -71,6 +71,8 @@ Label {
             id: column
             Label {
                 text: {
+                    if (!battery)
+                        return "";
                     var totalSeconds;
                     if (battery.timeToFull)
                         totalSeconds = battery.timeToFull;
