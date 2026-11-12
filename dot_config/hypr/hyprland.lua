@@ -239,6 +239,10 @@ end)
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
+hl.window_rule({
+	match = { initial_title = "^(Discord)$" }, -- should only target the blank startup window
+	workspace = "special:trash silent",
+})
 hl.window_rule({ match = { class = "krita" }, opacity = "1 override" })
 hl.window_rule({ match = { title = ".*YouTube.*" }, opacity = "1 override" })
 hl.window_rule({ match = { title = "mpv.*" }, opacity = "1 override" })
