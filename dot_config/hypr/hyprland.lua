@@ -1,8 +1,6 @@
 local config = require("config")
 
 local mainMod = "SUPER"
-local terminal = "kitty"
-local menu = "rofi"
 
 hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
 
@@ -15,12 +13,14 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("wlsunset -l 48.9 -L 2.5")
 	hl.exec_cmd("hypridle")
 	hl.exec_cmd("swaync")
-	hl.exec_cmd("discord --start-minimized")
 	hl.exec_cmd("wl-paste --watch cliphist store")
 	hl.exec_cmd("qs -c bar")
 	hl.exec_cmd("mpc random on & mpc repeat on")
 	hl.exec_cmd("[workspace 1 silent] firefox")
-	hl.exec_cmd("[workspace 1 silent] " .. terminal)
+	hl.timer(function()
+		hl.exec_cmd("[workspace 1 silent] kitty")
+	end, { timeout = 2000, type = "oneshot" })
+	hl.exec_cmd("[workspace 5 silent] discord --start-minimized")
 end)
 hl.on("config.reloaded", function()
 	hl.exec_cmd("swaync --replace")
@@ -103,12 +103,12 @@ hl.animation({ leaf = "fade", enabled = true, speed = 2, bezier = "fast" })
 hl.animation({ leaf = "workspaces", enabled = true, speed = 3, bezier = "fast", style = "slide" })
 hl.animation({ leaf = "layers", enabled = true, speed = 5, bezier = "fast", style = "fade" })
 
-hl.bind(mainMod .. " + e", hl.dsp.exec_cmd(menu .. " -show drun"))
+hl.bind(mainMod .. " + e", hl.dsp.exec_cmd("rofi -show drun"))
 hl.bind(mainMod .. " + r", hl.dsp.exec_cmd("quickshell --no-duplicate -c wallpaper"))
 hl.bind(mainMod .. " + i", hl.dsp.exec_cmd("cliphist list | rofi -dmenu | cliphist decode | wl-copy"))
 hl.bind(mainMod .. " + SHIFT + i", hl.dsp.exec_cmd("true"))
-hl.bind(mainMod .. " + w", hl.dsp.exec_cmd(menu .. " -show window"))
-hl.bind(mainMod .. " + q", hl.dsp.exec_cmd(terminal))
+hl.bind(mainMod .. " + w", hl.dsp.exec_cmd("rofi -show window"))
+hl.bind(mainMod .. " + q", hl.dsp.exec_cmd("kitty"))
 hl.bind(mainMod .. " + SHIFT + n", hl.dsp.exec_cmd("swaync-client -t -sw"))
 
 local function notify_volume()
@@ -239,10 +239,6 @@ end)
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
-hl.window_rule({
-	match = { initial_title = "^(Discord)$" }, -- should only target the blank startup window
-	workspace = "special:trash silent",
-})
 hl.window_rule({ match = { class = "krita" }, opacity = "1 override" })
 hl.window_rule({ match = { title = ".*YouTube.*" }, opacity = "1 override" })
 hl.window_rule({ match = { title = "mpv.*" }, opacity = "1 override" })
@@ -269,7 +265,7 @@ hl.bind(mainMod .. " + SHIFT + o", function()
 	)
 end)
 
-hl.layer_rule({ match = { namespace = menu }, dim_around = true })
+hl.layer_rule({ match = { namespace = "rofi" }, dim_around = true })
 hl.layer_rule({ match = { namespace = "swaync-control-center" }, dim_around = true })
 hl.layer_rule({ match = { namespace = "quickshell_bar" }, animation = "slide top" })
 hl.layer_rule({ match = { namespace = "swaync-control-center" }, animation = "slide right" })
