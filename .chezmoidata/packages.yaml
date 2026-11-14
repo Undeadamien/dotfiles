@@ -45,6 +45,7 @@ packages:
     - ripgrep
     - rmpc
     - rofi
+    - rust-src
     - scdoc
     - starship
     - steam
