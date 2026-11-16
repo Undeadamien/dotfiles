@@ -28,6 +28,8 @@ end)
 
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
+hl.env("XCURSOR_THEME", "Adwaita")
+hl.env("HYPRCURSOR_THEME", "Adwaita")
 hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
 
 hl.config({
@@ -44,7 +46,7 @@ hl.config({
 		allow_tearing = false,
 		layout = "dwindle",
 	},
-	cursor = { inactive_timeout = 3 },
+	cursor = { inactive_timeout = 3, no_hardware_cursors = true },
 	decoration = {
 		rounding = config.rounding,
 		active_opacity = 0.925,
