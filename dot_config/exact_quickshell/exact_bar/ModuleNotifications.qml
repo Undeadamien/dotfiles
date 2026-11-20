@@ -3,6 +3,7 @@ import QtQuick
 import QtQuick.Controls.Fusion
 import QtQuick.Layouts
 import Quickshell
+import Quickshell.Hyprland
 import Quickshell.Services.Notifications
 import Quickshell.Wayland
 
@@ -38,6 +39,13 @@ Label {
         root.lastClosed = Date.now();
     }
 
+    function toggleHistory() {
+        if (history.visible)
+            closeHistory();
+        else if (Date.now() - root.lastClosed > 250)
+            openHistory();
+    }
+
     NotificationServer {
         id: server
 
@@ -57,6 +65,18 @@ Label {
             if (!root.dnd || critical)
                 root.popups = [...root.popups, notification];
         }
+    }
+
+    GlobalShortcut {
+        name: "notifications-history"
+        description: "Toggle notification history"
+        onPressed: root.toggleHistory()
+    }
+
+    GlobalShortcut {
+        name: "notifications-dnd"
+        description: "Toggle notification do not disturb"
+        onPressed: root.dnd = !root.dnd
     }
 
     Component {
@@ -379,10 +399,7 @@ Label {
 
         onClicked: event => {
             if (event.button === Qt.LeftButton) {
-                if (history.visible)
-                    root.closeHistory();
-                else if (Date.now() - root.lastClosed > 250)
-                    root.openHistory();
+                root.toggleHistory();
             } else if (event.button === Qt.RightButton) {
                 root.dnd = !root.dnd;
             }

@@ -25,6 +25,7 @@ packages:
     - hyprpolkitagent
     - hyprshot
     - jq
+    - kitty
     - krita
     - lazygit
     - libvips
@@ -49,9 +50,9 @@ packages:
     - scdoc
     - starship
     - steam
-    - swaync
     - syncthing
     - thunar
+    - tmux
     - tree
     - ttf-jetbrains-mono-nerd
     - upower
@@ -62,6 +63,7 @@ packages:
     - yazi
     - ydotool
     - yt-dlp
+    - zsh
     - zsh-autocomplete
   aur:
     - mpdris2

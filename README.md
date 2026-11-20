@@ -28,7 +28,6 @@ A minimal, keyboard-driven Wayland setup focused on speed, consistency, and repr
 - `hypridle` – idle
 - `hyprshot` – screenshot
 - `rofi` – launcher
-- `swaync` – notifications
 
 ### Terminal workflow
 
